@@ -61,7 +61,7 @@ function mount(id, builder) {
   node.innerHTML = "";
   try {
     const out = builder();
-    if (out instanceof HTMLElement) {
+    if (out instanceof Node) {
       node.appendChild(out);
     }
   } catch (err) {
