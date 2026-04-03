@@ -60,7 +60,7 @@ function mount(id, builder) {
   if (!node) return;
   node.innerHTML = "";
   try {
-    const out = builder();
+    const out = builder(node);
     if (out instanceof Node) {
       node.appendChild(out);
     }
@@ -70,7 +70,18 @@ function mount(id, builder) {
   }
 }
 
-const W = 960;
+/** Measure available width from a container, with a sensible fallback. */
+function containerWidth(node, fallback = 900) {
+  if (!node) return fallback;
+  // Walk up to find the chart-wrap parent so we measure the padded box
+  const wrap = node.closest(".chart-wrap") || node.parentElement;
+  if (!wrap) return fallback;
+  const style = getComputedStyle(wrap);
+  const padL = parseFloat(style.paddingLeft) || 0;
+  const padR = parseFloat(style.paddingRight) || 0;
+  const w = wrap.clientWidth - padL - padR;
+  return w > 200 ? w : fallback;
+}
 
 function renderOverview() {
   document.getElementById("subtitle").textContent = `${DATA.meta.subtitle} | archive date ${DATA.meta.archive_date}`;
@@ -135,18 +146,24 @@ function renderConfirmatorySummary() {
   ]);
 }
 
-function renderHeadlineForest() {
+function renderHeadlineForest(container) {
   const colors = themeColors();
+  const W = containerWidth(container);
   const rows = [...DATA.headline_findings].sort((a, b) => a.q_value - b.q_value);
   const labels = rows.map((row) => row.row_label);
   const maxX = Math.max(...rows.map((row) => row.ci_high ?? row.beta ?? 0), 0);
+  // Measure longest label to set left margin dynamically
+  const longestLabel = labels.reduce((a, b) => (a.length > b.length ? a : b), "");
+  const mLeft = Math.min(Math.max(longestLabel.length * 6.5 + 20, 300), W * 0.48);
   return Plot.plot({
     width: W,
-    height: Math.max(320, rows.length * 34 + 70),
-    marginLeft: 290,
-    marginRight: 100,
+    height: Math.max(380, rows.length * 38 + 80),
+    marginLeft: mLeft,
+    marginRight: 110,
+    marginTop: 20,
+    marginBottom: 40,
     x: { label: "DFLMX LP estimate with 95% CI", grid: true },
-    y: { label: null, domain: labels, padding: 0.25 },
+    y: { label: null, domain: labels, padding: 0.3 },
     style: { background: "transparent", color: colors.text, fontSize: "13px" },
     marks: [
       Plot.ruleX([0], { stroke: colors.textSecondary, strokeDasharray: "4,3" }),
@@ -180,23 +197,31 @@ function renderHeadlineForest() {
   });
 }
 
-function renderFunnel() {
+function renderFunnel(container) {
   const colors = themeColors();
+  const W = containerWidth(container);
+  const stages = DATA.funnel_counts;
+  const longestStage = stages.reduce((a, b) => (a.stage.length > b.stage.length ? a : b), stages[0]);
+  const mLeft = Math.min(Math.max(longestStage.stage.length * 6.5 + 20, 200), W * 0.4);
   return Plot.plot({
     width: W,
-    height: 260,
-    marginLeft: 220,
-    marginRight: 70,
+    height: Math.max(260, stages.length * 52 + 40),
+    marginLeft: mLeft,
+    marginRight: 80,
+    marginTop: 10,
+    marginBottom: 30,
     x: { label: "Rows", type: "linear" },
-    y: { label: null, domain: DATA.funnel_counts.map((row) => row.stage), padding: 0.3 },
-    style: { background: "transparent", color: colors.text, fontSize: "13px" },
+    y: { label: null, domain: stages.map((row) => row.stage), padding: 0.3 },
+    style: { background: "transparent", color: colors.text, fontSize: "14px" },
     marks: [
-      Plot.barX(DATA.funnel_counts, {
+      Plot.barX(stages, {
         y: "stage",
         x: "count",
         fill: (row, i) => (i >= 3 ? colors.pass : colors.bar),
+        tip: true,
+        title: (row) => `${row.stage}: ${row.count.toLocaleString()} rows`,
       }),
-      Plot.text(DATA.funnel_counts, {
+      Plot.text(stages, {
         y: "stage",
         x: "count",
         text: (row) => row.count.toLocaleString(),
@@ -204,6 +229,7 @@ function renderFunnel() {
         fill: colors.text,
         textAnchor: "start",
         fontWeight: 600,
+        fontSize: 14,
       }),
       Plot.ruleX([0], { stroke: colors.grid }),
     ],
@@ -236,17 +262,20 @@ function renderHeadlineInsights() {
   return container;
 }
 
-function renderConsumptionPlot() {
+function renderConsumptionPlot(container) {
   const colors = themeColors();
+  const W = containerWidth(container);
   const rows = [...DATA.consumption_findings, ...DATA.consumption_supporting].sort(
     (a, b) => a.q_value - b.q_value
   );
   const labels = rows.map((row) => row.row_label);
   const qValues = rows.map((row) => row.q_value).filter((value) => value > 0);
+  const longestLabel = labels.reduce((a, b) => (a.length > b.length ? a : b), "");
+  const mLeft = Math.min(Math.max(longestLabel.length * 6.2 + 20, 280), W * 0.48);
   return Plot.plot({
     width: W,
-    height: Math.max(260, rows.length * 28 + 60),
-    marginLeft: 300,
+    height: Math.max(300, rows.length * 32 + 60),
+    marginLeft: mLeft,
     marginRight: 40,
     x: {
       label: "DFLMX q-value",
@@ -273,14 +302,17 @@ function renderConsumptionPlot() {
   });
 }
 
-function renderEpisodes() {
+function renderEpisodes(container) {
   const colors = themeColors();
+  const W = containerWidth(container);
   const labels = DATA.episodes.summary.map((row) => row.label);
   const episodes = [...new Set(DATA.episodes.checks.map((row) => row.episode))];
+  const longestLabel = labels.reduce((a, b) => (a.length > b.length ? a : b), "");
+  const mLeft = Math.min(Math.max(longestLabel.length * 6.2 + 20, 280), W * 0.48);
   return Plot.plot({
     width: W,
-    height: Math.max(340, labels.length * 24 + 70),
-    marginLeft: 300,
+    height: Math.max(380, labels.length * 26 + 70),
+    marginLeft: mLeft,
     marginBottom: 40,
     x: { label: null, domain: episodes, padding: 0.2 },
     y: { label: null, domain: labels, padding: 0.15 },
@@ -306,13 +338,17 @@ function renderEpisodes() {
   });
 }
 
-function renderLeads() {
+function renderLeads(container) {
   const colors = themeColors();
+  const W = containerWidth(container);
   const rows = DATA.lead_checks.filter((row) => row.p_joint_leads != null && row.p_joint_leads > 0);
+  const rowLabels = rows.map((row) => row.label);
+  const longestLabel = rowLabels.reduce((a, b) => (a.length > b.length ? a : b), "");
+  const mLeft = Math.min(Math.max(longestLabel.length * 6.2 + 20, 280), W * 0.48);
   return Plot.plot({
     width: W,
-    height: Math.max(320, rows.length * 22 + 60),
-    marginLeft: 300,
+    height: Math.max(380, rows.length * 24 + 60),
+    marginLeft: mLeft,
     marginRight: 40,
     x: {
       label: "Joint lead p-value",

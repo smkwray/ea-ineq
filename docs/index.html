@@ -56,11 +56,19 @@
         <dt>DFLMX</dt>
         <dd>The screening layer. It ranks LP impulse-response rows, applies FDR correction, and runs episode, lead, and confirmatory diagnostics.</dd>
         <dt>DASS</dt>
-        <dd>The estimation layer. It keeps the estimator-specific outputs used to judge whether a headline row has LP-only support or broader estimator backing.</dd>
+        <dd>The estimation layer. It preserves estimator-specific outputs (LP, DML, TMLE, CF, LP-IV, DML-IV) for the same treatment-outcome-horizon rows, so you can judge whether a headline row has broad backing or is LP-only.</dd>
+        <dt>LP</dt>
+        <dd>Local projections &mdash; horizon-by-horizon regressions asking what happens 0, 1, 2, 4, or 8 quarters after a shock. This is the primary estimator used in the DFLMX screen.</dd>
+        <dt>DML</dt>
+        <dd>Debiased machine learning &mdash; a flexible regression that removes what controls predict from both treatment and outcome using sample splitting. Used as a cross-check in the DASS layer.</dd>
+        <dt>TMLE</dt>
+        <dd>Targeted maximum likelihood estimation &mdash; a &ldquo;high shock versus low shock&rdquo; comparison that provides an independent cross-check, mainly used for sign and significance confirmation.</dd>
+        <dt>CF / LP-IV / DML-IV</dt>
+        <dd>Additional DASS estimators: causal forests, LP with instrumental variables, and DML with instrumental variables. Available in the full outcomes run for broader estimator coverage.</dd>
         <dt>Robust row</dt>
-        <dd>A DFLMX finding with q ≤ 0.10 after multiple-testing correction.</dd>
+        <dd>A DFLMX finding with q &le; 0.10 after multiple-testing correction.</dd>
         <dt>Estimator support</dt>
-        <dd>Whether the same treatment-outcome-horizon row points in the same direction, and reaches nominal significance, across LP, DML, TMLE, or related DASS estimators.</dd>
+        <dd>Whether the same treatment-outcome-horizon row points in the same direction, and reaches nominal significance, across multiple DASS estimators. A row with &ldquo;multi-estimator support&rdquo; is stronger than one backed only by LP.</dd>
         <dt>Screening-only</dt>
         <dd>A row that survives the main screening stack but still lacks enough IV/negative-control support for a stronger confirmatory claim.</dd>
       </dl>
@@ -89,18 +97,17 @@
       </p>
     </div>
 
-    <div class="chart-row">
-      <div class="chart-wrap">
-        <h3>Pipeline Funnel</h3>
-        <div id="chart-funnel"></div>
-        <p class="chart-caption">
-          The archive is designed to show how many rows survive each layer, not just the final survivors.
-        </p>
-      </div>
-      <div class="chart-wrap">
-        <h3>What Strengthens Or Weakens A Headline Row</h3>
-        <div id="headline-insights" class="insight-stack"></div>
-      </div>
+    <div class="chart-wrap">
+      <h3>Pipeline Funnel</h3>
+      <div id="chart-funnel"></div>
+      <p class="chart-caption">
+        The archive is designed to show how many rows survive each layer, not just the final survivors.
+      </p>
+    </div>
+
+    <div class="chart-wrap">
+      <h3>What Strengthens Or Weakens A Headline Row</h3>
+      <div id="headline-insights" class="insight-stack"></div>
     </div>
 
     <div class="table-wrap">
