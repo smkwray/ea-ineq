@@ -1,76 +1,208 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#fafaf8">
-    <title>ea-ineq</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
-    <script src="./theme.js"></script>
-    <script defer src="./data.js"></script>
-    <script defer src="./app.js"></script>
-  </head>
-  <body>
-    <nav>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#questions">Questions</a>
-        <a href="#variables">Variables</a>
-        <a href="#runs">Runs</a>
-        <a href="#confirmatory">Confirmatory</a>
-        <a href="#brief">Brief</a>
-      </div>
-      <button id="theme-toggle" class="theme-toggle" type="button" onclick="toggleTheme()"></button>
-    </nav>
-    <main>
-      <section id="about">
-        <h1 id="title"></h1>
-        <p class="subtitle" id="subtitle"></p>
-        <div class="callout">
-          <div class="stat" id="headline-stat"></div>
-          <div class="stat-label" id="headline-label"></div>
-        </div>
-        <p>
-          This static archive packages the validated `econark-r` poverty/inequality specification, including the canon
-          `v2` consumption basket, the transfer-decomposition outcomes grid, and the repaired IV/negative-control
-          discovery layer used in the April 3, 2026 reruns.
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fafaf8">
+  <title>ea-ineq</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#questions">Questions</a>
+    <a href="#headline">Headline</a>
+    <a href="#consumption">Consumption</a>
+    <a href="#robustness">Robustness</a>
+    <a href="#methods">Methods</a>
+  </div>
+  <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+</nav>
+
+<main>
+  <section id="about">
+    <h1 id="title">Fiscal Transfers, Poverty, Inequality, and Consumption Composition</h1>
+    <p class="subtitle" id="subtitle"></p>
+
+    <div class="callout">
+      <div class="stat" id="headline-stat"></div>
+      <div class="stat-label" id="headline-label"></div>
+    </div>
+
+    <div class="safe-claim">
+      <strong>Main takeaway:</strong>
+      <span id="overview-takeaway"></span>
+    </div>
+
+    <p>
+      This archive is the project-specific public layer for an inequality-and-poverty research workflow built on
+      <a href="https://github.com/smkwray/econark">econark</a>'s R pipeline. It packages the compact project inputs,
+      the native DASS and DFLMX result trees, and a readable front end for the parts of the archive that matter most.
+    </p>
+    <p>
+      The site is organized the same way the research logic is organized. DFLMX provides the headline screen and
+      robustness stack. DASS preserves the estimator layer underneath it. The point of the archive is to show both:
+      what survived the screen, and how much estimator support sits underneath those surviving rows.
+    </p>
+
+    <details class="info-details">
+      <summary>How to read this archive</summary>
+      <dl class="glossary">
+        <dt>DFLMX</dt>
+        <dd>The screening layer. It ranks LP impulse-response rows, applies FDR correction, and runs episode, lead, and confirmatory diagnostics.</dd>
+        <dt>DASS</dt>
+        <dd>The estimation layer. It keeps the estimator-specific outputs used to judge whether a headline row has LP-only support or broader estimator backing.</dd>
+        <dt>Robust row</dt>
+        <dd>A DFLMX finding with q ≤ 0.10 after multiple-testing correction.</dd>
+        <dt>Estimator support</dt>
+        <dd>Whether the same treatment-outcome-horizon row points in the same direction, and reaches nominal significance, across LP, DML, TMLE, or related DASS estimators.</dd>
+        <dt>Screening-only</dt>
+        <dd>A row that survives the main screening stack but still lacks enough IV/negative-control support for a stronger confirmatory claim.</dd>
+      </dl>
+    </details>
+  </section>
+
+  <section id="questions">
+    <h2>Project Questions</h2>
+    <div id="questions-grid" class="questions-grid"></div>
+  </section>
+
+  <section id="headline">
+    <h2><span class="tier tier-headline">Headline</span> Poverty And Inequality Results</h2>
+    <div class="safe-claim">
+      <strong>Safe public claim:</strong>
+      Transfer shocks are the clearest and most repeated pattern in this archive. The transfer composite is the dominant driver of robust poverty and inequality findings, while non-transfer rows are narrower and more selective.
+    </div>
+
+    <div class="evidence-summary" id="headline-summary"></div>
+
+    <div class="chart-wrap">
+      <h3>Headline Screen: Robust DFLMX Rows</h3>
+      <div id="chart-headline"></div>
+      <p class="chart-caption">
+        These are the DFLMX rows that survive FDR correction in the full outcomes run. The forest plot shows the LP effect estimate and confidence interval used in the screening layer.
+      </p>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-wrap">
+        <h3>Pipeline Funnel</h3>
+        <div id="chart-funnel"></div>
+        <p class="chart-caption">
+          The archive is designed to show how many rows survive each layer, not just the final survivors.
         </p>
-      </section>
+      </div>
+      <div class="chart-wrap">
+        <h3>What Strengthens Or Weakens A Headline Row</h3>
+        <div id="headline-insights" class="insight-stack"></div>
+      </div>
+    </div>
 
-      <section id="questions">
-        <h2>Project Questions</h2>
-        <div id="questions-grid" class="questions-grid"></div>
-      </section>
+    <div class="table-wrap">
+      <h3>Estimator Comparison For The Headline Rows</h3>
+      <p>
+        This table uses the packaged DASS outputs for the same treatment-outcome-horizon rows. It does not rescreen the findings; it shows how much cross-estimator backing the headline rows have underneath the DFLMX screen.
+      </p>
+      <div id="headline-estimator-table"></div>
+    </div>
 
-      <section id="variables">
-        <h2>Key Variables</h2>
-        <table class="var-table">
-          <thead>
-            <tr><th>Variable</th><th>Definition</th></tr>
-          </thead>
-          <tbody id="var-body"></tbody>
-        </table>
-      </section>
+    <div class="table-wrap">
+      <h3>Supportive But Not Headline-Grade</h3>
+      <div id="secondary-findings"></div>
+    </div>
+  </section>
 
-      <section id="runs">
-        <h2>Packaged Runs</h2>
-        <div id="run-cards" class="questions-grid"></div>
-        <div id="run-tables"></div>
-      </section>
+  <section id="consumption">
+    <h2><span class="tier tier-secondary">Secondary</span> Consumption Composition</h2>
+    <div class="safe-claim">
+      <strong>Safe public claim:</strong>
+      The canon v2 basket is a real contribution, but it is not the main headline. The strongest surviving consumption pattern is narrow: UI benefits raise the essential-versus-discretionary balance one quarter out.
+    </div>
 
-      <section id="confirmatory">
-        <h2>Confirmatory Status</h2>
-        <div id="confirmatory-summary" class="questions-grid"></div>
-        <div id="confirmatory-tables"></div>
-      </section>
+    <div class="evidence-summary" id="consumption-summary"></div>
 
-      <section id="brief">
-        <h2>Archive Brief</h2>
-        <pre id="brief-text" class="code-block"></pre>
-      </section>
-    </main>
-  </body>
-  </html>
+    <div class="chart-wrap">
+      <h3>Consumption Findings Under The Canon v2 Basket</h3>
+      <div id="chart-consumption"></div>
+      <p class="chart-caption">
+        Filled points survive FDR correction. Hollow points are supporting rows that help show the shape of the consumption block even when they do not clear the final q-value gate.
+      </p>
+    </div>
+
+    <div class="table-wrap">
+      <h3>DASS Estimator Support For The Consumption Rows</h3>
+      <div id="consumption-estimator-table"></div>
+    </div>
+  </section>
+
+  <section id="robustness">
+    <h2>Robustness And Confirmatory Status</h2>
+
+    <div class="chart-wrap">
+      <h3>Episode Leave-One-Out Checks</h3>
+      <div id="chart-episodes"></div>
+      <p class="chart-caption">
+        Each cell shows whether a selected row still passes when one major episode is dropped from the sample window.
+      </p>
+    </div>
+
+    <div class="chart-wrap">
+      <h3>Lead And Anticipation Diagnostics</h3>
+      <div id="chart-leads"></div>
+      <p class="chart-caption">
+        Lower p-values are more likely to be flagged. These diagnostics matter, but they should be interpreted carefully in transfer settings where automatic stabilizers create mechanical feedback.
+      </p>
+    </div>
+
+    <div class="result-card">
+      <h3>Confirmatory Layer</h3>
+      <div class="safe-claim">
+        <strong>Interpretation:</strong>
+        The confirmatory layer is cleaner than it was before the econark-r fixes, but it is still much thinner than the screening layer. This archive is best read as disciplined reduced-form evidence with one narrow ready-confirmatory row.
+      </div>
+      <div class="evidence-summary" id="confirmatory-summary"></div>
+      <div id="confirmatory-tables"></div>
+    </div>
+  </section>
+
+  <section id="methods">
+    <h2>Methods, Variables, And Packaged Runs</h2>
+
+    <details class="method-details" open>
+      <summary>Packaged Runs</summary>
+      <div id="run-cards" class="questions-grid"></div>
+    </details>
+
+    <details class="method-details">
+      <summary>Key Variables</summary>
+      <table class="var-table">
+        <thead>
+          <tr><th>Variable</th><th>Plain-English name</th><th>Definition</th></tr>
+        </thead>
+        <tbody id="var-body"></tbody>
+      </table>
+    </details>
+
+    <details class="method-details">
+      <summary>Archive Brief</summary>
+      <pre id="brief-text" class="code-block"></pre>
+    </details>
+  </section>
+</main>
+
+<footer>
+  <p>
+    Built on <a href="https://github.com/smkwray/econark">econark</a>'s R pipeline.
+    Validated framework fixes were upstreamed at <code>7cb68eb</code>.
+  </p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js" type="module"></script>
+</body>
+</html>

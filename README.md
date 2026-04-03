@@ -1,70 +1,114 @@
 # Fiscal Transfers, Poverty, Inequality, and Consumption Composition
 
-This archive contains the project-specific `econark-r` configurations, compact source-input snapshots, and packaged CoFlow/DASS/DFLMX outputs for an inequality-and-poverty project built on `econark`'s R pipeline. The archive is organized around two linked questions:
+**[Interactive results site](https://smkwray.github.io/ea-ineq/)**
 
-- Do transfer shocks move poverty and inequality outcomes over short and medium horizons?
-- Under a canon `v2` consumption basket, do transfers and credit conditions shift the balance between essential and discretionary spending?
+This repository is the project-specific archive for an inequality-and-poverty research workflow built on `econark`'s R pipeline. It packages the compact input snapshots, the project configs, and the native DASS and DFLMX result trees for a simple question with a layered answer:
 
-The strongest archived evidence is in the poverty/inequality outcomes suite, where `transfer_composite` dominates the robust screening results. The canon `v2` basket materially improves the consumption-composition side, but that block remains secondary to the transfer-outcomes story.
+- do transfer shocks move poverty and inequality outcomes?
+- if they do, how broad is the evidence after screening, robustness checks, and estimator comparison?
+- and, as a secondary question, do those same shocks tilt household spending toward essentials under a canon essential-versus-discretionary basket?
+
+The main story is transfer-led poverty and inequality relief. The consumption-composition block matters, but it is secondary.
 
 ## Project Questions
 
-- Transfer shocks and poverty: do `transfer_composite`, `ui_benefits`, `social_security`, and `snap_persons` shift `poverty_all_q`, `poverty_child_q`, and `gini_households_q`?
-- Wealth and inequality: how do `household_networth` and `home_equity` map into `wealth_share_gap_top10_bottom50` and `wealth_share_gap_top1_bottom50`?
-- Monetary and credit contrasts: how do `fed_funds`, `credit_composite`, `revolving_credit`, and `cc_delinquency` compare with transfer shocks?
-- Consumption composition under the canon `v2` basket: do shocks move `pce_essential_v2_idx`, `pce_discretionary_v2_idx`, `pce_gap_v2`, and `pce_eshare_v2`?
-- Confirmatory screening: which treatment-outcome pairs survive the repaired IV/negative-control discovery layer, and which remain screening-only?
+- Transfer shocks and poverty: do `transfer_composite`, `ui_benefits`, `social_security`, and `snap_persons` move `poverty_all_q`, `poverty_child_q`, and `gini_households_q`?
+- Wealth and inequality: do transfers, wealth, and credit shocks move `wealth_share_gap_top1_bottom50` and `wealth_share_gap_top10_bottom50`?
+- Consumption composition: under the canon `v2` basket, do shocks move `pce_essential_v2_idx`, `pce_discretionary_v2_idx`, `pce_gap_v2`, and `pce_eshare_v2`?
+- Contrast questions: how do `fed_funds`, `credit_composite`, `revolving_credit`, and `household_networth` compare with the transfer block?
+- Confirmatory status: which rows survive only the main screening stack, and which have actual IV/negative-control support?
 
-## Data And Variable Construction
+## How To Read The Archive
 
-The compact input snapshots live in `inputs/`:
+This repository is richest when read as a two-layer evidence stack.
 
-- `research_poverty_monthly.csv`
-- `research_poverty_annual.csv`
-- `research_poverty_fred_ext.csv`
-- `research_poverty_recreation_goods.csv`
+- `DFLMX` is the screening layer. It ranks LP impulse-response rows, applies FDR correction, and runs lead, episode leave-one-out, and confirmatory diagnostics.
+- `DASS` is the estimation layer underneath it. It preserves the estimator-specific rows for the same treatment-outcome-horizon combinations, including LP, DML, and, in the full outcomes run, TMLE, CF, LP-IV, and DML-IV.
 
-The active fetch, DASS, and DFLMX specifications are stored in `configs/`. The archive preserves both full and baseline profiles for the poverty-consumption and poverty-outcomes suites.
+That distinction matters. A row can survive the DFLMX screen and still have mixed cross-estimator support. The site and this README are built to show both the headline screen and the estimator backing for the same findings.
 
-Main constructed variables are:
+## Headline Results
 
-- `pce_essential_v2_idx`: CE-weighted essential basket using housing/utilities, food, and healthcare.
-- `pce_discretionary_v2_idx`: symmetric CE-weighted discretionary basket using recreation services, transport services, and clothing/footwear.
-- `pce_gap_v2 = log(E/D)`.
-- `pce_eshare_v2 = E / (E + D)`.
-- `transfer_composite = transfers_total + social_security + ui_benefits`.
-- `credit_composite = total_credit + nonrevolving_credit + revolving_credit`.
-- `wealth_share_gap_top10_bottom50 = top10_wealth_share - bottom50_wealth_share`.
-- `wealth_share_gap_top1_bottom50 = top1_wealth_share - bottom50_wealth_share`.
+The full outcomes run reports **11 robust rows** with `q <= 0.10`. **9 of those 11** come from `transfer_composite`, and they cover four distinct outcome families:
 
-The older `pce_essential_idx` / `pce_discretionary_idx` construction remains in the fetch outputs for backward comparison, but the active archived consumption question grid centers the `v2` outcomes above.
+| Treatment | Outcome | Horizons | Archive role |
+|---|---|---|---|
+| `transfer_composite` | `gini_households_q` | `h=2,4,8` | strongest inequality signal |
+| `transfer_composite` | `poverty_all_q` | `h=2,4` | strong poverty headline |
+| `transfer_composite` | `poverty_child_q` | `h=2,4` | strong child-poverty headline |
+| `transfer_composite` | `wealth_share_gap_top1_bottom50` | `h=2,4` | transfer-led wealth-gap signal |
+| `transfer_composite` | `median_real_income_fred_q` | `h=8` | supporting income row |
+| `household_networth` | `wealth_share_gap_top1_bottom50` | `h=2` | strongest non-transfer robust row |
 
-## Results Summary
+The substantive read is straightforward: transfers are the clearest and most repeated pattern in the archive. The evidence is broad across outcome families, not just concentrated in one dependent variable.
 
-The archive packages two key runs:
+The methodological read is more careful: the DASS layer shows that cross-estimator backing is not equally strong for every robust row. Some headline rows have broader same-sign support than others. That is why the archive is presented as disciplined reduced-form evidence rather than as a clean causal proof stack.
 
-- Baseline both-suites run:
-  `results/dass/poverty_consumption_baseline`, `results/dass/poverty_outcomes_baseline`, `results/dflmx/poverty_consumption_baseline`, and `results/dflmx/poverty_outcomes_baseline`
-- Full outcomes-suite run:
-  `results/dass/poverty_outcomes_full` and `results/dflmx/poverty_outcomes_full`
+## Secondary Results: Canon v2 Consumption Basket
 
-The canon `v2` basket improves the consumption suite relative to the earlier basket. `results/dflmx/poverty_consumption_baseline/dflmx_report.md` reports two robust rows (`q <= 0.10`), both concentrated in `ui_benefits`: `ui_benefits -> pce_gap_v2 (h=1)` and `ui_benefits -> pce_eshare_v2 (h=1)`.
+The poverty archive includes a non-destructive `v2` pass that ports the essential-versus-discretionary logic from `ea-gender`.
 
-The outcomes suite remains the headline. `results/dflmx/poverty_outcomes_baseline/dflmx_report.md` reports eleven robust rows, led by `transfer_composite` on `gini_households_q`, `poverty_all_q`, `poverty_child_q`, and `wealth_share_gap_top1_bottom50`. The full outcomes run in `results/dflmx/poverty_outcomes_full/dflmx_report.md` preserves that transfer-led pattern and adds a strong `household_networth -> wealth_share_gap_top1_bottom50 (h=2)` row.
+The active `v2` variables are:
 
-The confirmatory layer is cleaner than before but still limited. The negative-control miner was repaired so outcomes no longer nominate themselves as their own NC candidates. Even so, most transfer-poverty rows remain screening-only because suitable allowlisted negative controls are sparse. In the packaged full outcomes run, the only `ready_confirmatory` row is `transfer_composite -> wealth_share_gap_top1_bottom50 (h=4)` using `F1` with `wealth_share_gap_top10_bottom50` as the screened NC.
+- `pce_essential_v2_idx`: CE-weighted essential basket using housing, food, and healthcare
+- `pce_discretionary_v2_idx`: CE-weighted discretionary basket using recreation, transport, and clothing
+- `pce_gap_v2 = log(E/D)`
+- `pce_eshare_v2 = E / (E + D)`
+
+This improves the consumption side, but it does not overtake the poverty headline. The consumption baseline reports **2 robust rows**, both concentrated in `ui_benefits` at `h=1`:
+
+- `ui_benefits -> pce_gap_v2`
+- `ui_benefits -> pce_eshare_v2`
+
+That is a meaningful result: UI shocks appear to tilt spending toward essentials one quarter out. But it remains a narrower and more selective block than the main transfer-poverty results.
+
+## Confirmatory Status
+
+The confirmatory layer is cleaner than it was before the April 3, 2026 `econark-r` fixes, especially because the negative-control miner no longer allows outcomes to nominate themselves as their own NC candidates.
+
+Even so, confirmatory coverage remains thin:
+
+- most headline transfer-poverty rows are still `screening_only`
+- only one row is `ready_confirmatory`
+- that row is `transfer_composite -> wealth_share_gap_top1_bottom50 (h=4)`
+
+So the archive supports a strong screening claim and a weaker confirmatory claim. The public-facing interpretation should stay at that level.
+
+## Key Variables In Plain English
+
+| Variable | Meaning |
+|---|---|
+| `transfer_composite` | Broad transfer-support measure combining major transfer flows, including Social Security and UI |
+| `ui_benefits` | Unemployment-insurance transfer flow |
+| `poverty_all_q` | Quarterly poverty rate for the full population |
+| `poverty_child_q` | Quarterly child poverty rate |
+| `gini_households_q` | Quarterly household inequality measure |
+| `wealth_share_gap_top1_bottom50` | Difference between top-1% and bottom-50% wealth shares |
+| `pce_essential_v2_idx` | Essential spending basket built from housing, food, and healthcare |
+| `pce_discretionary_v2_idx` | Discretionary spending basket built from recreation, transport, and clothing |
+| `pce_gap_v2` | Log ratio of essential to discretionary spending |
+| `pce_eshare_v2` | Essential share of combined essential-plus-discretionary spending |
 
 ## Repository Layout
 
-- `configs/` contains the packaged fetch, DASS, and DFLMX R configs.
-- `inputs/` contains the compact source snapshots used by the project-specific fetch config.
-- `results/coflow/` contains the packaged CoFlow outputs.
-- `results/dass/` contains packaged DASS outputs for the baseline and full runs.
-- `results/dflmx/` contains packaged DFLMX outputs for the baseline and full runs.
-- `docs/` contains a lightweight static archive site. Run `python docs/embed_data.py` from this archive root to regenerate `docs/data.js`.
-- `results_brief_20260403.md` records the April 3, 2026 archive summary.
-- `research_wiring_poverty_consumption.md` records the wiring map and question framing.
+- `configs/` contains the packaged fetch, DASS, and DFLMX configs for the poverty/inequality project
+- `inputs/` contains the compact source snapshots used by the project fetch layer
+- `results/coflow/` contains packaged CoFlow outputs
+- `results/dass/` contains the estimation-layer outputs used for estimator comparison
+- `results/dflmx/` contains the screening-layer outputs used for the headline, robustness, and confirmatory narrative
+- `docs/` contains the static archive site; run `python3 docs/embed_data.py` to regenerate `docs/data.js`
+
+## Packaged Runs
+
+- `poverty_consumption_baseline`
+  The canon `v2` consumption run used for the secondary spending-composition question.
+- `poverty_outcomes_baseline`
+  The cleaner baseline poverty/inequality screen with LP and DML in the DASS layer.
+- `poverty_outcomes_full`
+  The richest archive run, adding broader DASS estimators and the repaired IV/negative-control layer.
 
 ## Framework Provenance
 
-This archive was produced with a patched local `econark-r` runtime. Those validated framework fixes were then committed upstream in `smkwray/econark` at `7cb68eb` (`Fix econark-r runtime and confirmatory plumbing`), so the archive should be read as a project built on `econark`'s R pipeline with the April 3, 2026 `econark-r` fixes applied.
+This project was built on `econark`'s R pipeline. The required `econark-r` runtime and confirmatory-plumbing fixes were upstreamed to [`smkwray/econark`](https://github.com/smkwray/econark) at commit `7cb68eb` (`Fix econark-r runtime and confirmatory plumbing`).
+
+This repository is the project archive, not the reusable framework repository.
