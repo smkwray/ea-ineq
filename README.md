@@ -67,4 +67,4 @@ The confirmatory layer is cleaner than before but still limited. The negative-co
 
 ## Framework Provenance
 
-This archive was produced with a patched local `econark-r` runtime. The validated framework fixes were then prepared for upstreaming into `smkwray/econark`, so the archive should be read as a project built on `econark`'s R pipeline with local April 3, 2026 fixes applied.
+This archive was produced with a patched local `econark-r` runtime. Those validated framework fixes were then committed upstream in `smkwray/econark` at `7cb68eb` (`Fix econark-r runtime and confirmatory plumbing`), so the archive should be read as a project built on `econark`'s R pipeline with the April 3, 2026 `econark-r` fixes applied.

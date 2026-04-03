@@ -35,7 +35,7 @@
 - CoFlow publication gates: pass
 - DASS contract manifests: fail=0
 - DFLMX regression checks: PASS
-- `econark-r` local framework fixes are still required for this branch; the packaged project should use this patched runtime snapshot, not a fresh upstream sync
+- The required `econark-r` framework fixes are now upstream in `smkwray/econark` commit `7cb68eb`; the packaged project corresponds to that patched April 3, 2026 runtime state
 
 ## High-level signals
 
@@ -90,9 +90,9 @@
 ## Packaging recommendation for `ea-ineq`
 
 - Ready to package:
-  - yes, if `ea-ineq` is built from this patched runtime snapshot rather than a fresh upstream sync
+  - yes; the archive is already aligned to the patched runtime state now upstreamed in `smkwray/econark` commit `7cb68eb`
 - Headline archive focus:
   - poverty/inequality outcomes suite first
   - canon v2 consumption suite second
 - Methods note to carry into the archive:
-  - local `econark-r` fixes were required because upstream had unresolved stage/config/NC bugs in this branch
+  - `econark-r` required stage/config/NC fixes, now upstreamed in `smkwray/econark`, before this project could run cleanly end-to-end
