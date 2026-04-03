@@ -1,7 +1,7 @@
 {
   "run_id": "20260403T160757_lp",
   "estimator": "lp",
-  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_credit_composite_gini_households_q_h4.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes_baseline/design/design_credit_composite_gini_households_q_h4.csv",
   "spec": {
     "treatment": "credit_composite",
     "outcome": "gini_households_q",

@@ -1,7 +1,7 @@
 {
   "run_id": "20260403T160734_lp",
   "estimator": "lp",
-  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_fed_funds_wealth_share_gap_top10_bottom50_h4_shock_oosexpanding.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes_baseline/design/design_fed_funds_wealth_share_gap_top10_bottom50_h4_shock_oosexpanding.csv",
   "spec": {
     "treatment": "fed_funds",
     "outcome": "wealth_share_gap_top10_bottom50",

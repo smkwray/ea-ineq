@@ -1,7 +1,7 @@
 {
   "run_id": "20260403T160957_dml",
   "estimator": "dml",
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_home_equity_wealth_share_gap_top10_bottom50_h8.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_home_equity_wealth_share_gap_top10_bottom50_h8.csv",
   "spec": {
     "treatment": "home_equity",
     "outcome": "wealth_share_gap_top10_bottom50",

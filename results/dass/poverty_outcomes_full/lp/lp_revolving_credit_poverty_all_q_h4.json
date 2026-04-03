@@ -1,7 +1,7 @@
 {
   "run_id": "20260403T160946_lp",
   "estimator": "lp",
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_revolving_credit_poverty_all_q_h4.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_revolving_credit_poverty_all_q_h4.csv",
   "spec": {
     "treatment": "revolving_credit",
     "outcome": "poverty_all_q",

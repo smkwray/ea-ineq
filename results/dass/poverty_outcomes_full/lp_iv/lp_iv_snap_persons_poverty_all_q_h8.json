@@ -3,7 +3,7 @@
   "estimator": "lp_iv",
   "skip_reason": "no_instrument",
   "n": 136,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_snap_persons_poverty_all_q_h8.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_snap_persons_poverty_all_q_h8.csv",
   "spec": {
     "treatment": "snap_persons",
     "outcome": "poverty_all_q",

@@ -5,8 +5,8 @@
   "top_n": 5,
   "n_rows": 306,
   "n_targets": 8,
-  "shortlist_csv": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_outcomes_mf/shortlists/poverty_outcomes_mf_rw40_shortlist.csv",
-  "shortlist_r_map": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_outcomes_mf/shortlists/poverty_outcomes_mf_rw40_shortlist.R",
+  "shortlist_csv": "packaged-results/coflow-R/poverty_outcomes_mf/shortlists/poverty_outcomes_mf_rw40_shortlist.csv",
+  "shortlist_r_map": "packaged-results/coflow-R/poverty_outcomes_mf/shortlists/poverty_outcomes_mf_rw40_shortlist.R",
   "target_candidates": {
     "gini_households_q": ["median_real_income_fred_q", "nonrevolving_credit", "transfers_total", "ui_benefits", "wealth_share_gap_top1_bottom50"],
     "gini_income_fred_q": ["nonrevolving_credit", "snap_persons", "top10_wealth_share", "ui_benefits", "wealth_share_gap_top10_bottom50"],

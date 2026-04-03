@@ -1,5 +1,5 @@
 {
-  "input_stacked_csv": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/stacked_quarterly.csv",
+  "input_stacked_csv": "packaged-results/dass-R/poverty_outcomes_baseline/stacked_quarterly.csv",
   "rows": 144,
   "factor_cols_selected": 32,
   "candidate_cols_before_filters": 32,

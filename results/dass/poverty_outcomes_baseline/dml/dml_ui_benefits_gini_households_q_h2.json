@@ -1,7 +1,7 @@
 {
   "run_id": "20260403T160744_dml",
   "estimator": "dml",
-  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_ui_benefits_gini_households_q_h2.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes_baseline/design/design_ui_benefits_gini_households_q_h2.csv",
   "spec": {
     "treatment": "ui_benefits",
     "outcome": "gini_households_q",

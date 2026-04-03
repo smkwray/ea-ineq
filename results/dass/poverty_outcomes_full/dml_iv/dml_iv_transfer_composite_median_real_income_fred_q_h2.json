@@ -3,7 +3,7 @@
   "estimator": "dml_iv",
   "skip_reason": "no_instrument",
   "n": 142,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_transfer_composite_median_real_income_fred_q_h2.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_transfer_composite_median_real_income_fred_q_h2.csv",
   "spec": {
     "treatment": "transfer_composite",
     "outcome": "median_real_income_fred_q",

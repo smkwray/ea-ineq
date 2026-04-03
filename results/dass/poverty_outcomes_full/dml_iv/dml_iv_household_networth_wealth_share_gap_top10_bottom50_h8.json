@@ -3,7 +3,7 @@
   "estimator": "dml_iv",
   "skip_reason": "no_instrument",
   "n": 136,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_household_networth_wealth_share_gap_top10_bottom50_h8.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_household_networth_wealth_share_gap_top10_bottom50_h8.csv",
   "spec": {
     "treatment": "household_networth",
     "outcome": "wealth_share_gap_top10_bottom50",

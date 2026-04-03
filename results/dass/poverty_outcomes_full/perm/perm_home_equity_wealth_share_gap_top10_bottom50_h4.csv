@@ -1,2 +1,2 @@
 "design","treatment","outcome","horizon","stat_obs","p_perm","n_perm"
-"/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_home_equity_wealth_share_gap_top10_bottom50_h4.csv","home_equity","wealth_share_gap_top10_bottom50",4,0.368601854106445,0.00332225913621262,300
+"packaged-results/dass-R/poverty_outcomes/design/design_home_equity_wealth_share_gap_top10_bottom50_h4.csv","home_equity","wealth_share_gap_top10_bottom50",4,0.368601854106445,0.00332225913621262,300

@@ -15,7 +15,7 @@
   "driver_response": {
     "enabled": true,
     "status": "emitted_proxy",
-    "artifact": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_consumption_mf/analytics/poverty_consumption_mf_rw40_driver_response_proxy.csv",
+    "artifact": "packaged-results/coflow-R/poverty_consumption_mf/analytics/poverty_consumption_mf_rw40_driver_response_proxy.csv",
     "n_rows": 15
   }
 }

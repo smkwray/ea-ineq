@@ -1,2 +1,2 @@
 "design","treatment","outcome","horizon","stat_obs","p_perm","n_perm"
-"/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_credit_composite_median_real_income_fred_q_h8.csv","credit_composite","median_real_income_fred_q",8,0.776656368779971,0.00332225913621262,300
+"packaged-results/dass-R/poverty_outcomes/design/design_credit_composite_median_real_income_fred_q_h8.csv","credit_composite","median_real_income_fred_q",8,0.776656368779971,0.00332225913621262,300

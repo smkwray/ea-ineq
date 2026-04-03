@@ -5,8 +5,8 @@
   "top_n": 5,
   "n_rows": 147,
   "n_targets": 3,
-  "shortlist_csv": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_consumption_mf/shortlists/poverty_consumption_mf_rw40_shortlist.csv",
-  "shortlist_r_map": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_consumption_mf/shortlists/poverty_consumption_mf_rw40_shortlist.R",
+  "shortlist_csv": "packaged-results/coflow-R/poverty_consumption_mf/shortlists/poverty_consumption_mf_rw40_shortlist.csv",
+  "shortlist_r_map": "packaged-results/coflow-R/poverty_consumption_mf/shortlists/poverty_consumption_mf_rw40_shortlist.R",
   "target_candidates": {
     "pce_discretionary_idx": ["fhfa_hpi", "gini_income_fred_q", "top10_wealth_share", "transfer_composite", "wealth_share_gap_top10_bottom50"],
     "pce_essential_idx": ["top1_wealth_share", "transfer_composite", "transfers_total", "ui_benefits", "wealth_share_gap_top1_bottom50"],

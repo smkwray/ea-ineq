@@ -1,7 +1,7 @@
 {
   "run_id": "20260403T160945_dml",
   "estimator": "dml",
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_credit_composite_wealth_share_gap_top1_bottom50_h2.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_credit_composite_wealth_share_gap_top1_bottom50_h2.csv",
   "spec": {
     "treatment": "credit_composite",
     "outcome": "wealth_share_gap_top1_bottom50",

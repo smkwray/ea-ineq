@@ -3,7 +3,7 @@
   "estimator": "lp_iv",
   "skip_reason": "no_instrument",
   "n": 140,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_ui_benefits_poverty_child_q_h4.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_ui_benefits_poverty_child_q_h4.csv",
   "spec": {
     "treatment": "ui_benefits",
     "outcome": "poverty_child_q",

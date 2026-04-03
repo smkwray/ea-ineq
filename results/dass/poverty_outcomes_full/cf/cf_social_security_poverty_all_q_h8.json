@@ -1,7 +1,7 @@
 {
   "run_id": "20260403T160935_cf",
   "estimator": "cf",
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_social_security_poverty_all_q_h8.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_social_security_poverty_all_q_h8.csv",
   "spec": {
     "treatment": "social_security",
     "outcome": "poverty_all_q",

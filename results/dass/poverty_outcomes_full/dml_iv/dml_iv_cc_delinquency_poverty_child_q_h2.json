@@ -3,7 +3,7 @@
   "estimator": "dml_iv",
   "skip_reason": "no_instrument",
   "n": 138,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_cc_delinquency_poverty_child_q_h2.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_cc_delinquency_poverty_child_q_h2.csv",
   "spec": {
     "treatment": "cc_delinquency",
     "outcome": "poverty_child_q",

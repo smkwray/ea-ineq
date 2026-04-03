@@ -3,7 +3,7 @@
   "estimator": "lp_iv",
   "skip_reason": "no_instrument",
   "n": 136,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_credit_composite_poverty_child_q_h8.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_credit_composite_poverty_child_q_h8.csv",
   "spec": {
     "treatment": "credit_composite",
     "outcome": "poverty_child_q",

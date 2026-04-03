@@ -3,7 +3,7 @@
   "estimator": "lp_iv",
   "skip_reason": "no_instrument",
   "n": 142,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_transfer_composite_wealth_share_gap_top10_bottom50_h2.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_transfer_composite_wealth_share_gap_top10_bottom50_h2.csv",
   "spec": {
     "treatment": "transfer_composite",
     "outcome": "wealth_share_gap_top10_bottom50",

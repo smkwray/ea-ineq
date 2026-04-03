@@ -3,7 +3,7 @@
   "estimator": "dml_iv",
   "skip_reason": "no_instrument",
   "n": 140,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_social_security_median_real_income_fred_q_h4.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_social_security_median_real_income_fred_q_h4.csv",
   "spec": {
     "treatment": "social_security",
     "outcome": "median_real_income_fred_q",

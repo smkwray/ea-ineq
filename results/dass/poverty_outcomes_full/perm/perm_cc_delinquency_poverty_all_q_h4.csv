@@ -1,2 +1,2 @@
 "design","treatment","outcome","horizon","stat_obs","p_perm","n_perm"
-"/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_cc_delinquency_poverty_all_q_h4.csv","cc_delinquency","poverty_all_q",4,0.122683931417262,0.156146179401993,300
+"packaged-results/dass-R/poverty_outcomes/design/design_cc_delinquency_poverty_all_q_h4.csv","cc_delinquency","poverty_all_q",4,0.122683931417262,0.156146179401993,300

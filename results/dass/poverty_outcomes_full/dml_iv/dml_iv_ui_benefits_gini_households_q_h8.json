@@ -3,7 +3,7 @@
   "estimator": "dml_iv",
   "skip_reason": "no_instrument",
   "n": 136,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_ui_benefits_gini_households_q_h8.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_ui_benefits_gini_households_q_h8.csv",
   "spec": {
     "treatment": "ui_benefits",
     "outcome": "gini_households_q",

@@ -2,7 +2,7 @@
 
 - rows: 630
 - estimators: cf, dml, dml_iv, lp, lp_iv, tmle
-- diagnostics csv: /private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/estimator_diagnostics.csv
+- diagnostics csv: packaged-results/dass-R/poverty_outcomes/estimator_diagnostics.csv
 
 ## cf
 - runs: 105

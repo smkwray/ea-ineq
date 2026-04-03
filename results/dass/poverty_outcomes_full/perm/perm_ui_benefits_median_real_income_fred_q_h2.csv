@@ -1,2 +1,2 @@
 "design","treatment","outcome","horizon","stat_obs","p_perm","n_perm"
-"/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_ui_benefits_median_real_income_fred_q_h2.csv","ui_benefits","median_real_income_fred_q",2,0.188846509212299,0.026578073089701,300
+"packaged-results/dass-R/poverty_outcomes/design/design_ui_benefits_median_real_income_fred_q_h2.csv","ui_benefits","median_real_income_fred_q",2,0.188846509212299,0.026578073089701,300

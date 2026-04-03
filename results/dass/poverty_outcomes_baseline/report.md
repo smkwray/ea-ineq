@@ -2,7 +2,7 @@
 
 - rows: 216
 - estimators: dml, lp
-- diagnostics csv: /private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/estimator_diagnostics.csv
+- diagnostics csv: packaged-results/dass-R/poverty_outcomes_baseline/estimator_diagnostics.csv
 
 ## dml
 - runs: 108

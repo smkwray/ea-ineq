@@ -3,7 +3,7 @@
   "estimator": "dml_iv",
   "skip_reason": "no_instrument",
   "n": 112,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_fed_funds_median_real_income_fred_q_h2_shock_oosexpanding.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_fed_funds_median_real_income_fred_q_h2_shock_oosexpanding.csv",
   "spec": {
     "treatment": "fed_funds",
     "outcome": "median_real_income_fred_q",

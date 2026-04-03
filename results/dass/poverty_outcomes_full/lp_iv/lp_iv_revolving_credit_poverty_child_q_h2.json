@@ -3,7 +3,7 @@
   "estimator": "lp_iv",
   "skip_reason": "no_instrument",
   "n": 142,
-  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_revolving_credit_poverty_child_q_h2.csv",
+  "design": "packaged-results/dass-R/poverty_outcomes/design/design_revolving_credit_poverty_child_q_h2.csv",
   "spec": {
     "treatment": "revolving_credit",
     "outcome": "poverty_child_q",

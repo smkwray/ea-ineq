@@ -1,2 +1,2 @@
 "design","treatment","outcome","horizon","stat_obs","p_perm","n_perm"
-"/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_credit_composite_poverty_child_q_h4.csv","credit_composite","poverty_child_q",4,-0.538247336248253,0.00332225913621262,300
+"packaged-results/dass-R/poverty_outcomes/design/design_credit_composite_poverty_child_q_h4.csv","credit_composite","poverty_child_q",4,-0.538247336248253,0.00332225913621262,300

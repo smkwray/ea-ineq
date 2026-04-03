@@ -1,2 +1,2 @@
 "design","treatment","outcome","horizon","stat_obs","p_perm","n_perm"
-"/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_snap_persons_poverty_all_q_h8.csv","snap_persons","poverty_all_q",8,0.118253944152253,0.192691029900332,300
+"packaged-results/dass-R/poverty_outcomes/design/design_snap_persons_poverty_all_q_h8.csv","snap_persons","poverty_all_q",8,0.118253944152253,0.192691029900332,300
