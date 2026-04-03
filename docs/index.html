@@ -14,18 +14,21 @@
 <body>
 <nav>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#questions">Questions</a>
+    <a href="#overview">Overview</a>
     <a href="#headline">Headline</a>
+    <a href="#programs">Programs</a>
     <a href="#consumption">Consumption</a>
     <a href="#robustness">Robustness</a>
+    <a href="#confirmatory">Confirmatory</a>
     <a href="#methods">Methods</a>
   </div>
   <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
 </nav>
 
 <main>
-  <section id="about">
+
+  <!-- ════════════════ OVERVIEW ════════════════ -->
+  <section id="overview">
     <h1 id="title">Fiscal Transfers, Poverty, Inequality, and Consumption Composition</h1>
     <p class="subtitle" id="subtitle"></p>
 
@@ -39,61 +42,77 @@
       <span id="overview-takeaway"></span>
     </div>
 
+    <!-- Snapshot cards -->
+    <div class="snapshot-grid" id="snapshot-grid"></div>
+
     <p>
       This archive is the project-specific public layer for an inequality-and-poverty research workflow built on
-      <a href="https://github.com/smkwray/econark">econark</a>'s R pipeline. It packages the compact project inputs,
-      the native DASS and DFLMX result trees, and a readable front end for the parts of the archive that matter most.
-    </p>
-    <p>
-      The site is organized the same way the research logic is organized. DFLMX provides the headline screen and
-      robustness stack. DASS preserves the estimator layer underneath it. The point of the archive is to show both:
-      what survived the screen, and how much estimator support sits underneath those surviving rows.
+      <a href="https://github.com/smkwray/econark">econark</a>&rsquo;s R pipeline. It packages the compact project inputs,
+      the native DASS and DFLMX result trees, and a readable front end for the evidence that matters most.
     </p>
 
     <details class="info-details">
       <summary>How to read this archive</summary>
       <dl class="glossary">
         <dt>DFLMX</dt>
-        <dd>The screening layer. It ranks LP impulse-response rows, applies FDR correction, and runs episode, lead, and confirmatory diagnostics.</dd>
+        <dd>The screening layer. It ranks LP impulse-response rows, applies BH-FDR correction (q &le; 0.10), and runs episode, lead, and confirmatory diagnostics.</dd>
         <dt>DASS</dt>
-        <dd>The estimation layer. It preserves estimator-specific outputs (LP, DML, TMLE, CF, LP-IV, DML-IV) for the same treatment-outcome-horizon rows, so you can judge whether a headline row has broad backing or is LP-only.</dd>
+        <dd>The estimation layer. It preserves estimator-specific outputs for the same treatment-outcome-horizon rows, so you can judge whether a headline row has broad backing or is LP-only.</dd>
         <dt>LP</dt>
-        <dd>Local projections &mdash; horizon-by-horizon regressions asking what happens 0, 1, 2, 4, or 8 quarters after a shock. This is the primary estimator used in the DFLMX screen.</dd>
+        <dd>Local projections &mdash; horizon-by-horizon regressions asking what happens 0, 1, 2, 4, or 8 quarters after a shock.</dd>
         <dt>DML</dt>
-        <dd>Debiased machine learning &mdash; a flexible regression that removes what controls predict from both treatment and outcome using sample splitting. Used as a cross-check in the DASS layer.</dd>
+        <dd>Debiased machine learning &mdash; a flexible regression that removes what controls predict from both treatment and outcome using sample splitting.</dd>
         <dt>TMLE</dt>
-        <dd>Targeted maximum likelihood estimation &mdash; a &ldquo;high shock versus low shock&rdquo; comparison that provides an independent cross-check, mainly used for sign and significance confirmation.</dd>
+        <dd>Targeted maximum likelihood estimation &mdash; a &ldquo;high shock versus low shock&rdquo; comparison that provides an independent cross-check.</dd>
         <dt>CF / LP-IV / DML-IV</dt>
-        <dd>Additional DASS estimators: causal forests, LP with instrumental variables, and DML with instrumental variables. Available in the full outcomes run for broader estimator coverage.</dd>
+        <dd>Additional DASS estimators: causal forests, LP with instrumental variables, and DML with instrumental variables.</dd>
         <dt>Robust row</dt>
-        <dd>A DFLMX finding with q &le; 0.10 after multiple-testing correction.</dd>
-        <dt>Estimator support</dt>
-        <dd>Whether the same treatment-outcome-horizon row points in the same direction, and reaches nominal significance, across multiple DASS estimators. A row with &ldquo;multi-estimator support&rdquo; is stronger than one backed only by LP.</dd>
+        <dd>A DFLMX finding with q &le; 0.10 after FDR correction.</dd>
         <dt>Screening-only</dt>
-        <dd>A row that survives the main screening stack but still lacks enough IV/negative-control support for a stronger confirmatory claim.</dd>
+        <dd>A row that survives the screening stack but still lacks IV/negative-control support for a stronger confirmatory claim.</dd>
       </dl>
     </details>
   </section>
 
+  <!-- ════════════════ QUESTIONS ════════════════ -->
   <section id="questions">
     <h2>Project Questions</h2>
     <div id="questions-grid" class="questions-grid"></div>
   </section>
 
+  <!-- ════════════════ HEADLINE ════════════════ -->
   <section id="headline">
-    <h2><span class="tier tier-headline">Headline</span> Poverty And Inequality Results</h2>
+    <h2><span class="tier tier-headline">Headline</span> Poverty and Inequality Results</h2>
+
     <div class="safe-claim">
       <strong>Safe public claim:</strong>
-      Transfer shocks are the clearest and most repeated pattern in this archive. The transfer composite is the dominant driver of robust poverty and inequality findings, while non-transfer rows are narrower and more selective.
+      Transfer shocks are the clearest and most repeated pattern in this archive. The transfer composite
+      drives robust responses in poverty, child poverty, household inequality, and the wealth-share gap.
     </div>
 
     <div class="evidence-summary" id="headline-summary"></div>
 
     <div class="chart-wrap">
+      <h3>Treatment &times; Outcome Heatmap</h3>
+      <div id="chart-heatmap"></div>
+      <p class="chart-caption">
+        Each cell shows the DFLMX q-value for a treatment-outcome-horizon combination. Darker cells are more significant. Outlined cells survive FDR correction.
+      </p>
+    </div>
+
+    <div class="chart-wrap">
       <h3>Headline Screen: Robust DFLMX Rows</h3>
       <div id="chart-headline"></div>
       <p class="chart-caption">
-        These are the DFLMX rows that survive FDR correction in the full outcomes run. The forest plot shows the LP effect estimate and confidence interval used in the screening layer.
+        Forest plot of LP effect estimates with 95% confidence intervals for all FDR-surviving rows.
+      </p>
+    </div>
+
+    <div class="chart-wrap">
+      <h3>IRF Small Multiples: Transfer Composite</h3>
+      <div id="chart-irf-transfer"></div>
+      <p class="chart-caption">
+        Impulse response functions across horizons for the headline treatment. Filled points survive FDR correction.
       </p>
     </div>
 
@@ -101,84 +120,149 @@
       <h3>Pipeline Funnel</h3>
       <div id="chart-funnel"></div>
       <p class="chart-caption">
-        The archive is designed to show how many rows survive each layer, not just the final survivors.
+        How many rows survive each layer of the screening pipeline.
       </p>
     </div>
 
     <div class="chart-wrap">
-      <h3>What Strengthens Or Weakens A Headline Row</h3>
+      <h3>What Strengthens or Weakens a Headline Row</h3>
       <div id="headline-insights" class="insight-stack"></div>
     </div>
 
-    <div class="table-wrap">
-      <h3>Estimator Comparison For The Headline Rows</h3>
+    <!-- Finding drilldowns -->
+    <details class="method-details">
+      <summary>Estimator Comparison for Headline Rows</summary>
       <p>
-        This table uses the packaged DASS outputs for the same treatment-outcome-horizon rows. It does not rescreen the findings; it shows how much cross-estimator backing the headline rows have underneath the DFLMX screen.
+        This table uses DASS outputs for the same treatment-outcome-horizon rows. It shows how much
+        cross-estimator backing the headline rows have underneath the DFLMX screen.
       </p>
       <div id="headline-estimator-table"></div>
-    </div>
+    </details>
 
-    <div class="table-wrap">
-      <h3>Supportive But Not Headline-Grade</h3>
+    <details class="method-details">
+      <summary>Estimator Agreement Matrix</summary>
+      <p>
+        Per-finding comparison across all available DASS estimators (LP, DML, TMLE, CF, LP-IV, DML-IV).
+        Each cell shows the point estimate and significance.
+      </p>
+      <div id="chart-estimator-matrix"></div>
+    </details>
+
+    <details class="method-details">
+      <summary>Supportive But Not Headline-Grade</summary>
       <div id="secondary-findings"></div>
+    </details>
+  </section>
+
+  <!-- ════════════════ PROGRAMS ════════════════ -->
+  <section id="programs">
+    <h2>Program Decomposition</h2>
+    <p>
+      The broad transfer composite is the headline, but which programs matter individually?
+      The evidence forms a clear hierarchy.
+    </p>
+    <div id="hierarchy-cards"></div>
+
+    <div class="chart-wrap">
+      <h3>IRF Small Multiples: UI Benefits</h3>
+      <div id="chart-irf-ui"></div>
+      <p class="chart-caption">
+        UI benefits appears in both distributional-outcomes and consumption-composition suites, making it the cross-suite bridge.
+      </p>
     </div>
   </section>
 
+  <!-- ════════════════ CONSUMPTION ════════════════ -->
   <section id="consumption">
     <h2><span class="tier tier-secondary">Secondary</span> Consumption Composition</h2>
+
     <div class="safe-claim">
       <strong>Safe public claim:</strong>
-      The canon v2 basket is a real contribution, but it is not the main headline. The strongest surviving consumption pattern is narrow: UI benefits raise the essential-versus-discretionary balance one quarter out.
+      The canon v2 basket is a real contribution, but it is not the main headline. UI benefits
+      raise the essential-versus-discretionary balance one quarter out.
     </div>
 
     <div class="evidence-summary" id="consumption-summary"></div>
 
     <div class="chart-wrap">
-      <h3>Consumption Findings Under The Canon v2 Basket</h3>
+      <h3>Consumption Findings Under the Canon v2 Basket</h3>
       <div id="chart-consumption"></div>
       <p class="chart-caption">
-        Filled points survive FDR correction. Hollow points are supporting rows that help show the shape of the consumption block even when they do not clear the final q-value gate.
+        Filled points survive FDR correction. Hollow points are supporting rows.
       </p>
     </div>
 
-    <div class="table-wrap">
-      <h3>DASS Estimator Support For The Consumption Rows</h3>
+    <details class="method-details">
+      <summary>DASS Estimator Support for Consumption Rows</summary>
       <div id="consumption-estimator-table"></div>
-    </div>
+    </details>
   </section>
 
+  <!-- ════════════════ ROBUSTNESS ════════════════ -->
   <section id="robustness">
-    <h2>Robustness And Confirmatory Status</h2>
+    <h2>Robustness and Diagnostics</h2>
 
-    <div class="chart-wrap">
-      <h3>Episode Leave-One-Out Checks</h3>
-      <div id="chart-episodes"></div>
-      <p class="chart-caption">
-        Each cell shows whether a selected row still passes when one major episode is dropped from the sample window.
-      </p>
-    </div>
-
-    <div class="chart-wrap">
-      <h3>Lead And Anticipation Diagnostics</h3>
-      <div id="chart-leads"></div>
-      <p class="chart-caption">
-        Lower p-values are more likely to be flagged. These diagnostics matter, but they should be interpreted carefully in transfer settings where automatic stabilizers create mechanical feedback.
-      </p>
-    </div>
-
-    <div class="result-card">
-      <h3>Confirmatory Layer</h3>
-      <div class="safe-claim">
-        <strong>Interpretation:</strong>
-        The confirmatory layer is cleaner than it was before the econark-r fixes, but it is still much thinner than the screening layer. This archive is best read as disciplined reduced-form evidence with one narrow ready-confirmatory row.
+    <details class="method-details" open>
+      <summary>Episode Leave-One-Out Checks</summary>
+      <div class="chart-wrap">
+        <div id="chart-episodes"></div>
+        <p class="chart-caption">
+          Each cell shows whether a row still passes when one major episode is dropped.
+        </p>
       </div>
-      <div class="evidence-summary" id="confirmatory-summary"></div>
-      <div id="confirmatory-tables"></div>
-    </div>
+    </details>
+
+    <details class="method-details">
+      <summary>Lead and Anticipation Diagnostics</summary>
+      <p>
+        Lower p-values are more likely flagged. These diagnostics matter, but should be interpreted carefully
+        in transfer settings where automatic stabilizers create mechanical feedback.
+      </p>
+      <div class="chart-wrap">
+        <div id="chart-leads"></div>
+      </div>
+    </details>
+
+    <details class="method-details">
+      <summary>Specification Stability</summary>
+      <p>
+        The baseline specification (k=3 factors, 2 lags) is compared against alternative factor counts.
+        High stability scores indicate the headline results are not fragile to specification choices.
+      </p>
+      <div class="chart-wrap">
+        <div id="chart-spec-stability"></div>
+      </div>
+    </details>
+
+    <details class="method-details">
+      <summary>Variance Attribution</summary>
+      <p>
+        How much of each outcome&rsquo;s variation is explained by the macro factors.
+      </p>
+      <div class="chart-wrap">
+        <div id="chart-variance"></div>
+      </div>
+    </details>
   </section>
 
+  <!-- ════════════════ CONFIRMATORY ════════════════ -->
+  <section id="confirmatory">
+    <h2>Confirmatory Status</h2>
+
+    <div class="safe-claim">
+      <strong>Interpretation:</strong>
+      The confirmatory layer is cleaner after the econark-r fixes, but it is still much thinner than
+      the screening layer. This archive is best read as disciplined reduced-form evidence with one
+      narrow ready-confirmatory row.
+    </div>
+
+    <div class="evidence-summary" id="confirmatory-summary"></div>
+    <div id="confirmatory-tables"></div>
+  </section>
+
+  <!-- ════════════════ METHODS ════════════════ -->
   <section id="methods">
-    <h2>Methods, Variables, And Packaged Runs</h2>
+    <h2>Methods, Variables, and Packaged Runs</h2>
 
     <details class="method-details" open>
       <summary>Packaged Runs</summary>
@@ -189,23 +273,20 @@
       <summary>Key Variables</summary>
       <table class="var-table">
         <thead>
-          <tr><th>Variable</th><th>Plain-English name</th><th>Definition</th></tr>
+          <tr><th>Variable</th><th>Plain-English Name</th><th>Definition</th></tr>
         </thead>
         <tbody id="var-body"></tbody>
       </table>
     </details>
-
-    <details class="method-details">
-      <summary>Archive Brief</summary>
-      <pre id="brief-text" class="code-block"></pre>
-    </details>
   </section>
+
 </main>
 
 <footer>
   <p>
-    Built on <a href="https://github.com/smkwray/econark">econark</a>'s R pipeline.
-    Validated framework fixes were upstreamed at <code>7cb68eb</code>.
+    Built on <a href="https://github.com/smkwray/econark">econark</a>&rsquo;s R pipeline.
+    Framework fixes upstreamed at <code>7cb68eb</code>.
+    Regenerate the data layer with <code>python3 docs/embed_data.py</code>.
   </p>
 </footer>
 
