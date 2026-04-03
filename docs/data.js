@@ -135,15 +135,15 @@ const DATA = {
       "treatment": "transfer_composite",
       "label": "Transfer Composite",
       "tier": "headline",
-      "description": "Dominant signal across all poverty and inequality outcomes. 9 of 11 robust rows.",
+      "description": "Dominant signal across all poverty and inequality outcomes. 10 of 11 robust rows.",
       "robust_count": 10,
       "near_count": 2,
       "outcomes_covered": [
-        "median_real_income_fred_q",
         "wealth_share_gap_top1_bottom50",
+        "median_real_income_fred_q",
+        "poverty_child_q",
         "poverty_all_q",
-        "gini_households_q",
-        "poverty_child_q"
+        "gini_households_q"
       ],
       "diagnostic": {
         "lp_sig": 2,

@@ -27,11 +27,21 @@ CONSUMPTION_DASS = RESULTS / "dass" / "poverty_consumption_baseline" / "results.
 OUTCOMES_BASE_DASS = RESULTS / "dass" / "poverty_outcomes_baseline" / "results.csv"
 OUTCOMES_FULL_DASS = RESULTS / "dass" / "poverty_outcomes_full" / "results.csv"
 
-# Fresh diagnostic results (optional — from focused runs)
-TMP_BASE = Path("/tmp/econark_results_transfer_wealth.nFXCMa")
-TMP_CONTRAST_DFLMX = TMP_BASE / "dflmx-R" / "poverty_outcomes_transfer_wealth_contrast"
-TMP_CONTRAST_DASS = TMP_BASE / "dass-R" / "poverty_outcomes_transfer_wealth_contrast" / "results.csv"
-TMP_DIAGNOSTIC_DASS = TMP_BASE / "dass-R" / "poverty_program_shock_diagnostic" / "results.csv"
+# Optional diagnostic results — looked up from an env var or a known repo path.
+# If neither exists the build still succeeds; the hierarchy cards just omit
+# the per-program shock-diagnostic column.
+import os as _os
+
+_DIAG_ENV = _os.environ.get("ECONARK_DIAGNOSTIC_DIR", "")
+_DIAG_CANDIDATES = [
+    Path(_DIAG_ENV) if _DIAG_ENV else None,
+    RESULTS / "dass" / "poverty_program_shock_diagnostic",
+]
+DIAGNOSTIC_DASS: Path | None = None
+for _cand in _DIAG_CANDIDATES:
+    if _cand and (_cand / "results.csv").exists():
+        DIAGNOSTIC_DASS = _cand / "results.csv"
+        break
 
 # ── Labels and constants ─────────────────────────────────────────────────────
 
@@ -544,8 +554,13 @@ def build_program_hierarchy(
     diagnostic_dass: dict | None = None,
 ) -> list[dict]:
     """Build evidence summary for each program treatment."""
+    # Compute transfer-composite count from the actual findings
+    all_robust = [f for f in findings if f.get("robust")]
+    tc_robust = sum(1 for f in all_robust if f["treatment"] == "transfer_composite")
+    total_robust = len(all_robust)
+
     programs = [
-        ("transfer_composite", "headline", "Dominant signal across all poverty and inequality outcomes. 9 of 11 robust rows."),
+        ("transfer_composite", "headline", f"Dominant signal across all poverty and inequality outcomes. {tc_robust} of {total_robust} robust rows."),
         ("ui_benefits", "bridge", "Cross-suite bridge: appears in both distributional-outcomes and consumption-composition suites."),
         ("snap_persons", "suggestive", "Near the FDR boundary. Survives targeted DASS shock diagnostics but does not clear DFLMX FDR."),
         ("social_security", "appendix", "Support in DASS (especially DML) but not in LP-based DFLMX. Method-dependent."),
@@ -793,8 +808,11 @@ def build_data() -> dict:
 
     # Load fresh diagnostic DASS (optional)
     diagnostic_dass_rows = None
-    if TMP_DIAGNOSTIC_DASS.exists():
-        diagnostic_dass_rows = read_csv(TMP_DIAGNOSTIC_DASS)
+    if DIAGNOSTIC_DASS and DIAGNOSTIC_DASS.exists():
+        diagnostic_dass_rows = read_csv(DIAGNOSTIC_DASS)
+        print(f"  loaded diagnostic DASS from {DIAGNOSTIC_DASS}")
+    else:
+        print("  diagnostic DASS not found (hierarchy cards will omit shock-diagnostic column)")
 
     # Build snapshot
     snapshot = build_snapshot(headline_rows, consumption_robust, confirmatory, OUTCOMES_FULL_DASS)
