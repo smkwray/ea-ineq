@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160956_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_household_networth_wealth_share_gap_top1_bottom50_h8.csv",
+  "spec": {
+    "treatment": "household_networth",
+    "outcome": "wealth_share_gap_top1_bottom50",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 136,
+  "ate": 24.5069,
+  "se": 5.5821,
+  "ci_low": 13.566,
+  "ci_high": 35.4478,
+  "p": 0,
+  "epsilon": 5.1697e-14,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

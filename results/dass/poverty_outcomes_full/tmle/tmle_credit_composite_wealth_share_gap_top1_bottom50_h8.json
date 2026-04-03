@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160947_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_credit_composite_wealth_share_gap_top1_bottom50_h8.csv",
+  "spec": {
+    "treatment": "credit_composite",
+    "outcome": "wealth_share_gap_top1_bottom50",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 136,
+  "ate": -7.794,
+  "se": 5.478,
+  "ci_low": -18.5309,
+  "ci_high": 2.9428,
+  "p": 0.1548,
+  "epsilon": -2.8073e-13,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

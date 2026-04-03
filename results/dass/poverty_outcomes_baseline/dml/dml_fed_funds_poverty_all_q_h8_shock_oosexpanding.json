@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160729_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_fed_funds_poverty_all_q_h8_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "fed_funds",
+    "outcome": "poverty_all_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 108,
+  "w_cols": 332,
+  "ate": -1.8388,
+  "se": 0.394,
+  "ci_low": -2.6109,
+  "ci_high": -1.0666,
+  "p": 8.9614e-06,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

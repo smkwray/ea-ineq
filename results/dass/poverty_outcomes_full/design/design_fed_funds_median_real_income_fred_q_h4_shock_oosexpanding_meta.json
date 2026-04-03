@@ -1,0 +1,54 @@
+{
+  "spec": {
+    "treatment": "fed_funds",
+    "outcome": "median_real_income_fred_q",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 111,
+  "w_cols": 332,
+  "shock_meta": {
+    "model": "glmnet_cv_oos",
+    "oos": true,
+    "oos_mode": "expanding",
+    "l1_ratio": 0.1,
+    "cv": 3,
+    "max_iter": 10000,
+    "r2": 0.0058,
+    "n_obs": 111,
+    "top_predictors": [],
+    "w_max": {},
+    "w_select": "variance",
+    "fold_counts": {
+      "0": 28,
+      "1": 28,
+      "2": 28,
+      "3": 28,
+      "4": 27
+    },
+    "train_counts": {
+      "0": 0,
+      "1": 28,
+      "2": 56,
+      "3": 84,
+      "4": 112
+    },
+    "w_cols_used_by_fold": {
+      "0": 0,
+      "1": 304,
+      "2": 332,
+      "3": 332,
+      "4": 332
+    },
+    "rows_without_prediction": 28,
+    "enabled": true,
+    "w_cols": 332
+  }
+}

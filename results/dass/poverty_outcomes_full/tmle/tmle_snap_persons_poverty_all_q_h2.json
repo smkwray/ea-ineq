@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160939_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_snap_persons_poverty_all_q_h2.csv",
+  "spec": {
+    "treatment": "snap_persons",
+    "outcome": "poverty_all_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 142,
+  "ate": 26.6243,
+  "se": 7.889,
+  "ci_low": 11.1619,
+  "ci_high": 42.0867,
+  "p": 0.0007,
+  "epsilon": 7.043e-14,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

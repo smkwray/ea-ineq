@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160944_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_credit_composite_median_real_income_fred_q_h2.csv",
+  "spec": {
+    "treatment": "credit_composite",
+    "outcome": "median_real_income_fred_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 142,
+  "ate": -62467.0104,
+  "se": 13740.1035,
+  "ci_low": -89397.6133,
+  "ci_high": -35536.4076,
+  "p": 5.459e-06,
+  "epsilon": -1.0026e-09,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160753_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_snap_persons_gini_households_q_h2.csv",
+  "spec": {
+    "treatment": "snap_persons",
+    "outcome": "gini_households_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 142,
+  "w_cols": 332,
+  "ate": -5.7057e-08,
+  "se": 6.0254e-08,
+  "ci_low": -1.7515e-07,
+  "ci_high": 6.104e-08,
+  "p": 0.3453,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

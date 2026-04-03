@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160642_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_consumption_baseline/design/design_ui_benefits_pce_gap_v2_h1.csv",
+  "spec": {
+    "treatment": "ui_benefits",
+    "outcome": "pce_gap_v2",
+    "horizon": 1,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 104,
+  "w_cols": 39,
+  "ate": 3.5779e-06,
+  "se": 5.1959e-07,
+  "ci_low": 2.5595e-06,
+  "ci_high": 4.5963e-06,
+  "p": 3.1565e-09,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

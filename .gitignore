@@ -1,0 +1,17 @@
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.playwright-mcp/
+.env
+do/
+prompts/
+*.plan.md
+plan.md
+plans/
+*.png
+*.zip

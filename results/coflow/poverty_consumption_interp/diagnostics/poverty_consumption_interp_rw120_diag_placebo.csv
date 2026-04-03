@@ -1,0 +1,10 @@
+"target","mode","top_candidate","placebo_top_candidate","top_match","top_score","placebo_top_score","top_score_delta","top_score_ratio","score_correlation","candidate_count"
+"pce_essential_idx","positive","ui_benefits","ui_benefits",TRUE,0,0,0,NA,NA,10
+"pce_essential_idx","negative","ui_benefits","ui_benefits",TRUE,0,0,0,NA,NA,10
+"pce_essential_idx","least","ui_benefits","ui_benefits",TRUE,NA,NA,NA,NA,NA,10
+"pce_discretionary_idx","positive","transfer_composite","transfer_composite",TRUE,0,0,0,NA,NA,4
+"pce_discretionary_idx","negative","transfer_composite","transfer_composite",TRUE,0,0,0,NA,NA,4
+"pce_discretionary_idx","least","transfer_composite","transfer_composite",TRUE,NA,NA,NA,NA,NA,4
+"pce_fcsu_idx","positive","ui_benefits","ui_benefits",TRUE,0,0,0,NA,NA,8
+"pce_fcsu_idx","negative","ui_benefits","ui_benefits",TRUE,0,0,0,NA,NA,8
+"pce_fcsu_idx","least","ui_benefits","ui_benefits",TRUE,NA,NA,NA,NA,NA,8

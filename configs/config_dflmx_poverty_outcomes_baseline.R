@@ -1,0 +1,88 @@
+CONFIG_THIS <- if (exists(".__CONFIG_PATH__", inherits = TRUE)) get(".__CONFIG_PATH__", inherits = TRUE) else file.path(getwd(), "config_dflmx_poverty_outcomes_baseline.R")
+DFLMX_ROOT <- normalizePath(dirname(CONFIG_THIS), winslash = "/", mustWork = FALSE)
+ROOT <- normalizePath(file.path(DFLMX_ROOT, ".."), winslash = "/", mustWork = TRUE)
+
+RESULTS_ROOT_ENV <- Sys.getenv("ECONARK_RESULTS_DIR", unset = "")
+RESULTS_ROOT <- if (nzchar(RESULTS_ROOT_ENV)) normalizePath(RESULTS_ROOT_ENV, winslash = "/", mustWork = FALSE) else file.path(tempdir(), "econark_results")
+DASS_OUT_DIR <- file.path(RESULTS_ROOT, "dass-R", "poverty_outcomes_baseline")
+STACKED_CSV <- file.path(DASS_OUT_DIR, "stacked_quarterly.csv")
+DASS_CONFIG_R <- file.path(ROOT, "dass-R", "config_dass_poverty_outcomes_baseline.R")
+OUT_DIR <- file.path(RESULTS_ROOT, "dflmx-R", "poverty_outcomes_baseline")
+
+FULL_PATH <- file.path(DFLMX_ROOT, "config_dflmx_poverty_outcomes.R")
+FULL_ENV <- new.env(parent = baseenv())
+FULL_ENV$`.__CONFIG_PATH__` <- FULL_PATH
+sys.source(FULL_PATH, envir = FULL_ENV)
+
+FACTOR_PANEL_CSV <- file.path(OUT_DIR, "factor_panel.csv")
+FACTOR_PANEL_META_JSON <- file.path(OUT_DIR, "factor_panel_meta.json")
+FACTOR_PANEL_COLUMNS_CSV <- file.path(OUT_DIR, "factor_panel_columns.csv")
+FACTORS_CSV <- file.path(OUT_DIR, "factors.csv")
+LOADINGS_CSV <- file.path(OUT_DIR, "loadings.csv")
+FACTOR_DIAGNOSTICS_CSV <- file.path(OUT_DIR, "factor_diagnostics.csv")
+TOP_LOADINGS_CSV <- file.path(OUT_DIR, "top_loadings.csv")
+SERIES_NAME_DICT_JSON <- file.path(OUT_DIR, "series_name_dict.json")
+FACTOR_CARDS_MD <- file.path(OUT_DIR, "factor_cards.md")
+SHOCK_SERIES_CSV <- file.path(OUT_DIR, "shock_series.csv")
+SHOCK_META_JSON <- file.path(OUT_DIR, "shock_meta.json")
+SHOCK_FIT_DIAGNOSTICS_CSV <- file.path(OUT_DIR, "shock_fit_diagnostics.csv")
+IRF_LP_CSV <- file.path(OUT_DIR, "irf_lp.csv")
+IRF_LP_FDR_CSV <- file.path(OUT_DIR, "irf_lp_fdr.csv")
+FINDINGS_RANKED_CSV <- file.path(OUT_DIR, "findings_ranked.csv")
+CHANNEL_MEDIATION_CSV <- file.path(OUT_DIR, "channel_mediation.csv")
+CHANNEL_FINDINGS_RANKED_CSV <- file.path(OUT_DIR, "channel_findings_ranked.csv")
+VARIANCE_ATTRIBUTION_CSV <- file.path(OUT_DIR, "variance_attribution.csv")
+IV_CANDIDATES_CSV <- file.path(OUT_DIR, "iv_candidates.csv")
+IV_CANDIDATE_CHECKLIST_CSV <- file.path(OUT_DIR, "iv_candidate_checklist.csv")
+NEGATIVE_CONTROL_CANDIDATES_CSV <- file.path(OUT_DIR, "negative_control_candidates.csv")
+NEGATIVE_CONTROL_CHECKLIST_CSV <- file.path(OUT_DIR, "negative_control_checklist.csv")
+CONFIRMATORY_CONTRACTS_MANIFEST_CSV <- file.path(OUT_DIR, "confirmatory_contracts_manifest.csv")
+CONFIRMATORY_INFERENCE_CSV <- file.path(OUT_DIR, "confirmatory_inference.csv")
+IV_GATE_SUMMARY_CSV <- file.path(OUT_DIR, "iv_gate_summary.csv")
+REPORT_MD <- file.path(OUT_DIR, "dflmx_report.md")
+
+FACTOR_FREQ_ALLOWLIST <- FULL_ENV$FACTOR_FREQ_ALLOWLIST
+FACTOR_LAG_SUFFIX <- FULL_ENV$FACTOR_LAG_SUFFIX
+EXCLUDE_FACTOR_COLS <- FULL_ENV$EXCLUDE_FACTOR_COLS
+EXCLUDE_FACTOR_PREFIXES <- FULL_ENV$EXCLUDE_FACTOR_PREFIXES
+EXCLUDE_FACTOR_REGEX <- FULL_ENV$EXCLUDE_FACTOR_REGEX
+FACTOR_MAX_MISSING_SHARE <- FULL_ENV$FACTOR_MAX_MISSING_SHARE
+FACTOR_MIN_STD <- FULL_ENV$FACTOR_MIN_STD
+
+N_FACTORS <- FULL_ENV$N_FACTORS
+AUTO_K <- TRUE
+AUTO_K_MIN <- 2
+AUTO_K_MAX <- 4
+AUTO_K_EXPLAINED_VAR_TARGET <- FULL_ENV$AUTO_K_EXPLAINED_VAR_TARGET
+TOP_LOADINGS_PER_FACTOR <- FULL_ENV$TOP_LOADINGS_PER_FACTOR
+RANDOM_SEED <- FULL_ENV$RANDOM_SEED
+
+QUESTION_SOURCE <- FULL_ENV$QUESTION_SOURCE
+MANUAL_TREATMENTS <- c("fed_funds", "transfer_composite", "ui_benefits", "social_security", "snap_persons", "credit_composite")
+OUTCOME_QEND_COLS <- c(
+  "qend__poverty_all_q",
+  "qend__poverty_child_q",
+  "qend__gini_households_q",
+  "qend__median_real_income_fred_q",
+  "qend__wealth_share_gap_top10_bottom50",
+  "qend__wealth_share_gap_top1_bottom50"
+)
+LP_HORIZONS <- c(2, 4, 8)
+LP_LAGS <- FULL_ENV$LP_LAGS
+LP_HAC_LAGS <- FULL_ENV$LP_HAC_LAGS
+LP_MIN_OBS <- FULL_ENV$LP_MIN_OBS
+LP_MAX_OUTCOMES_PER_TREATMENT <- FULL_ENV$LP_MAX_OUTCOMES_PER_TREATMENT
+
+WORKER_THREADS <- 4
+PROPAGATION_WORKERS <- 2
+FDR_ALPHA <- FULL_ENV$FDR_ALPHA
+REPORT_ALLOW_FACTOR_FALLBACK <- FULL_ENV$REPORT_ALLOW_FACTOR_FALLBACK
+SHOCK_W_MAX <- FULL_ENV$SHOCK_W_MAX
+SHOCK_W_SELECT <- FULL_ENV$SHOCK_W_SELECT
+SHOCK_MIN_R2 <- FULL_ENV$SHOCK_MIN_R2
+SHOCK_MAX_CONVERGENCE_WARNINGS <- FULL_ENV$SHOCK_MAX_CONVERGENCE_WARNINGS
+
+RUN_IV_NC_DISCOVERY <- FALSE
+
+REGRESSION_MAX_FAILS <- FULL_ENV$REGRESSION_MAX_FAILS
+REGRESSION_MAX_REAL_SECONDS <- FULL_ENV$REGRESSION_MAX_REAL_SECONDS

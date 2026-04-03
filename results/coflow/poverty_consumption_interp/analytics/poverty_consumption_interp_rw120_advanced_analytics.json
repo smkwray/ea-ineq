@@ -1,0 +1,21 @@
+{
+  "config_slug": "poverty_consumption_interp",
+  "window_size": 120,
+  "enabled": true,
+  "irf": {
+    "enabled": false,
+    "status": "skipped_disabled",
+    "artifact": ""
+  },
+  "fevd": {
+    "enabled": false,
+    "status": "skipped_disabled",
+    "artifact": ""
+  },
+  "driver_response": {
+    "enabled": true,
+    "status": "emitted_proxy",
+    "artifact": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_consumption_interp/analytics/poverty_consumption_interp_rw120_driver_response_proxy.csv",
+    "n_rows": 14
+  }
+}

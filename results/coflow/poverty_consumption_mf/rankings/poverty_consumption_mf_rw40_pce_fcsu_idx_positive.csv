@@ -1,0 +1,17 @@
+"candidate","direction","significance","score","sig_share","n_windows","median_corr","median_abs_corr","coint_share","pair_p","pair_q","pair_rejected","pair_multiplier"
+"ui_benefits","positive",FALSE,0,0,10,-0.611058128777326,0.611058128777326,0,NA,NA,FALSE,1
+"transfers_total","positive",FALSE,0,0,9,-0.439040575018033,0.439040575018033,0,NA,NA,FALSE,1
+"transfer_composite","positive",FALSE,0,0,11,-0.414181433619099,0.414181433619099,0,NA,NA,FALSE,1
+"fhfa_hpi","positive",FALSE,0,0,1,0.211727104199407,0.211727104199407,0,NA,NA,FALSE,1
+"poverty_all_q","positive",FALSE,0,0,3,-0.210873812188148,0.210873812188148,0,NA,NA,FALSE,1
+"cc_delinquency","positive",FALSE,0,0,1,0.202707420862947,0.202707420862947,0,NA,NA,FALSE,1
+"wealth_share_gap_top1_bottom50","positive",FALSE,0,0,10,-0.133037020029165,0.189363332196253,0,NA,NA,FALSE,1
+"top1_wealth_share","positive",FALSE,0,0,11,-0.186536212817584,0.186536212817584,0,NA,NA,FALSE,1
+"gini_income_fred_q","positive",FALSE,0,0,33,-0.186328831615904,0.186328831615904,0,NA,NA,FALSE,1
+"social_security","positive",FALSE,0,0,6,-0.0699041079394133,0.12182123606453,0,NA,NA,FALSE,1
+"poverty_child_q","positive",FALSE,0,0,3,-0.0915685648917117,0.11903544748315,0,NA,NA,FALSE,1
+"gini_households_q","positive",FALSE,0,0,25,0.0392830043491286,0.105192064443292,0,NA,NA,FALSE,1
+"median_real_income_fred_q","positive",FALSE,0,0,11,0.0110597714024934,0.0897320433168479,0,NA,NA,FALSE,1
+"fed_funds","positive",FALSE,0,0,4,0.0855963456556588,0.0855963456556588,0,NA,NA,FALSE,1
+"bottom50_wealth_share","positive",FALSE,0,0,1,0.0791603185164959,0.0791603185164959,0,NA,NA,FALSE,1
+"equity_wealth_proxy","positive",FALSE,0,0,6,0.0305484753173889,0.0483014791699282,0,NA,NA,FALSE,1

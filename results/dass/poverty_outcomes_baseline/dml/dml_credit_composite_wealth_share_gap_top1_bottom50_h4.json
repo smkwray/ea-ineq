@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160801_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_credit_composite_wealth_share_gap_top1_bottom50_h4.csv",
+  "spec": {
+    "treatment": "credit_composite",
+    "outcome": "wealth_share_gap_top1_bottom50",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 140,
+  "w_cols": 332,
+  "ate": 1.208e-08,
+  "se": 4.0685e-09,
+  "ci_low": 4.1057e-09,
+  "ci_high": 2.0054e-08,
+  "p": 0.0035,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

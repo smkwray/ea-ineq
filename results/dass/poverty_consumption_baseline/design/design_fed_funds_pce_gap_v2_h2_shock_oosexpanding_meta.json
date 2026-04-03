@@ -1,0 +1,54 @@
+{
+  "spec": {
+    "treatment": "fed_funds",
+    "outcome": "pce_gap_v2",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 83,
+  "w_cols": 380,
+  "shock_meta": {
+    "model": "glmnet_cv_oos",
+    "oos": true,
+    "oos_mode": "expanding",
+    "l1_ratio": 0.1,
+    "cv": 3,
+    "max_iter": 10000,
+    "r2": 0.0374,
+    "n_obs": 83,
+    "top_predictors": [],
+    "w_max": {},
+    "w_select": "variance",
+    "fold_counts": {
+      "0": 21,
+      "1": 21,
+      "2": 21,
+      "3": 21,
+      "4": 20
+    },
+    "train_counts": {
+      "0": 0,
+      "1": 21,
+      "2": 42,
+      "3": 63,
+      "4": 84
+    },
+    "w_cols_used_by_fold": {
+      "0": 0,
+      "1": 380,
+      "2": 380,
+      "3": 380,
+      "4": 380
+    },
+    "rows_without_prediction": 21,
+    "enabled": true,
+    "w_cols": 380
+  }
+}

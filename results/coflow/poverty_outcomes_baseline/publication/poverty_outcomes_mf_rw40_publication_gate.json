@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "config_slug": "poverty_outcomes_mf",
+  "window_size": 40,
+  "summary_file": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_outcomes_mf/poverty_outcomes_mf_rw40_poverty_outcomes_coflow_mf_summary.md",
+  "shortlist_json": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_outcomes_mf/shortlists/poverty_outcomes_mf_rw40_shortlist.json",
+  "analytics_report_json": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_outcomes_mf/analytics/poverty_outcomes_mf_rw40_advanced_analytics.json",
+  "strict_mode": false,
+  "error_count": 0,
+  "warning_count": 0,
+  "errors": [],
+  "warnings": [],
+  "checked_at_utc": "2026-04-03 20:08:43 UTC"
+}

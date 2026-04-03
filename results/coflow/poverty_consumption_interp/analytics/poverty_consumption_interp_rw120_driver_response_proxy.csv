@@ -1,0 +1,15 @@
+"target","mode","rank","candidate","score","sig_share","coint_share","n_windows"
+"pce_discretionary_idx","positive",1,"transfer_composite",0,0,0,3
+"pce_discretionary_idx","positive",2,"fhfa_hpi",0,0,0,6
+"pce_discretionary_idx","positive",3,"ui_benefits",0,0,0,3
+"pce_discretionary_idx","positive",4,"social_security",0,0,0,3
+"pce_essential_idx","positive",1,"ui_benefits",0,0,0,42
+"pce_essential_idx","positive",2,"transfer_composite",0,0,0,15
+"pce_essential_idx","positive",3,"transfers_total",0,0,0,18
+"pce_essential_idx","positive",4,"equity_wealth_proxy",0,0,0,3
+"pce_essential_idx","positive",5,"credit_composite",0,0,0,6
+"pce_fcsu_idx","positive",1,"ui_benefits",0,0,0,27
+"pce_fcsu_idx","positive",2,"transfer_composite",0,0,0,21
+"pce_fcsu_idx","positive",3,"transfers_total",0,0,0,21
+"pce_fcsu_idx","positive",4,"fhfa_hpi",0,0,0,6
+"pce_fcsu_idx","positive",5,"cc_delinquency",0,0,0,3

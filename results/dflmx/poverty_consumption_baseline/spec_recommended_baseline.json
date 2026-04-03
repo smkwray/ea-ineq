@@ -1,0 +1,13 @@
+{
+  "selection_rule": "stability_first_reduced_form",
+  "selected_spec": {
+    "spec_id": "k4_lags2",
+    "k_factors": 4,
+    "lp_lags": 2,
+    "stability_score": 1
+  },
+  "run_timestamp_utc": "2026-04-03T20:07:15Z",
+  "treatment_scope": "credit_composite;fed_funds;household_networth;snap_persons;social_security;transfer_composite;ui_benefits",
+  "n_treatments": 7,
+  "n_outcomes": 4
+}

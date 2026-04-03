@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160924_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_transfer_composite_gini_households_q_h4.csv",
+  "spec": {
+    "treatment": "transfer_composite",
+    "outcome": "gini_households_q",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 140,
+  "w_cols": 332,
+  "ate": 1.1749e-08,
+  "se": 1.2817e-08,
+  "ci_low": -1.3373e-08,
+  "ci_high": 3.687e-08,
+  "p": 0.3609,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

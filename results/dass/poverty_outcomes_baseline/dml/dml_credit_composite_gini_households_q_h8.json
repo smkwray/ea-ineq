@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160759_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_credit_composite_gini_households_q_h8.csv",
+  "spec": {
+    "treatment": "credit_composite",
+    "outcome": "gini_households_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 136,
+  "w_cols": 332,
+  "ate": 5.7346e-12,
+  "se": 2.6483e-11,
+  "ci_low": -4.6173e-11,
+  "ci_high": 5.7642e-11,
+  "p": 0.8289,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

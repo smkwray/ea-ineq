@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160952_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_household_networth_gini_households_q_h4.csv",
+  "spec": {
+    "treatment": "household_networth",
+    "outcome": "gini_households_q",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 140,
+  "ate": -0.0453,
+  "se": 0.0204,
+  "ci_low": -0.0853,
+  "ci_high": -0.0052,
+  "p": 0.0266,
+  "epsilon": 5.4721e-16,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160928_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_transfer_composite_wealth_share_gap_top1_bottom50_h8.csv",
+  "spec": {
+    "treatment": "transfer_composite",
+    "outcome": "wealth_share_gap_top1_bottom50",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 136,
+  "ate": 24.9723,
+  "se": 5.2623,
+  "ci_low": 14.6583,
+  "ci_high": 35.2864,
+  "p": 2.0796e-06,
+  "epsilon": 1.4803e-13,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

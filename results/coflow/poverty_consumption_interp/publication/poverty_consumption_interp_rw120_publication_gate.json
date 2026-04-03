@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "config_slug": "poverty_consumption_interp",
+  "window_size": 120,
+  "summary_file": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_consumption_interp/poverty_consumption_interp_rw120_poverty_coflow_interp_summary.md",
+  "shortlist_json": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_consumption_interp/shortlists/poverty_consumption_interp_rw120_shortlist.json",
+  "analytics_report_json": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_consumption_interp/analytics/poverty_consumption_interp_rw120_advanced_analytics.json",
+  "strict_mode": false,
+  "error_count": 0,
+  "warning_count": 0,
+  "errors": [],
+  "warnings": [],
+  "checked_at_utc": "2026-04-03 20:07:13 UTC"
+}

@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160731_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_fed_funds_gini_households_q_h4_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "fed_funds",
+    "outcome": "gini_households_q",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 111,
+  "w_cols": 39,
+  "ate": 0.0011,
+  "se": 0.0015,
+  "ci_low": -0.0018,
+  "ci_high": 0.004,
+  "p": 0.4728,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

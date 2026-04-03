@@ -1,0 +1,54 @@
+{
+  "spec": {
+    "treatment": "fed_funds",
+    "outcome": "poverty_child_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 112,
+  "w_cols": 332,
+  "shock_meta": {
+    "model": "glmnet_cv_oos",
+    "oos": true,
+    "oos_mode": "expanding",
+    "l1_ratio": 0.1,
+    "cv": 3,
+    "max_iter": 10000,
+    "r2": 0.0719,
+    "n_obs": 112,
+    "top_predictors": [],
+    "w_max": {},
+    "w_select": "variance",
+    "fold_counts": {
+      "0": 29,
+      "1": 28,
+      "2": 28,
+      "3": 28,
+      "4": 28
+    },
+    "train_counts": {
+      "0": 0,
+      "1": 29,
+      "2": 57,
+      "3": 85,
+      "4": 113
+    },
+    "w_cols_used_by_fold": {
+      "0": 0,
+      "1": 304,
+      "2": 332,
+      "3": 332,
+      "4": 332
+    },
+    "rows_without_prediction": 29,
+    "enabled": true,
+    "w_cols": 332
+  }
+}

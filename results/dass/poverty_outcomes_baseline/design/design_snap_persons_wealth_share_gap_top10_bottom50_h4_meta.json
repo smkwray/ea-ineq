@@ -1,0 +1,20 @@
+{
+  "spec": {
+    "treatment": "snap_persons",
+    "outcome": "wealth_share_gap_top10_bottom50",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 140,
+  "w_cols": 332,
+  "shock_meta": {
+    "enabled": false
+  }
+}

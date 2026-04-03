@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "component": "coflow-R",
+  "emitted_at_utc": "2026-04-03T20:06:10Z",
+  "stage": "all",
+  "config_path": "/Users/shanewray/Library/CloudStorage/OneDrive-Personal/Active/hw/1/1proj/code/econark-r/code/coflow-R/config_coflow_poverty_consumption_mf.R",
+  "root_path": "/Users/shanewray/Library/CloudStorage/OneDrive-Personal/Active/hw/1/1proj/code/econark-r/code/coflow-R",
+  "results_dir": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_consumption_mf",
+  "run_context": {
+    "seed": 20260225,
+    "tz": "UTC",
+    "locale": "C"
+  }
+}

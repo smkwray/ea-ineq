@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160656_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_consumption_baseline/design/design_credit_composite_pce_gap_v2_h1.csv",
+  "spec": {
+    "treatment": "credit_composite",
+    "outcome": "pce_gap_v2",
+    "horizon": 1,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 104,
+  "w_cols": 380,
+  "ate": 3.5177e-10,
+  "se": 8.1096e-10,
+  "ci_low": -1.2377e-09,
+  "ci_high": 1.9412e-09,
+  "p": 0.6654,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

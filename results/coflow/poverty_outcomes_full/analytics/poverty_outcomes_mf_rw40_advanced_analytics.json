@@ -1,0 +1,21 @@
+{
+  "config_slug": "poverty_outcomes_mf",
+  "window_size": 40,
+  "enabled": true,
+  "irf": {
+    "enabled": false,
+    "status": "skipped_disabled",
+    "artifact": ""
+  },
+  "fevd": {
+    "enabled": false,
+    "status": "skipped_disabled",
+    "artifact": ""
+  },
+  "driver_response": {
+    "enabled": true,
+    "status": "emitted_proxy",
+    "artifact": "/private/tmp/econark_results.3umZ26/coflow-R/poverty_outcomes_mf/analytics/poverty_outcomes_mf_rw40_driver_response_proxy.csv",
+    "n_rows": 40
+  }
+}

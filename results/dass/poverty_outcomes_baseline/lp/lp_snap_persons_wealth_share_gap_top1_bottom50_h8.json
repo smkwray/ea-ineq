@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160756_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_snap_persons_wealth_share_gap_top1_bottom50_h8.csv",
+  "spec": {
+    "treatment": "snap_persons",
+    "outcome": "wealth_share_gap_top1_bottom50",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 136,
+  "w_cols": 42,
+  "ate": 0,
+  "se": 3.4719e-06,
+  "ci_low": 0,
+  "ci_high": 0,
+  "p": 1.4545e-06,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

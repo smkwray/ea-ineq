@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160627_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_consumption_baseline/design/design_fed_funds_pce_discretionary_v2_idx_h1_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "fed_funds",
+    "outcome": "pce_discretionary_v2_idx",
+    "horizon": 1,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 83,
+  "w_cols": 37,
+  "ate": 10337.4971,
+  "se": 7929.7132,
+  "ci_low": -5204.7409,
+  "ci_high": 25879.735,
+  "p": 0.1991,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

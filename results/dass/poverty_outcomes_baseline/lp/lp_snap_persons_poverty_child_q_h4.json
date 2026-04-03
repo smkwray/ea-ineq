@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160752_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_snap_persons_poverty_child_q_h4.csv",
+  "spec": {
+    "treatment": "snap_persons",
+    "outcome": "poverty_child_q",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 140,
+  "w_cols": 43,
+  "ate": 0,
+  "se": 3.487e-06,
+  "ci_low": 0,
+  "ci_high": 0,
+  "p": 1.8203e-08,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

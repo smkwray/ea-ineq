@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fafaf8">
+    <title>ea-ineq</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./theme.js"></script>
+    <script defer src="./data.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#questions">Questions</a>
+        <a href="#variables">Variables</a>
+        <a href="#runs">Runs</a>
+        <a href="#confirmatory">Confirmatory</a>
+        <a href="#brief">Brief</a>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" onclick="toggleTheme()"></button>
+    </nav>
+    <main>
+      <section id="about">
+        <h1 id="title"></h1>
+        <p class="subtitle" id="subtitle"></p>
+        <div class="callout">
+          <div class="stat" id="headline-stat"></div>
+          <div class="stat-label" id="headline-label"></div>
+        </div>
+        <p>
+          This static archive packages the validated `econark-r` poverty/inequality specification, including the canon
+          `v2` consumption basket, the transfer-decomposition outcomes grid, and the repaired IV/negative-control
+          discovery layer used in the April 3, 2026 reruns.
+        </p>
+      </section>
+
+      <section id="questions">
+        <h2>Project Questions</h2>
+        <div id="questions-grid" class="questions-grid"></div>
+      </section>
+
+      <section id="variables">
+        <h2>Key Variables</h2>
+        <table class="var-table">
+          <thead>
+            <tr><th>Variable</th><th>Definition</th></tr>
+          </thead>
+          <tbody id="var-body"></tbody>
+        </table>
+      </section>
+
+      <section id="runs">
+        <h2>Packaged Runs</h2>
+        <div id="run-cards" class="questions-grid"></div>
+        <div id="run-tables"></div>
+      </section>
+
+      <section id="confirmatory">
+        <h2>Confirmatory Status</h2>
+        <div id="confirmatory-summary" class="questions-grid"></div>
+        <div id="confirmatory-tables"></div>
+      </section>
+
+      <section id="brief">
+        <h2>Archive Brief</h2>
+        <pre id="brief-text" class="code-block"></pre>
+      </section>
+    </main>
+  </body>
+  </html>

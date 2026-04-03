@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160927_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_transfer_composite_wealth_share_gap_top10_bottom50_h4.csv",
+  "spec": {
+    "treatment": "transfer_composite",
+    "outcome": "wealth_share_gap_top10_bottom50",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 140,
+  "w_cols": 332,
+  "ate": -9.4325e-06,
+  "se": 2.07e-06,
+  "ci_low": -0,
+  "ci_high": -5.3752e-06,
+  "p": 0,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

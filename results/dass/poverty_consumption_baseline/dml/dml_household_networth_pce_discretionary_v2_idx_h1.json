@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160651_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_consumption_baseline/design/design_household_networth_pce_discretionary_v2_idx_h1.csv",
+  "spec": {
+    "treatment": "household_networth",
+    "outcome": "pce_discretionary_v2_idx",
+    "horizon": 1,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 104,
+  "w_cols": 380,
+  "ate": 2.1793e-06,
+  "se": 5.1233e-07,
+  "ci_low": 1.1751e-06,
+  "ci_high": 3.1834e-06,
+  "p": 0,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

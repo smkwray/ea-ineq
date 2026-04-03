@@ -1,0 +1,11 @@
+"candidate","direction","significance","score","sig_share","n_windows","median_corr","median_abs_corr","coint_share","pair_p","pair_q","pair_rejected","pair_multiplier"
+"ui_benefits","least",NA,NA,0,42,-0.884982995592313,0.884982995592313,0,NA,NA,NA,1
+"transfer_composite","least",NA,NA,0,15,-0.685817130031033,0.685817130031033,0,NA,NA,NA,1
+"transfers_total","least",NA,NA,0,18,-0.634198114605317,0.634198114605317,0,NA,NA,NA,1
+"equity_wealth_proxy","least",NA,NA,0,3,0.20705279346093,0.20705279346093,0,NA,NA,NA,1
+"credit_composite","least",NA,NA,0,6,0.154766427393404,0.154766427393404,0,NA,NA,NA,1
+"revolving_credit","least",NA,NA,0,6,0.153749624990182,0.153749624990182,0,NA,NA,NA,1
+"fhfa_hpi","least",NA,NA,0,11,0.138533541393116,0.138533541393116,0,NA,NA,NA,1
+"social_security","least",NA,NA,0,27,-0.101301303843864,0.101301303843864,0,NA,NA,NA,1
+"fed_funds","least",NA,NA,0,9,-0.0536618927796194,0.0536618927796194,0,NA,NA,NA,1
+"cc_delinquency","least",NA,NA,0,3,-0.0113351012405534,0.0113351012405534,0,NA,NA,NA,1

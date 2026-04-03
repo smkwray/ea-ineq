@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160922_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_transfer_composite_poverty_all_q_h2.csv",
+  "spec": {
+    "treatment": "transfer_composite",
+    "outcome": "poverty_all_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 142,
+  "ate": 6.0424,
+  "se": 1.772,
+  "ci_low": 2.5692,
+  "ci_high": 9.5156,
+  "p": 0.0006,
+  "epsilon": -1.7152e-13,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

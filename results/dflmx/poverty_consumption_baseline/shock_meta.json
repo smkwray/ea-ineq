@@ -1,0 +1,534 @@
+{
+  "fed_funds": {
+    "model": "elasticnet_cv",
+    "r2": 0.6329,
+    "treatment": "fed_funds",
+    "treatment_col": "qend__fed_funds",
+    "w_cols_total": 36,
+    "w_cols_used": 36,
+    "w_cols_selected": ["m__pce_essential_idx__lag001", "m__pce_discretionary_idx__lag001", "m__pce_fcsu_idx__lag001", "q__pce_essential_cex_idx__lag001", "q__pce_discretionary_cex_idx__lag001", "m__pce_essential_v2_idx__lag001", "m__pce_discretionary_v2_idx__lag001", "m__pce_gap_v2__lag001", "m__pce_eshare_v2__lag001", "m__fed_funds__lag001", "m__transfers_total__lag001", "m__social_security__lag001", "m__ui_benefits__lag001", "m__snap_persons__lag001", "m__household_networth__lag001", "m__equity_wealth_proxy__lag001", "m__home_equity__lag001", "m__fhfa_hpi__lag001", "m__total_credit__lag001", "m__nonrevolving_credit__lag001", "m__revolving_credit__lag001", "m__cc_delinquency__lag001", "m__recession_nber__lag001", "q__top1_wealth_share__lag001", "q__top10_wealth_share__lag001", "q__bottom50_wealth_share__lag001", "m__transfer_composite__lag001", "m__credit_composite__lag001", "q__wealth_share_gap_top10_bottom50__lag001", "q__wealth_share_gap_top1_bottom50__lag001", "q__gini_households_q__lag001", "q__median_hh_income_q__lag001", "q__poverty_all_q__lag001", "q__poverty_child_q__lag001", "q__gini_income_fred_q__lag001", "q__median_real_income_fred_q__lag001"],
+    "w_select_mode": "corr_t_then_variance",
+    "w_max": 120,
+    "l1_ratio": 0.9,
+    "cv": 3,
+    "max_iter": 20000,
+    "selected_l1_ratio": 0.9,
+    "selected_cv": 3,
+    "selected_max_iter": 20000,
+    "selected_w_max": 120,
+    "attempts_tried": 1,
+    "convergence_warning_count": 0,
+    "fallback_used": false,
+    "residual_variance": 0.08,
+    "quality_pass": true,
+    "top_predictors": [
+      {
+        "feature": "m__pce_eshare_v2__lag001",
+        "coef": -34.7469,
+        "abs_coef": 34.7469
+      },
+      {
+        "feature": "q__gini_households_q__lag001",
+        "coef": 11.7354,
+        "abs_coef": 11.7354
+      },
+      {
+        "feature": "m__recession_nber__lag001",
+        "coef": -0.42,
+        "abs_coef": 0.42
+      },
+      {
+        "feature": "q__poverty_all_q__lag001",
+        "coef": 0.3216,
+        "abs_coef": 0.3216
+      },
+      {
+        "feature": "q__poverty_child_q__lag001",
+        "coef": -0.308,
+        "abs_coef": 0.308
+      },
+      {
+        "feature": "q__bottom50_wealth_share__lag001",
+        "coef": -0.3058,
+        "abs_coef": 0.3058
+      },
+      {
+        "feature": "q__wealth_share_gap_top1_bottom50__lag001",
+        "coef": 0.1706,
+        "abs_coef": 0.1706
+      },
+      {
+        "feature": "q__gini_income_fred_q__lag001",
+        "coef": 0.1396,
+        "abs_coef": 0.1396
+      },
+      {
+        "feature": "m__fed_funds__lag001",
+        "coef": -0.1007,
+        "abs_coef": 0.1007
+      },
+      {
+        "feature": "q__top1_wealth_share__lag001",
+        "coef": 0.0921,
+        "abs_coef": 0.0921
+      }
+    ],
+    "n_obs": 143
+  },
+  "transfer_composite": {
+    "model": "elasticnet_cv",
+    "r2": 0,
+    "treatment": "transfer_composite",
+    "treatment_col": "qend__transfer_composite",
+    "w_cols_total": 36,
+    "w_cols_used": 36,
+    "w_cols_selected": ["m__pce_essential_idx__lag001", "m__pce_discretionary_idx__lag001", "m__pce_fcsu_idx__lag001", "q__pce_essential_cex_idx__lag001", "q__pce_discretionary_cex_idx__lag001", "m__pce_essential_v2_idx__lag001", "m__pce_discretionary_v2_idx__lag001", "m__pce_gap_v2__lag001", "m__pce_eshare_v2__lag001", "m__fed_funds__lag001", "m__transfers_total__lag001", "m__social_security__lag001", "m__ui_benefits__lag001", "m__snap_persons__lag001", "m__household_networth__lag001", "m__equity_wealth_proxy__lag001", "m__home_equity__lag001", "m__fhfa_hpi__lag001", "m__total_credit__lag001", "m__nonrevolving_credit__lag001", "m__revolving_credit__lag001", "m__cc_delinquency__lag001", "m__recession_nber__lag001", "q__top1_wealth_share__lag001", "q__top10_wealth_share__lag001", "q__bottom50_wealth_share__lag001", "m__transfer_composite__lag001", "m__credit_composite__lag001", "q__wealth_share_gap_top10_bottom50__lag001", "q__wealth_share_gap_top1_bottom50__lag001", "q__gini_households_q__lag001", "q__median_hh_income_q__lag001", "q__poverty_all_q__lag001", "q__poverty_child_q__lag001", "q__gini_income_fred_q__lag001", "q__median_real_income_fred_q__lag001"],
+    "w_select_mode": "corr_t_then_variance",
+    "w_max": 120,
+    "l1_ratio": 0.9,
+    "cv": 3,
+    "max_iter": 20000,
+    "selected_l1_ratio": 0.9,
+    "selected_cv": 3,
+    "selected_max_iter": 20000,
+    "selected_w_max": 120,
+    "attempts_tried": 1,
+    "convergence_warning_count": 0,
+    "fallback_used": false,
+    "residual_variance": 8404724900.3147,
+    "quality_pass": true,
+    "top_predictors": [
+      {
+        "feature": "m__pce_essential_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_discretionary_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_fcsu_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "q__pce_essential_cex_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "q__pce_discretionary_cex_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_essential_v2_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_discretionary_v2_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_gap_v2__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_eshare_v2__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__fed_funds__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      }
+    ],
+    "n_obs": 143
+  },
+  "social_security": {
+    "model": "elasticnet_cv",
+    "r2": 0.1644,
+    "treatment": "social_security",
+    "treatment_col": "qend__social_security",
+    "w_cols_total": 36,
+    "w_cols_used": 36,
+    "w_cols_selected": ["m__pce_essential_idx__lag001", "m__pce_discretionary_idx__lag001", "m__pce_fcsu_idx__lag001", "q__pce_essential_cex_idx__lag001", "q__pce_discretionary_cex_idx__lag001", "m__pce_essential_v2_idx__lag001", "m__pce_discretionary_v2_idx__lag001", "m__pce_gap_v2__lag001", "m__pce_eshare_v2__lag001", "m__fed_funds__lag001", "m__transfers_total__lag001", "m__social_security__lag001", "m__ui_benefits__lag001", "m__snap_persons__lag001", "m__household_networth__lag001", "m__equity_wealth_proxy__lag001", "m__home_equity__lag001", "m__fhfa_hpi__lag001", "m__total_credit__lag001", "m__nonrevolving_credit__lag001", "m__revolving_credit__lag001", "m__cc_delinquency__lag001", "m__recession_nber__lag001", "q__top1_wealth_share__lag001", "q__top10_wealth_share__lag001", "q__bottom50_wealth_share__lag001", "m__transfer_composite__lag001", "m__credit_composite__lag001", "q__wealth_share_gap_top10_bottom50__lag001", "q__wealth_share_gap_top1_bottom50__lag001", "q__gini_households_q__lag001", "q__median_hh_income_q__lag001", "q__poverty_all_q__lag001", "q__poverty_child_q__lag001", "q__gini_income_fred_q__lag001", "q__median_real_income_fred_q__lag001"],
+    "w_select_mode": "corr_t_then_variance",
+    "w_max": 120,
+    "l1_ratio": 0.9,
+    "cv": 3,
+    "max_iter": 20000,
+    "selected_l1_ratio": 0.9,
+    "selected_cv": 3,
+    "selected_max_iter": 20000,
+    "selected_w_max": 120,
+    "attempts_tried": 1,
+    "convergence_warning_count": 0,
+    "fallback_used": false,
+    "residual_variance": 1510714.8746,
+    "quality_pass": true,
+    "top_predictors": [
+      {
+        "feature": "m__fhfa_hpi__lag001",
+        "coef": 2.2634,
+        "abs_coef": 2.2634
+      },
+      {
+        "feature": "q__pce_discretionary_cex_idx__lag001",
+        "coef": 0.0124,
+        "abs_coef": 0.0124
+      },
+      {
+        "feature": "m__pce_discretionary_v2_idx__lag001",
+        "coef": 0.0016,
+        "abs_coef": 0.0016
+      },
+      {
+        "feature": "m__pce_essential_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_discretionary_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_fcsu_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "q__pce_essential_cex_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_essential_v2_idx__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_gap_v2__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      },
+      {
+        "feature": "m__pce_eshare_v2__lag001",
+        "coef": 0,
+        "abs_coef": 0
+      }
+    ],
+    "n_obs": 143
+  },
+  "ui_benefits": {
+    "model": "elasticnet_cv",
+    "r2": 0.5929,
+    "treatment": "ui_benefits",
+    "treatment_col": "qend__ui_benefits",
+    "w_cols_total": 36,
+    "w_cols_used": 36,
+    "w_cols_selected": ["m__pce_essential_idx__lag001", "m__pce_discretionary_idx__lag001", "m__pce_fcsu_idx__lag001", "q__pce_essential_cex_idx__lag001", "q__pce_discretionary_cex_idx__lag001", "m__pce_essential_v2_idx__lag001", "m__pce_discretionary_v2_idx__lag001", "m__pce_gap_v2__lag001", "m__pce_eshare_v2__lag001", "m__fed_funds__lag001", "m__transfers_total__lag001", "m__social_security__lag001", "m__ui_benefits__lag001", "m__snap_persons__lag001", "m__household_networth__lag001", "m__equity_wealth_proxy__lag001", "m__home_equity__lag001", "m__fhfa_hpi__lag001", "m__total_credit__lag001", "m__nonrevolving_credit__lag001", "m__revolving_credit__lag001", "m__cc_delinquency__lag001", "m__recession_nber__lag001", "q__top1_wealth_share__lag001", "q__top10_wealth_share__lag001", "q__bottom50_wealth_share__lag001", "m__transfer_composite__lag001", "m__credit_composite__lag001", "q__wealth_share_gap_top10_bottom50__lag001", "q__wealth_share_gap_top1_bottom50__lag001", "q__gini_households_q__lag001", "q__median_hh_income_q__lag001", "q__poverty_all_q__lag001", "q__poverty_child_q__lag001", "q__gini_income_fred_q__lag001", "q__median_real_income_fred_q__lag001"],
+    "w_select_mode": "corr_t_then_variance",
+    "w_max": 120,
+    "l1_ratio": 0.9,
+    "cv": 3,
+    "max_iter": 20000,
+    "selected_l1_ratio": 0.9,
+    "selected_cv": 3,
+    "selected_max_iter": 20000,
+    "selected_w_max": 120,
+    "attempts_tried": 1,
+    "convergence_warning_count": 0,
+    "fallback_used": false,
+    "residual_variance": 59444986.1409,
+    "quality_pass": true,
+    "top_predictors": [
+      {
+        "feature": "q__gini_households_q__lag001",
+        "coef": 221914.5114,
+        "abs_coef": 221914.5114
+      },
+      {
+        "feature": "m__pce_gap_v2__lag001",
+        "coef": 52241.5911,
+        "abs_coef": 52241.5911
+      },
+      {
+        "feature": "m__recession_nber__lag001",
+        "coef": 9266.1316,
+        "abs_coef": 9266.1316
+      },
+      {
+        "feature": "q__bottom50_wealth_share__lag001",
+        "coef": 3827.0329,
+        "abs_coef": 3827.0329
+      },
+      {
+        "feature": "q__gini_income_fred_q__lag001",
+        "coef": -2944.7421,
+        "abs_coef": 2944.7421
+      },
+      {
+        "feature": "q__top10_wealth_share__lag001",
+        "coef": 548.5812,
+        "abs_coef": 548.5812
+      },
+      {
+        "feature": "q__poverty_all_q__lag001",
+        "coef": -323.6231,
+        "abs_coef": 323.6231
+      },
+      {
+        "feature": "m__pce_eshare_v2__lag001",
+        "coef": 47.4458,
+        "abs_coef": 47.4458
+      },
+      {
+        "feature": "q__wealth_share_gap_top1_bottom50__lag001",
+        "coef": -39.1225,
+        "abs_coef": 39.1225
+      },
+      {
+        "feature": "m__cc_delinquency__lag001",
+        "coef": -16.2908,
+        "abs_coef": 16.2908
+      }
+    ],
+    "n_obs": 143
+  },
+  "snap_persons": {
+    "model": "elasticnet_cv",
+    "r2": 0.5028,
+    "treatment": "snap_persons",
+    "treatment_col": "qend__snap_persons",
+    "w_cols_total": 36,
+    "w_cols_used": 36,
+    "w_cols_selected": ["m__pce_essential_idx__lag001", "m__pce_discretionary_idx__lag001", "m__pce_fcsu_idx__lag001", "q__pce_essential_cex_idx__lag001", "q__pce_discretionary_cex_idx__lag001", "m__pce_essential_v2_idx__lag001", "m__pce_discretionary_v2_idx__lag001", "m__pce_gap_v2__lag001", "m__pce_eshare_v2__lag001", "m__fed_funds__lag001", "m__transfers_total__lag001", "m__social_security__lag001", "m__ui_benefits__lag001", "m__snap_persons__lag001", "m__household_networth__lag001", "m__equity_wealth_proxy__lag001", "m__home_equity__lag001", "m__fhfa_hpi__lag001", "m__total_credit__lag001", "m__nonrevolving_credit__lag001", "m__revolving_credit__lag001", "m__cc_delinquency__lag001", "m__recession_nber__lag001", "q__top1_wealth_share__lag001", "q__top10_wealth_share__lag001", "q__bottom50_wealth_share__lag001", "m__transfer_composite__lag001", "m__credit_composite__lag001", "q__wealth_share_gap_top10_bottom50__lag001", "q__wealth_share_gap_top1_bottom50__lag001", "q__gini_households_q__lag001", "q__median_hh_income_q__lag001", "q__poverty_all_q__lag001", "q__poverty_child_q__lag001", "q__gini_income_fred_q__lag001", "q__median_real_income_fred_q__lag001"],
+    "w_select_mode": "corr_t_then_variance",
+    "w_max": 120,
+    "l1_ratio": 0.9,
+    "cv": 3,
+    "max_iter": 20000,
+    "selected_l1_ratio": 0.9,
+    "selected_cv": 3,
+    "selected_max_iter": 20000,
+    "selected_w_max": 120,
+    "attempts_tried": 1,
+    "convergence_warning_count": 0,
+    "fallback_used": false,
+    "residual_variance": 25158063.8229,
+    "quality_pass": true,
+    "top_predictors": [
+      {
+        "feature": "m__pce_eshare_v2__lag001",
+        "coef": 44054.584,
+        "abs_coef": 44054.584
+      },
+      {
+        "feature": "m__recession_nber__lag001",
+        "coef": 6122.314,
+        "abs_coef": 6122.314
+      },
+      {
+        "feature": "q__bottom50_wealth_share__lag001",
+        "coef": -1373.6724,
+        "abs_coef": 1373.6724
+      },
+      {
+        "feature": "m__cc_delinquency__lag001",
+        "coef": 1299.0472,
+        "abs_coef": 1299.0472
+      },
+      {
+        "feature": "q__top1_wealth_share__lag001",
+        "coef": -1165.6524,
+        "abs_coef": 1165.6524
+      },
+      {
+        "feature": "q__poverty_all_q__lag001",
+        "coef": 631.8089,
+        "abs_coef": 631.8089
+      },
+      {
+        "feature": "m__fed_funds__lag001",
+        "coef": -275.8593,
+        "abs_coef": 275.8593
+      },
+      {
+        "feature": "q__wealth_share_gap_top10_bottom50__lag001",
+        "coef": 264.0366,
+        "abs_coef": 264.0366
+      },
+      {
+        "feature": "q__gini_income_fred_q__lag001",
+        "coef": -165.3289,
+        "abs_coef": 165.3289
+      },
+      {
+        "feature": "m__ui_benefits__lag001",
+        "coef": -0.0309,
+        "abs_coef": 0.0309
+      }
+    ],
+    "n_obs": 143
+  },
+  "household_networth": {
+    "model": "elasticnet_cv",
+    "r2": 0.6015,
+    "treatment": "household_networth",
+    "treatment_col": "qend__household_networth",
+    "w_cols_total": 36,
+    "w_cols_used": 36,
+    "w_cols_selected": ["m__pce_essential_idx__lag001", "m__pce_discretionary_idx__lag001", "m__pce_fcsu_idx__lag001", "q__pce_essential_cex_idx__lag001", "q__pce_discretionary_cex_idx__lag001", "m__pce_essential_v2_idx__lag001", "m__pce_discretionary_v2_idx__lag001", "m__pce_gap_v2__lag001", "m__pce_eshare_v2__lag001", "m__fed_funds__lag001", "m__transfers_total__lag001", "m__social_security__lag001", "m__ui_benefits__lag001", "m__snap_persons__lag001", "m__household_networth__lag001", "m__equity_wealth_proxy__lag001", "m__home_equity__lag001", "m__fhfa_hpi__lag001", "m__total_credit__lag001", "m__nonrevolving_credit__lag001", "m__revolving_credit__lag001", "m__cc_delinquency__lag001", "m__recession_nber__lag001", "q__top1_wealth_share__lag001", "q__top10_wealth_share__lag001", "q__bottom50_wealth_share__lag001", "m__transfer_composite__lag001", "m__credit_composite__lag001", "q__wealth_share_gap_top10_bottom50__lag001", "q__wealth_share_gap_top1_bottom50__lag001", "q__gini_households_q__lag001", "q__median_hh_income_q__lag001", "q__poverty_all_q__lag001", "q__poverty_child_q__lag001", "q__gini_income_fred_q__lag001", "q__median_real_income_fred_q__lag001"],
+    "w_select_mode": "corr_t_then_variance",
+    "w_max": 120,
+    "l1_ratio": 0.9,
+    "cv": 3,
+    "max_iter": 20000,
+    "selected_l1_ratio": 0.9,
+    "selected_cv": 3,
+    "selected_max_iter": 20000,
+    "selected_w_max": 120,
+    "attempts_tried": 1,
+    "convergence_warning_count": 0,
+    "fallback_used": false,
+    "residual_variance": 1.8306197178344184e+18,
+    "quality_pass": true,
+    "top_predictors": [
+      {
+        "feature": "m__pce_eshare_v2__lag001",
+        "coef": 328242019458.7451,
+        "abs_coef": 328242019458.7451
+      },
+      {
+        "feature": "q__gini_households_q__lag001",
+        "coef": 163982539811.6606,
+        "abs_coef": 163982539811.6606
+      },
+      {
+        "feature": "m__pce_gap_v2__lag001",
+        "coef": -32209812935.3902,
+        "abs_coef": 32209812935.3902
+      },
+      {
+        "feature": "q__bottom50_wealth_share__lag001",
+        "coef": 5768938272.9463,
+        "abs_coef": 5768938272.9463
+      },
+      {
+        "feature": "q__gini_income_fred_q__lag001",
+        "coef": -1966014068.3495,
+        "abs_coef": 1966014068.3495
+      },
+      {
+        "feature": "q__poverty_all_q__lag001",
+        "coef": 1792218321.2724,
+        "abs_coef": 1792218321.2724
+      },
+      {
+        "feature": "q__top10_wealth_share__lag001",
+        "coef": 742429302.4004,
+        "abs_coef": 742429302.4004
+      },
+      {
+        "feature": "m__fed_funds__lag001",
+        "coef": 558348433.8176,
+        "abs_coef": 558348433.8176
+      },
+      {
+        "feature": "m__recession_nber__lag001",
+        "coef": 416724759.6746,
+        "abs_coef": 416724759.6746
+      },
+      {
+        "feature": "q__top1_wealth_share__lag001",
+        "coef": 270281741.8166,
+        "abs_coef": 270281741.8166
+      }
+    ],
+    "n_obs": 143
+  },
+  "credit_composite": {
+    "model": "elasticnet_cv",
+    "r2": 0.6695,
+    "treatment": "credit_composite",
+    "treatment_col": "qend__credit_composite",
+    "w_cols_total": 36,
+    "w_cols_used": 36,
+    "w_cols_selected": ["m__pce_essential_idx__lag001", "m__pce_discretionary_idx__lag001", "m__pce_fcsu_idx__lag001", "q__pce_essential_cex_idx__lag001", "q__pce_discretionary_cex_idx__lag001", "m__pce_essential_v2_idx__lag001", "m__pce_discretionary_v2_idx__lag001", "m__pce_gap_v2__lag001", "m__pce_eshare_v2__lag001", "m__fed_funds__lag001", "m__transfers_total__lag001", "m__social_security__lag001", "m__ui_benefits__lag001", "m__snap_persons__lag001", "m__household_networth__lag001", "m__equity_wealth_proxy__lag001", "m__home_equity__lag001", "m__fhfa_hpi__lag001", "m__total_credit__lag001", "m__nonrevolving_credit__lag001", "m__revolving_credit__lag001", "m__cc_delinquency__lag001", "m__recession_nber__lag001", "q__top1_wealth_share__lag001", "q__top10_wealth_share__lag001", "q__bottom50_wealth_share__lag001", "m__transfer_composite__lag001", "m__credit_composite__lag001", "q__wealth_share_gap_top10_bottom50__lag001", "q__wealth_share_gap_top1_bottom50__lag001", "q__gini_households_q__lag001", "q__median_hh_income_q__lag001", "q__poverty_all_q__lag001", "q__poverty_child_q__lag001", "q__gini_income_fred_q__lag001", "q__median_real_income_fred_q__lag001"],
+    "w_select_mode": "corr_t_then_variance",
+    "w_max": 120,
+    "l1_ratio": 0.9,
+    "cv": 3,
+    "max_iter": 20000,
+    "selected_l1_ratio": 0.9,
+    "selected_cv": 3,
+    "selected_max_iter": 20000,
+    "selected_w_max": 120,
+    "attempts_tried": 1,
+    "convergence_warning_count": 0,
+    "fallback_used": false,
+    "residual_variance": 87002059144639.391,
+    "quality_pass": true,
+    "top_predictors": [
+      {
+        "feature": "q__gini_households_q__lag001",
+        "coef": -466401893.985,
+        "abs_coef": 466401893.985
+      },
+      {
+        "feature": "m__pce_gap_v2__lag001",
+        "coef": 168668738.1042,
+        "abs_coef": 168668738.1042
+      },
+      {
+        "feature": "q__poverty_all_q__lag001",
+        "coef": 19690897.2496,
+        "abs_coef": 19690897.2496
+      },
+      {
+        "feature": "q__poverty_child_q__lag001",
+        "coef": -13247434.7401,
+        "abs_coef": 13247434.7401
+      },
+      {
+        "feature": "m__recession_nber__lag001",
+        "coef": -8588460.4346,
+        "abs_coef": 8588460.4346
+      },
+      {
+        "feature": "q__top1_wealth_share__lag001",
+        "coef": 7141393.0112,
+        "abs_coef": 7141393.0112
+      },
+      {
+        "feature": "q__gini_income_fred_q__lag001",
+        "coef": 6957424.8901,
+        "abs_coef": 6957424.8901
+      },
+      {
+        "feature": "q__bottom50_wealth_share__lag001",
+        "coef": -4079662.4564,
+        "abs_coef": 4079662.4564
+      },
+      {
+        "feature": "q__top10_wealth_share__lag001",
+        "coef": -3397481.167,
+        "abs_coef": 3397481.167
+      },
+      {
+        "feature": "m__cc_delinquency__lag001",
+        "coef": 1561051.0944,
+        "abs_coef": 1561051.0944
+      }
+    ],
+    "n_obs": 143
+  }
+}

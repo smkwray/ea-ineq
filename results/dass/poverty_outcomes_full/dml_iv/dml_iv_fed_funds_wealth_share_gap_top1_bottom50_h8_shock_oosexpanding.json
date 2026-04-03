@@ -1,0 +1,20 @@
+{
+  "run_id": "20260403T160920_dml_iv",
+  "estimator": "dml_iv",
+  "skip_reason": "no_instrument",
+  "n": 108,
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_fed_funds_wealth_share_gap_top1_bottom50_h8_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "fed_funds",
+    "outcome": "wealth_share_gap_top1_bottom50",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  }
+}

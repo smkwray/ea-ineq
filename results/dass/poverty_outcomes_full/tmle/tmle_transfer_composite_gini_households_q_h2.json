@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160924_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_transfer_composite_gini_households_q_h2.csv",
+  "spec": {
+    "treatment": "transfer_composite",
+    "outcome": "gini_households_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 142,
+  "ate": 0.0214,
+  "se": 0.0176,
+  "ci_low": -0.0131,
+  "ci_high": 0.0558,
+  "p": 0.2242,
+  "epsilon": -5.3137e-16,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

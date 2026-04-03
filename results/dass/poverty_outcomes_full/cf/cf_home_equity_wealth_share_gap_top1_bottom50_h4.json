@@ -1,0 +1,25 @@
+{
+  "run_id": "20260403T160958_cf",
+  "estimator": "cf",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_home_equity_wealth_share_gap_top1_bottom50_h4.csv",
+  "spec": {
+    "treatment": "home_equity",
+    "outcome": "wealth_share_gap_top1_bottom50",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 88,
+  "ate": -2.0434e-09,
+  "se": "NaN",
+  "ci_low": "NaN",
+  "ci_high": "NaN",
+  "p": "NA",
+  "method": "lm_fallback"
+}

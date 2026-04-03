@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160955_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_household_networth_wealth_share_gap_top1_bottom50_h8.csv",
+  "spec": {
+    "treatment": "household_networth",
+    "outcome": "wealth_share_gap_top1_bottom50",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 136,
+  "w_cols": 42,
+  "ate": 1.8279e-11,
+  "se": 5.3621e-11,
+  "ci_low": -8.6818e-11,
+  "ci_high": 1.2337e-10,
+  "p": 0.734,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

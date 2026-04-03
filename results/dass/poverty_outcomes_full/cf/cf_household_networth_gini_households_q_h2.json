@@ -1,0 +1,25 @@
+{
+  "run_id": "20260403T160951_cf",
+  "estimator": "cf",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_household_networth_gini_households_q_h2.csv",
+  "spec": {
+    "treatment": "household_networth",
+    "outcome": "gini_households_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 90,
+  "ate": 1.0935e-12,
+  "se": "NaN",
+  "ci_low": "NaN",
+  "ci_high": "NaN",
+  "p": "NA",
+  "method": "lm_fallback"
+}

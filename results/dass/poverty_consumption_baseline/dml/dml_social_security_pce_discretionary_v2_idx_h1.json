@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160638_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_consumption_baseline/design/design_social_security_pce_discretionary_v2_idx_h1.csv",
+  "spec": {
+    "treatment": "social_security",
+    "outcome": "pce_discretionary_v2_idx",
+    "horizon": 1,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 104,
+  "w_cols": 380,
+  "ate": 4.2739,
+  "se": 1.1693,
+  "ci_low": 1.982,
+  "ci_high": 6.5658,
+  "p": 0.0004,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

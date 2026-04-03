@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160956_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_home_equity_wealth_share_gap_top10_bottom50_h4.csv",
+  "spec": {
+    "treatment": "home_equity",
+    "outcome": "wealth_share_gap_top10_bottom50",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 140,
+  "ate": -32.2913,
+  "se": 21.6199,
+  "ci_low": -74.6664,
+  "ci_high": 10.0837,
+  "p": 0.1353,
+  "epsilon": -5.7792e-13,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

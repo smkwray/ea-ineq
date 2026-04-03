@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160952_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_cc_delinquency_poverty_child_q_h8.csv",
+  "spec": {
+    "treatment": "cc_delinquency",
+    "outcome": "poverty_child_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 132,
+  "ate": -22.0956,
+  "se": 8.3328,
+  "ci_low": -38.4279,
+  "ci_high": -5.7632,
+  "p": 0.008,
+  "epsilon": 8.2734e-14,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160654_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_consumption_baseline/design/design_household_networth_pce_gap_v2_h2.csv",
+  "spec": {
+    "treatment": "household_networth",
+    "outcome": "pce_gap_v2",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 104,
+  "w_cols": 380,
+  "ate": -1.8007e-11,
+  "se": 5.9732e-12,
+  "ci_low": -2.9715e-11,
+  "ci_high": -6.3e-12,
+  "p": 0.0032,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

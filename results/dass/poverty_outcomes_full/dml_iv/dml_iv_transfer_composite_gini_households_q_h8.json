@@ -1,0 +1,20 @@
+{
+  "run_id": "20260403T160924_dml_iv",
+  "estimator": "dml_iv",
+  "skip_reason": "no_instrument",
+  "n": 136,
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_transfer_composite_gini_households_q_h8.csv",
+  "spec": {
+    "treatment": "transfer_composite",
+    "outcome": "gini_households_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  }
+}

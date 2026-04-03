@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160743_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_ui_benefits_gini_households_q_h8.csv",
+  "spec": {
+    "treatment": "ui_benefits",
+    "outcome": "gini_households_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 136,
+  "w_cols": 42,
+  "ate": -5.5557e-08,
+  "se": 5.6833e-08,
+  "ci_low": -1.6695e-07,
+  "ci_high": 5.5836e-08,
+  "p": 0.3309,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

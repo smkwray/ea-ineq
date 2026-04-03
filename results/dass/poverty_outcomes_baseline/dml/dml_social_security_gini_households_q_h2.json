@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160749_dml",
+  "estimator": "dml",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_outcomes_baseline/design/design_social_security_gini_households_q_h2.csv",
+  "spec": {
+    "treatment": "social_security",
+    "outcome": "gini_households_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 142,
+  "w_cols": 332,
+  "ate": 3.0118e-07,
+  "se": 2.566e-07,
+  "ci_low": -2.0175e-07,
+  "ci_high": 8.0411e-07,
+  "p": 0.2425,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

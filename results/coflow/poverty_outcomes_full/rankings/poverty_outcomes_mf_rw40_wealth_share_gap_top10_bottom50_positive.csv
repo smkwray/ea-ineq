@@ -1,0 +1,12 @@
+"candidate","direction","significance","score","sig_share","n_windows","median_corr","median_abs_corr","coint_share","pair_p","pair_q","pair_rejected","pair_multiplier"
+"total_credit","positive",FALSE,0,0,2,0.285392828851258,0.285392828851258,0,NA,NA,FALSE,1
+"ui_benefits","positive",FALSE,0,0,4,0.282934766308902,0.282934766308902,0,NA,NA,FALSE,1
+"fhfa_hpi","positive",FALSE,0,0,11,-0.239694157536148,0.239694157536148,0,NA,NA,FALSE,1
+"credit_composite","positive",FALSE,0,0,2,0.120953382163074,0.218985713410703,0,NA,NA,FALSE,1
+"revolving_credit","positive",FALSE,0,0,2,0.124008532541872,0.216879847693892,0,NA,NA,FALSE,1
+"median_real_income_fred_q","positive",FALSE,0,0,7,-0.19665813922811,0.19665813922811,0,NA,NA,FALSE,1
+"transfer_composite","positive",FALSE,0,0,1,-0.154006201245526,0.154006201245526,0,NA,NA,FALSE,1
+"snap_persons","positive",FALSE,0,0,23,-0.116043244379637,0.116043244379637,0,NA,NA,FALSE,1
+"wealth_share_gap_top1_bottom50","positive",FALSE,0,0,1,0.114483155453202,0.114483155453202,0,NA,NA,FALSE,1
+"cc_delinquency","positive",FALSE,0,0,15,-0.0274578963069868,0.0715497780192556,0,NA,NA,FALSE,1
+"transfers_total","positive",FALSE,0,0,1,-0.0484578946808648,0.0484578946808648,0,NA,NA,FALSE,1

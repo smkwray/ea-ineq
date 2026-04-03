@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160917_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_fed_funds_median_real_income_fred_q_h2_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "fed_funds",
+    "outcome": "median_real_income_fred_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 112,
+  "ate": 7214.7851,
+  "se": 2460.7842,
+  "ci_low": 2391.6482,
+  "ci_high": 12037.9221,
+  "p": 0.0034,
+  "epsilon": -1.7764e-10,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

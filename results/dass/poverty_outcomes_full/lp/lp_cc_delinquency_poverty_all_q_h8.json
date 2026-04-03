@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160949_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_cc_delinquency_poverty_all_q_h8.csv",
+  "spec": {
+    "treatment": "cc_delinquency",
+    "outcome": "poverty_all_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 132,
+  "w_cols": 41,
+  "ate": 0.6502,
+  "se": 0.1717,
+  "ci_low": 0.3136,
+  "ci_high": 0.9867,
+  "p": 0.0003,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

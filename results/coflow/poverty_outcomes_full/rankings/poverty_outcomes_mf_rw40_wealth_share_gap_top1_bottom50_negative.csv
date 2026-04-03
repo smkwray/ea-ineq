@@ -1,0 +1,8 @@
+"candidate","direction","significance","score","sig_share","n_windows","median_corr","median_abs_corr","coint_share","pair_p","pair_q","pair_rejected","pair_multiplier"
+"equity_wealth_proxy","negative",FALSE,0,0,3,0.880892979687199,0.880892979687199,0,NA,NA,FALSE,1
+"cc_delinquency","negative",FALSE,0,0,3,-0.368287698594952,0.368287698594952,0,NA,NA,FALSE,1
+"ui_benefits","negative",FALSE,0,0,3,-0.259668838135997,0.259668838135997,0,NA,NA,FALSE,1
+"fed_funds","negative",FALSE,0,0,8,0.188866982434252,0.226184939621083,0,NA,NA,FALSE,1
+"top10_wealth_share","negative",FALSE,0,0,1,-0.205988332024103,0.205988332024103,0,NA,NA,FALSE,1
+"snap_persons","negative",FALSE,0,0,10,-0.126257605517268,0.126257605517268,0,NA,NA,FALSE,1
+"wealth_share_gap_top10_bottom50","negative",FALSE,0,0,1,0.114483155452967,0.114483155452967,0,NA,NA,FALSE,1

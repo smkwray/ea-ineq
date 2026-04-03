@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160946_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_revolving_credit_poverty_child_q_h2.csv",
+  "spec": {
+    "treatment": "revolving_credit",
+    "outcome": "poverty_child_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 142,
+  "w_cols": 43,
+  "ate": -3.2492e-09,
+  "se": 9.5837e-09,
+  "ci_low": -2.2033e-08,
+  "ci_high": 1.5535e-08,
+  "p": 0.7353,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

@@ -1,0 +1,16 @@
+{
+  "input_stacked_csv": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_consumption_baseline/stacked_quarterly.csv",
+  "rows": 144,
+  "factor_cols_selected": 36,
+  "candidate_cols_before_filters": 36,
+  "excluded_by_missingness": 0,
+  "excluded_by_low_std": 0,
+  "factor_max_missing_share": 0.65,
+  "factor_min_std": 1e-10,
+  "freq_allowlist": [
+    "d",
+    "w",
+    "m",
+    "q"
+  ]
+}

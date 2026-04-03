@@ -1,0 +1,9 @@
+"candidate","direction","significance","score","sig_share","n_windows","median_corr","median_abs_corr","coint_share","pair_p","pair_q","pair_rejected","pair_multiplier"
+"ui_benefits","negative",NA,0,0,27,-0.647766713544852,0.647766713544852,0,NA,NA,NA,1
+"transfer_composite","negative",NA,0,0,21,-0.492014683011562,0.492014683011562,0,NA,NA,NA,1
+"transfers_total","negative",NA,0,0,21,-0.451245010265289,0.451245010265289,0,NA,NA,NA,1
+"fhfa_hpi","negative",NA,0,0,6,0.226757892741442,0.226757892741442,0,NA,NA,NA,1
+"cc_delinquency","negative",NA,0,0,3,0.202707420862947,0.202707420862947,0,NA,NA,NA,1
+"social_security","negative",NA,0,0,15,-0.145370136624328,0.145370136624328,0,NA,NA,NA,1
+"fed_funds","negative",NA,0,0,6,0.101820289001489,0.101820289001489,0,NA,NA,NA,1
+"equity_wealth_proxy","negative",NA,0,0,18,0.0305484753173889,0.0483014791699282,0,NA,NA,NA,1

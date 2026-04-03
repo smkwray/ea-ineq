@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160648_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.wlJFXQ/dass-R/poverty_consumption_baseline/design/design_snap_persons_pce_gap_v2_h2.csv",
+  "spec": {
+    "treatment": "snap_persons",
+    "outcome": "pce_gap_v2",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 104,
+  "w_cols": 39,
+  "ate": -1.5586e-07,
+  "se": 3.3976e-07,
+  "ci_low": -8.2178e-07,
+  "ci_high": 5.1006e-07,
+  "p": 0.648,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

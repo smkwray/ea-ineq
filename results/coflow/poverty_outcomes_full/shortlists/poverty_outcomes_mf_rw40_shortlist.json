@@ -1,0 +1,20 @@
+{
+  "generated_at_utc": "2026-04-03 20:10:26 UTC",
+  "config_slug": "poverty_outcomes_mf",
+  "window_size": 40,
+  "top_n": 5,
+  "n_rows": 306,
+  "n_targets": 8,
+  "shortlist_csv": "/private/tmp/econark_results.3umZ26/coflow-R/poverty_outcomes_mf/shortlists/poverty_outcomes_mf_rw40_shortlist.csv",
+  "shortlist_r_map": "/private/tmp/econark_results.3umZ26/coflow-R/poverty_outcomes_mf/shortlists/poverty_outcomes_mf_rw40_shortlist.R",
+  "target_candidates": {
+    "gini_households_q": ["median_real_income_fred_q", "nonrevolving_credit", "transfers_total", "ui_benefits", "wealth_share_gap_top1_bottom50"],
+    "gini_income_fred_q": ["nonrevolving_credit", "snap_persons", "top10_wealth_share", "ui_benefits", "wealth_share_gap_top10_bottom50"],
+    "median_hh_income_q": ["bottom50_wealth_share", "equity_wealth_proxy", "median_real_income_fred_q", "nonrevolving_credit", "ui_benefits"],
+    "median_real_income_fred_q": ["bottom50_wealth_share", "fed_funds", "top10_wealth_share", "top1_wealth_share", "wealth_share_gap_top10_bottom50"],
+    "poverty_all_q": ["median_real_income_fred_q", "transfer_composite", "transfers_total", "ui_benefits", "wealth_share_gap_top10_bottom50"],
+    "poverty_child_q": ["median_real_income_fred_q", "nonrevolving_credit", "transfers_total", "wealth_share_gap_top10_bottom50", "wealth_share_gap_top1_bottom50"],
+    "wealth_share_gap_top10_bottom50": ["credit_composite", "fhfa_hpi", "revolving_credit", "total_credit", "ui_benefits"],
+    "wealth_share_gap_top1_bottom50": ["cc_delinquency", "equity_wealth_proxy", "fed_funds", "top10_wealth_share", "ui_benefits"]
+  }
+}

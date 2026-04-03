@@ -1,0 +1,16 @@
+"target","mode","rank","candidate","score","sig_share","coint_share","n_windows"
+"pce_discretionary_idx","positive",1,"gini_income_fred_q",0,0,0,5
+"pce_discretionary_idx","positive",2,"top10_wealth_share",0,0,0,6
+"pce_discretionary_idx","positive",3,"transfer_composite",0,0,0,2
+"pce_discretionary_idx","positive",4,"fhfa_hpi",0,0,0,5
+"pce_discretionary_idx","positive",5,"wealth_share_gap_top10_bottom50",0,0,0,6
+"pce_essential_idx","positive",1,"ui_benefits",0,0,0,16
+"pce_essential_idx","positive",2,"transfer_composite",0,0,0,13
+"pce_essential_idx","positive",3,"transfers_total",0,0,0,11
+"pce_essential_idx","positive",4,"wealth_share_gap_top1_bottom50",0,0,0,10
+"pce_essential_idx","positive",5,"top1_wealth_share",0,0,0,11
+"pce_fcsu_idx","positive",1,"ui_benefits",0,0,0,10
+"pce_fcsu_idx","positive",2,"transfers_total",0,0,0,9
+"pce_fcsu_idx","positive",3,"transfer_composite",0,0,0,11
+"pce_fcsu_idx","positive",4,"fhfa_hpi",0,0,0,1
+"pce_fcsu_idx","positive",5,"poverty_all_q",0,0,0,3

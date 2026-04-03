@@ -1,0 +1,15 @@
+{
+  "generated_at_utc": "2026-04-03 20:07:13 UTC",
+  "config_slug": "poverty_consumption_interp",
+  "window_size": 120,
+  "top_n": 5,
+  "n_rows": 66,
+  "n_targets": 3,
+  "shortlist_csv": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_consumption_interp/shortlists/poverty_consumption_interp_rw120_shortlist.csv",
+  "shortlist_r_map": "/private/tmp/econark_results.wlJFXQ/coflow-R/poverty_consumption_interp/shortlists/poverty_consumption_interp_rw120_shortlist.R",
+  "target_candidates": {
+    "pce_discretionary_idx": ["fhfa_hpi", "social_security", "transfer_composite", "ui_benefits"],
+    "pce_essential_idx": ["credit_composite", "equity_wealth_proxy", "transfer_composite", "transfers_total", "ui_benefits"],
+    "pce_fcsu_idx": ["cc_delinquency", "fhfa_hpi", "transfer_composite", "transfers_total", "ui_benefits"]
+  }
+}

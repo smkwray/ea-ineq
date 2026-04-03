@@ -1,0 +1,5 @@
+"candidate","direction","significance","score","sig_share","n_windows","median_corr","median_abs_corr","coint_share","pair_p","pair_q","pair_rejected","pair_multiplier"
+"transfer_composite","least",NA,NA,0,3,0.295724996866295,0.295724996866295,0,NA,NA,NA,1
+"fhfa_hpi","least",NA,NA,0,6,0.213030903738486,0.213030903738486,0,NA,NA,NA,1
+"ui_benefits","least",NA,NA,0,3,0.136303118168756,0.136303118168756,0,NA,NA,NA,1
+"social_security","least",NA,NA,0,3,-0.0856436923055724,0.0856436923055724,0,NA,NA,NA,1

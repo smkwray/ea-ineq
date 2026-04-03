@@ -1,0 +1,20 @@
+{
+  "spec": {
+    "treatment": "credit_composite",
+    "outcome": "pce_gap_v2",
+    "horizon": 1,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 104,
+  "w_cols": 380,
+  "shock_meta": {
+    "enabled": false
+  }
+}

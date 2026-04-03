@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160941_lp",
+  "estimator": "lp",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_credit_composite_poverty_all_q_h4.csv",
+  "spec": {
+    "treatment": "credit_composite",
+    "outcome": "poverty_all_q",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 140,
+  "w_cols": 43,
+  "ate": -1.2409e-08,
+  "se": 7.2816e-09,
+  "ci_low": -2.6681e-08,
+  "ci_high": 1.8629e-09,
+  "p": 0.0916,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

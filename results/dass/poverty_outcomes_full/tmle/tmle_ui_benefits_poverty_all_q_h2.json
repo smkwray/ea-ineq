@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160929_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_ui_benefits_poverty_all_q_h2.csv",
+  "spec": {
+    "treatment": "ui_benefits",
+    "outcome": "poverty_all_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 142,
+  "ate": 27.4383,
+  "se": 7.8742,
+  "ci_low": 12.0049,
+  "ci_high": 42.8717,
+  "p": 0.0005,
+  "epsilon": -5.9854e-13,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

@@ -1,0 +1,27 @@
+{
+  "run_id": "20260403T160943_tmle",
+  "estimator": "tmle",
+  "design": "/private/tmp/econark_results.3umZ26/dass-R/poverty_outcomes/design/design_credit_composite_poverty_all_q_h8.csv",
+  "spec": {
+    "treatment": "credit_composite",
+    "outcome": "poverty_all_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "level",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 136,
+  "ate": 1.9243,
+  "se": 3.484,
+  "ci_low": -4.9044,
+  "ci_high": 8.7529,
+  "p": 0.5807,
+  "epsilon": -9.9697e-14,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}
