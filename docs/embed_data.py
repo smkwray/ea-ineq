@@ -22,6 +22,10 @@ OUT = REPO / "docs" / "data.js"
 CONSUMPTION_DFLMX = RESULTS / "dflmx" / "poverty_consumption_baseline"
 OUTCOMES_BASE_DFLMX = RESULTS / "dflmx" / "poverty_outcomes_baseline"
 OUTCOMES_FULL_DFLMX = RESULTS / "dflmx" / "poverty_outcomes_full"
+BRIDGE_RESULTS = RESULTS / "bridge" / "bridge_results.csv"
+BRIDGE_METADATA = RESULTS / "bridge" / "bridge_metadata.json"
+BRIDGE_COMPARE = RESULTS / "bridge" / "cross_repo_bridge_compare.csv"
+BRIDGE_COMPARE_METADATA = RESULTS / "bridge" / "cross_repo_bridge_metadata.json"
 
 CONSUMPTION_DASS = RESULTS / "dass" / "poverty_consumption_baseline" / "results.csv"
 OUTCOMES_BASE_DASS = RESULTS / "dass" / "poverty_outcomes_baseline" / "results.csv"
@@ -73,6 +77,12 @@ OUTCOME_LABELS = {
     "pce_discretionary_v2_idx": "Discretionary Spending Index",
     "pce_gap_v2": "Essential vs Discretionary Gap",
     "pce_eshare_v2": "Essential Spending Share",
+}
+
+BRIDGE_CHANNEL_LABELS = {
+    "ui": "UI",
+    "broad_federal_transfers": "Broad Federal Transfers",
+    "transfer_composite": "Transfer Composite",
 }
 
 # Evidence hierarchy for treatments
@@ -179,6 +189,12 @@ def estimator_label(name: str) -> str:
 
 def treatment_tier(name: str) -> str:
     return TREATMENT_TIERS.get(name, {}).get("tier", "contrast")
+
+
+def read_json(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 # ── DASS map ─────────────────────────────────────────────────────────────────
@@ -763,6 +779,84 @@ def build_snapshot(headline_rows, consumption_rows, confirmatory, dass_path) -> 
     }
 
 
+# ── Bridge comparison ───────────────────────────────────────────────────────
+
+def build_bridge_data() -> dict:
+    if not BRIDGE_RESULTS.exists() or not BRIDGE_COMPARE.exists():
+        return {
+            "available": False,
+            "summary": {},
+            "rows": [],
+            "limitations": [],
+            "representative_rules": [],
+        }
+
+    bridge_rows = read_csv(BRIDGE_RESULTS)
+    compare_rows = read_csv(BRIDGE_COMPARE)
+    bridge_meta = read_json(BRIDGE_METADATA)
+    compare_meta = read_json(BRIDGE_COMPARE_METADATA)
+    fp_meta_path = Path(compare_meta.get("archived_fp_bridge_metadata", ""))
+    fp_meta = read_json(fp_meta_path) if fp_meta_path.exists() else {}
+
+    def sign_matches(metric: str) -> int:
+        return sum(1 for row in compare_rows if row.get(f"sign_match_{metric}") == "match")
+
+    representative_rules = []
+    for channel, scenario_id in compare_meta.get("representative_fp_scenarios", {}).items():
+        representative_rules.append({
+            "channel": channel,
+            "channel_label": BRIDGE_CHANNEL_LABELS.get(channel, channel.replace("_", " ").title()),
+            "fp_scenario_id": scenario_id,
+        })
+
+    rows = []
+    for row in compare_rows:
+        rows.append({
+            "channel": row["channel"],
+            "channel_label": BRIDGE_CHANNEL_LABELS.get(row["channel"], row["channel"].replace("_", " ").title()),
+            "h": safe_int(row.get("h")),
+            "ea_scenario_id": row.get("ea_scenario_id", ""),
+            "ea_scenario_label": row.get("ea_scenario_label", ""),
+            "ea_dose_metric": row.get("ea_dose_metric", ""),
+            "fp_scenario_id": row.get("fp_scenario_id", ""),
+            "fp_scenario_label": row.get("fp_scenario_label", ""),
+            "fp_dose_metric": row.get("fp_dose_metric", ""),
+            "ea_delta_ipovall": safe_float(row.get("ea_delta_ipovall")),
+            "fp_delta_ipovall": safe_float(row.get("fp_delta_ipovall")),
+            "sign_match_delta_ipovall": row.get("sign_match_delta_ipovall", ""),
+            "ea_delta_ipovch": safe_float(row.get("ea_delta_ipovch")),
+            "fp_delta_ipovch": safe_float(row.get("fp_delta_ipovch")),
+            "sign_match_delta_ipovch": row.get("sign_match_delta_ipovch", ""),
+            "ea_delta_imedrinc": safe_float(row.get("ea_delta_imedrinc")),
+            "fp_delta_imedrinc": safe_float(row.get("fp_delta_imedrinc")),
+            "sign_match_delta_imedrinc": row.get("sign_match_delta_imedrinc", ""),
+            "fp_delta_ipovall_per_trlowz": safe_float(row.get("fp_delta_ipovall_per_trlowz")),
+            "fp_delta_ipovch_per_trlowz": safe_float(row.get("fp_delta_ipovch_per_trlowz")),
+            "fp_delta_imedrinc_per_trlowz": safe_float(row.get("fp_delta_imedrinc_per_trlowz")),
+            "notes": row.get("notes", ""),
+        })
+
+    rows.sort(key=lambda item: (item["channel"], item["h"]))
+
+    return {
+        "available": True,
+        "summary": {
+            "row_count": len(compare_rows),
+            "channel_count": len({row["channel"] for row in compare_rows}),
+            "fp_row_count": safe_int(fp_meta.get("row_count"), len(read_csv(Path(compare_meta.get("archived_fp_bridge_csv", BRIDGE_RESULTS))))) if compare_meta.get("archived_fp_bridge_csv") else len(bridge_rows),
+            "horizons": sorted({safe_int(row.get("h")) for row in compare_rows}),
+            "ea_dose_metric": bridge_meta.get("dose_metric", ""),
+            "fp_dose_metric": fp_meta.get("dose_metric", ""),
+            "poverty_sign_matches": sign_matches("delta_ipovall"),
+            "child_poverty_sign_matches": sign_matches("delta_ipovch"),
+            "median_income_sign_matches": sign_matches("delta_imedrinc"),
+        },
+        "rows": rows,
+        "limitations": compare_meta.get("limitations", []),
+        "representative_rules": representative_rules,
+    }
+
+
 # ── Main build ───────────────────────────────────────────────────────────────
 
 def build_data() -> dict:
@@ -821,7 +915,7 @@ def build_data() -> dict:
         "meta": {
             "title": "Fiscal Transfers, Poverty, Inequality, and Consumption Composition",
             "subtitle": "Project-specific archive built on econark\u2019s R pipeline",
-            "archive_date": "2026-04-03",
+            "archive_date": "2026-04-06",
             "econark_commit": "7cb68eb",
         },
         "snapshot": snapshot,
@@ -885,6 +979,7 @@ def build_data() -> dict:
         "episodes": build_episode_data(OUTCOMES_FULL_DFLMX, label_lookup),
         "lead_checks": build_lead_checks(OUTCOMES_FULL_DFLMX, label_lookup),
         "confirmatory": confirmatory,
+        "bridge": build_bridge_data(),
 
         # Run summaries
         "runs": [

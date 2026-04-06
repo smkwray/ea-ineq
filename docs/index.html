@@ -15,6 +15,7 @@
 <nav>
   <div class="nav-links">
     <a href="#overview">Overview</a>
+    <a href="#bridge">Bridge</a>
     <a href="#headline">Headline</a>
     <a href="#programs">Programs</a>
     <a href="#consumption">Consumption</a>
@@ -78,6 +79,43 @@
   <section id="questions">
     <h2>Project Questions</h2>
     <div id="questions-grid" class="questions-grid"></div>
+  </section>
+
+  <!-- ════════════════ BRIDGE ════════════════ -->
+  <section id="bridge">
+    <h2>Cross-Repo Bridge</h2>
+
+    <div class="safe-claim">
+      <strong>Interpretation:</strong>
+      This section aligns <code>ea-ineq</code> and <code>fp-ineq</code> on the same three transfer channels and the same
+      horizons. The comparison is informative, but not yet fully dose-normalized because <code>ea-ineq</code> still lacks
+      direct <code>TRLOWZ</code> and <code>RYDPC</code> analogs.
+    </div>
+
+    <div class="evidence-summary" id="bridge-summary"></div>
+
+    <div class="result-card">
+      <h3>Bridge Scope</h3>
+      <p>
+        The comparison surface is restricted to <strong>UI</strong>, <strong>broad federal transfers</strong>, and
+        <strong>transfer composite</strong>, each evaluated at horizons 2, 4, and 8 quarters.
+      </p>
+      <div id="bridge-rules" class="bridge-rule-grid"></div>
+    </div>
+
+    <details class="method-details" open>
+      <summary>Side-by-Side Bridge Comparison</summary>
+      <p>
+        Each row pairs one <code>ea-ineq</code> bridge treatment with one representative <code>fp-ineq</code> scenario for the
+        same channel and horizon. Sign markers show whether the two repos move in the same direction on poverty and median income.
+      </p>
+      <div id="bridge-compare-table"></div>
+    </details>
+
+    <details class="method-details">
+      <summary>Bridge Limitations</summary>
+      <div id="bridge-limitations" class="questions-grid"></div>
+    </details>
   </section>
 
   <!-- ════════════════ HEADLINE ════════════════ -->

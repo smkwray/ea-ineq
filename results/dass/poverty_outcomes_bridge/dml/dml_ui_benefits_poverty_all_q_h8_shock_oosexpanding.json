@@ -1,0 +1,27 @@
+{
+  "run_id": "20260406T131356_dml",
+  "estimator": "dml",
+  "design": "/Users/shanewray/tmp/ea_bridge_run/results/dass-R/poverty_outcomes_bridge/design/design_ui_benefits_poverty_all_q_h8_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "ui_benefits",
+    "outcome": "poverty_all_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 108,
+  "w_cols": 344,
+  "ate": 0,
+  "se": 0,
+  "ci_low": -6.9897e-06,
+  "ci_high": 0.0001,
+  "p": 0.1122,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

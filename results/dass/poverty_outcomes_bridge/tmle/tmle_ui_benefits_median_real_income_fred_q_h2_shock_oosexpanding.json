@@ -1,0 +1,27 @@
+{
+  "run_id": "20260406T131359_tmle",
+  "estimator": "tmle",
+  "design": "/Users/shanewray/tmp/ea_bridge_run/results/dass-R/poverty_outcomes_bridge/design/design_ui_benefits_median_real_income_fred_q_h2_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "ui_benefits",
+    "outcome": "median_real_income_fred_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 112,
+  "ate": 1248.4026,
+  "se": 7844.6532,
+  "ci_low": -14127.1177,
+  "ci_high": 16623.9228,
+  "p": 0.8736,
+  "epsilon": -1.2175e-09,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

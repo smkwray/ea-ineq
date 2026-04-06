@@ -54,6 +54,7 @@ SERIES_SPECS <- list(
   list(name = "bottom50_wealth_share", path = file.path(FETCHR_OUT_BASE, "raw", "bottom50_wealth_share.csv"), freq = "q"),
 
   list(name = "transfer_composite", path = file.path(FETCHR_OUT_BASE, "derived", "transfer_composite.csv"), freq = "m"),
+  list(name = "transfer_composite_fp", path = file.path(FETCHR_OUT_BASE, "derived", "transfer_composite_fp.csv"), freq = "m"),
   list(name = "credit_composite", path = file.path(FETCHR_OUT_BASE, "derived", "credit_composite.csv"), freq = "m"),
   list(name = "wealth_share_gap_top10_bottom50", path = file.path(FETCHR_OUT_BASE, "derived", "wealth_share_gap_top10_bottom50.csv"), freq = "q"),
   list(name = "wealth_share_gap_top1_bottom50", path = file.path(FETCHR_OUT_BASE, "derived", "wealth_share_gap_top1_bottom50.csv"), freq = "q"),
@@ -70,7 +71,7 @@ PREP_INCLUDE_QUARTER_END <- c(
   "pce_essential_idx", "pce_discretionary_idx", "pce_fcsu_idx",
   "pce_essential_cex_idx", "pce_discretionary_cex_idx",
   "fed_funds", "transfers_total", "social_security", "ui_benefits", "snap_persons",
-  "transfer_composite", "household_networth", "credit_composite",
+  "transfer_composite", "transfer_composite_fp", "household_networth", "credit_composite",
   "total_credit", "nonrevolving_credit", "revolving_credit", "cc_delinquency", "sp500",
   "equity_wealth_proxy", "home_equity", "fhfa_hpi",
   "top1_wealth_share", "top10_wealth_share", "bottom50_wealth_share",

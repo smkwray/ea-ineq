@@ -1,0 +1,20 @@
+{
+  "run_id": "20260406T131408_dml_iv",
+  "estimator": "dml_iv",
+  "skip_reason": "no_instrument",
+  "n": 108,
+  "design": "/Users/shanewray/tmp/ea_bridge_run/results/dass-R/poverty_outcomes_bridge/design/design_transfer_composite_fp_median_real_income_fred_q_h8_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "transfer_composite_fp",
+    "outcome": "median_real_income_fred_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  }
+}

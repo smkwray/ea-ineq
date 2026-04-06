@@ -61,6 +61,18 @@ function fmtPct(v) {
   return (v * 100).toFixed(0) + "%";
 }
 
+function signBadgeClass(value) {
+  if (value === "match") return "pass-text";
+  if (value === "opposite") return "fail-text";
+  return "";
+}
+
+function signBadgeText(value) {
+  if (value === "match") return "match";
+  if (value === "opposite") return "opposite";
+  return "\u2014";
+}
+
 // ─── DOM helpers ────────────────────────────────────────────────────────────
 
 function el(tag, cls, text) {
@@ -139,6 +151,97 @@ function renderQuestions() {
     card.appendChild(title);
     card.appendChild(el("p", "", q.description));
     grid.appendChild(card);
+  }
+}
+
+// ─── Bridge ────────────────────────────────────────────────────────────────
+
+function renderBridgeSummary() {
+  if (!DATA.bridge || !DATA.bridge.available) return;
+  const s = DATA.bridge.summary;
+  renderEvidenceSummary("bridge-summary", [
+    `<span class="ev-num">${s.channel_count}</span> aligned channels`,
+    `<span class="ev-num">${s.row_count}</span> side-by-side rows`,
+    `<span class="ev-num">${s.poverty_sign_matches}</span>/9 overall-poverty sign matches`,
+    `<span class="ev-num">${s.child_poverty_sign_matches}</span>/9 child-poverty sign matches`,
+    `ea dose metric: <code>${s.ea_dose_metric}</code>`,
+  ]);
+}
+
+function renderBridgeRules() {
+  const host = document.getElementById("bridge-rules");
+  if (!host || !DATA.bridge || !DATA.bridge.available) return;
+  host.innerHTML = "";
+  for (const rule of DATA.bridge.representative_rules) {
+    const card = el("div", "impl-card");
+    card.appendChild(el("strong", "", rule.channel_label));
+    card.appendChild(el("p", "", `Representative fp-ineq scenario: ${rule.fp_scenario_id}`));
+    host.appendChild(card);
+  }
+}
+
+function renderBridgeComparisonTable() {
+  const host = document.getElementById("bridge-compare-table");
+  if (!host || !DATA.bridge || !DATA.bridge.available) return;
+  host.innerHTML = "";
+
+  const table = el("table", "var-table bridge-table");
+  table.innerHTML = `<thead><tr>
+    <th>Channel</th>
+    <th>H</th>
+    <th>ea-ineq</th>
+    <th>fp-ineq</th>
+    <th>\u0394 Poverty</th>
+    <th>\u0394 Child Poverty</th>
+    <th>\u0394 Median Income</th>
+  </tr></thead>`;
+
+  const tbody = document.createElement("tbody");
+  for (const row of DATA.bridge.rows) {
+    const tr = document.createElement("tr");
+    const channelCell = document.createElement("td");
+    channelCell.innerHTML = `<strong>${row.channel_label}</strong>`;
+    tr.appendChild(channelCell);
+
+    tr.appendChild(el("td", "mono", String(row.h)));
+
+    const eaCell = document.createElement("td");
+    eaCell.innerHTML = `<strong>${row.ea_scenario_label}</strong><br><span class="bridge-subtle">${row.ea_dose_metric}</span>`;
+    tr.appendChild(eaCell);
+
+    const fpCell = document.createElement("td");
+    fpCell.innerHTML = `<strong>${row.fp_scenario_label}</strong><br><span class="bridge-subtle">${row.fp_dose_metric}</span>`;
+    tr.appendChild(fpCell);
+
+    for (const metric of ["ipovall", "ipovch", "imedrinc"]) {
+      const cell = document.createElement("td");
+      const eaVal = row[`ea_delta_${metric}`];
+      const fpVal = row[`fp_delta_${metric}`];
+      const sign = row[`sign_match_delta_${metric}`];
+      cell.innerHTML = `
+        <div class="bridge-metric">
+          <span class="${signBadgeClass(sign)} bridge-sign">${signBadgeText(sign)}</span>
+          <span class="bridge-values">ea ${fmtEst(eaVal)} | fp ${fmtEst(fpVal)}</span>
+        </div>`;
+      tr.appendChild(cell);
+    }
+
+    tbody.appendChild(tr);
+  }
+
+  table.appendChild(tbody);
+  host.appendChild(table);
+}
+
+function renderBridgeLimitations() {
+  const host = document.getElementById("bridge-limitations");
+  if (!host || !DATA.bridge || !DATA.bridge.available) return;
+  host.innerHTML = "";
+  for (const item of DATA.bridge.limitations) {
+    const card = el("div", "q-card");
+    card.appendChild(el("div", "q-tag", "Bridge"));
+    card.appendChild(el("p", "", item));
+    host.appendChild(card);
   }
 }
 
@@ -874,6 +977,10 @@ function renderAll() {
   renderOverview();
   renderSnapshot();
   renderQuestions();
+  renderBridgeSummary();
+  renderBridgeRules();
+  renderBridgeComparisonTable();
+  renderBridgeLimitations();
   renderHeadlineSummary();
   renderConsumptionSummary();
   renderConfirmatorySummary();

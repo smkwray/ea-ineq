@@ -1,0 +1,27 @@
+{
+  "run_id": "20260406T131356_tmle",
+  "estimator": "tmle",
+  "design": "/Users/shanewray/tmp/ea_bridge_run/results/dass-R/poverty_outcomes_bridge/design/design_ui_benefits_poverty_all_q_h2_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "ui_benefits",
+    "outcome": "poverty_all_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 112,
+  "ate": 0.6563,
+  "se": 2.1755,
+  "ci_low": -3.6077,
+  "ci_high": 4.9202,
+  "p": 0.7629,
+  "epsilon": -5.315e-14,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

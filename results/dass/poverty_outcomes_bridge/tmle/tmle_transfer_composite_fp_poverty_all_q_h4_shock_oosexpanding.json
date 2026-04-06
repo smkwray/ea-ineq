@@ -1,0 +1,27 @@
+{
+  "run_id": "20260406T131405_tmle",
+  "estimator": "tmle",
+  "design": "/Users/shanewray/tmp/ea_bridge_run/results/dass-R/poverty_outcomes_bridge/design/design_transfer_composite_fp_poverty_all_q_h4_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "transfer_composite_fp",
+    "outcome": "poverty_all_q",
+    "horizon": 4,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 111,
+  "ate": -4.2761,
+  "se": 2.3262,
+  "ci_low": -8.8354,
+  "ci_high": 0.2832,
+  "p": 0.066,
+  "epsilon": 4.4456e-14,
+  "hac_lags": 4,
+  "notes": "TMLE targeting update with HAC influence-curve SE"
+}

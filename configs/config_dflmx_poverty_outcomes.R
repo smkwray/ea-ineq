@@ -58,7 +58,9 @@ RANDOM_SEED <- 42
 QUESTION_SOURCE <- "dass_active_jobs"
 MANUAL_TREATMENTS <- c(
   "fed_funds",
+  "transfers_total",
   "transfer_composite",
+  "transfer_composite_fp",
   "social_security",
   "ui_benefits",
   "snap_persons",

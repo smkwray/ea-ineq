@@ -6,6 +6,8 @@ This archive examines whether fiscal transfer shocks reduce poverty, narrow ineq
 
 The main story is transfer-led poverty and inequality relief. The consumption-composition block matters, but it is secondary.
 
+This archive now also packages a public bridge surface for comparison to `fp-ineq`.
+
 ## Current Snapshot
 
 | Metric | Count |
@@ -51,6 +53,45 @@ The canon v2 basket (ported from ea-gender) produces **2 robust rows**, both fro
 
 This is meaningful but narrower than the main transfer-poverty headline.
 
+## Cross-Repo Bridge
+
+This archive now packages a public bridge layer that aligns `ea-ineq` to `fp-ineq` on the same three transfer channels and the same three horizons.
+
+Bridge channels:
+
+- `ui`
+- `broad_federal_transfers`
+- `transfer_composite`
+
+Bridge horizons:
+
+- `2`
+- `4`
+- `8`
+
+Archived bridge artifacts:
+
+- `results/bridge/bridge_results.csv`
+- `results/bridge/bridge_metadata.json`
+- `results/bridge/fp_bridge_results.csv`
+- `results/bridge/fp_bridge_metadata.json`
+- `results/bridge/cross_repo_bridge_long.csv`
+- `results/bridge/cross_repo_bridge_compare.csv`
+- `results/bridge/cross_repo_bridge_metadata.json`
+
+Bridge-specific result trees:
+
+- `results/dass/poverty_outcomes_bridge/`
+- `results/dflmx/poverty_outcomes_bridge/`
+
+Important limitation:
+
+- `ea-ineq` still does not expose direct `TRLOWZ` or `RYDPC` analogs
+- bridge rows therefore use `dose_metric = native_shock_unit` and leave `delta_trlowz` / `delta_rydpc` blank
+- `fp-ineq` remains the normalized side of the current bridge because it already publishes `delta_trlowz`
+
+The interactive site now includes a Bridge section that surfaces the side-by-side comparison directly.
+
 ## Confirmatory Status
 
 Confirmatory coverage remains thin:
@@ -74,6 +115,7 @@ A row can survive the DFLMX screen and still have mixed cross-estimator support.
 Regenerate the data layer and preview the site:
 
 ```bash
+python3 scripts/compare_bridge_exports.py  # refresh cross-repo bridge comparison tables
 python3 docs/embed_data.py       # writes docs/data.js from packaged results
 python3 -m http.server -d docs   # preview at http://localhost:8000
 ```
@@ -85,6 +127,8 @@ python3 -m http.server -d docs   # preview at http://localhost:8000
 - `results/coflow/` — CoFlow publication-gate outputs
 - `results/dass/` — estimation-layer outputs (LP, DML, TMLE, CF, LP-IV, DML-IV)
 - `results/dflmx/` — screening-layer outputs (headline, robustness, confirmatory)
+- `results/bridge/` — cross-repo bridge exports and archived `fp-ineq` bridge inputs
+- `scripts/` — bridge export and comparison helpers
 - `docs/` — static archive site; `embed_data.py` regenerates `data.js`
 
 ## Packaged Runs
@@ -92,6 +136,9 @@ python3 -m http.server -d docs   # preview at http://localhost:8000
 - **Full Outcomes** — richest run with all six DASS estimators and the repaired IV/negative-control layer
 - **Baseline Outcomes** — cleaner baseline screen with LP and DML
 - **Consumption Baseline** — canon v2 spending-basket run for the secondary consumption question
+- **Bridge Outcomes** — reduced comparison surface for `ui_benefits`, `transfers_total`, and `transfer_composite_fp`
+
+The bridge layer is additive. It does not replace or overwrite the existing baseline or full packaged result trees.
 
 ## Framework Provenance
 

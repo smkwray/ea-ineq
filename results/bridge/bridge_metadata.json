@@ -1,0 +1,29 @@
+{
+  "bridge_version": "v1",
+  "repo": "ea",
+  "source_csv": "/Users/shanewray/tmp/ea_bridge_run/results/dflmx-R/poverty_outcomes_bridge/irf_lp_fdr.csv",
+  "channels_by_treatment": {
+    "ui_benefits": "ui",
+    "transfers_total": "broad_federal_transfers",
+    "transfer_composite_fp": "transfer_composite"
+  },
+  "horizons": [
+    2,
+    4,
+    8
+  ],
+  "dose_metric": "native_shock_unit",
+  "headline_metrics": [
+    "delta_ipovall",
+    "delta_ipovch"
+  ],
+  "secondary_metrics": [
+    "delta_iginihh",
+    "delta_imedrinc"
+  ],
+  "unavailable_metrics": [
+    "delta_trlowz",
+    "delta_rydpc"
+  ],
+  "notes": "Bridge rows are taken from DFLMX LP results. `delta_trlowz` and `delta_rydpc` are not currently available in ea-ineq and remain blank."
+}

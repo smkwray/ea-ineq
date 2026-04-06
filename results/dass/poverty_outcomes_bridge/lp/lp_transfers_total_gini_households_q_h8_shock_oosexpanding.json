@@ -1,0 +1,27 @@
+{
+  "run_id": "20260406T131402_lp",
+  "estimator": "lp",
+  "design": "/Users/shanewray/tmp/ea_bridge_run/results/dass-R/poverty_outcomes_bridge/design/design_transfers_total_gini_households_q_h8_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "transfers_total",
+    "outcome": "gini_households_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 108,
+  "w_cols": 39,
+  "ate": -3.9419e-09,
+  "se": 4.3635e-09,
+  "ci_low": -1.2494e-08,
+  "ci_high": 4.6106e-09,
+  "p": 0.3696,
+  "inference_method": "hac",
+  "hac_lags": 4
+}

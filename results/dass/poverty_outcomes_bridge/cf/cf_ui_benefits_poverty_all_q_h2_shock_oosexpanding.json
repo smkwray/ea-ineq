@@ -1,0 +1,25 @@
+{
+  "run_id": "20260406T131356_cf",
+  "estimator": "cf",
+  "design": "/Users/shanewray/tmp/ea_bridge_run/results/dass-R/poverty_outcomes_bridge/design/design_ui_benefits_poverty_all_q_h2_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "ui_benefits",
+    "outcome": "poverty_all_q",
+    "horizon": 2,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 90,
+  "ate": 0,
+  "se": "NaN",
+  "ci_low": "NaN",
+  "ci_high": "NaN",
+  "p": "NA",
+  "method": "lm_fallback"
+}

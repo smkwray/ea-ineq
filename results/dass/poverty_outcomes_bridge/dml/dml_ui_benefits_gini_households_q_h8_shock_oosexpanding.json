@@ -1,0 +1,27 @@
+{
+  "run_id": "20260406T131358_dml",
+  "estimator": "dml",
+  "design": "/Users/shanewray/tmp/ea_bridge_run/results/dass-R/poverty_outcomes_bridge/design/design_ui_benefits_gini_households_q_h8_shock_oosexpanding.csv",
+  "spec": {
+    "treatment": "ui_benefits",
+    "outcome": "gini_households_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 108,
+  "w_cols": 344,
+  "ate": 2.3866e-08,
+  "se": 2.8066e-08,
+  "ci_low": -3.1143e-08,
+  "ci_high": 7.8875e-08,
+  "p": 0.397,
+  "inference_method": "hac",
+  "notes": "crossfit residual-on-residual"
+}

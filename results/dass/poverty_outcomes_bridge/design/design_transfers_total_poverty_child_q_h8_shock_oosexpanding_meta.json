@@ -1,0 +1,54 @@
+{
+  "spec": {
+    "treatment": "transfers_total",
+    "outcome": "poverty_child_q",
+    "horizon": 8,
+    "cum_horizon": 0,
+    "treatment_mode": "shock",
+    "binary": false,
+    "placebo_lead": 0,
+    "w_tag": {},
+    "drop_tag": {},
+    "drop_start": {},
+    "drop_end": {}
+  },
+  "rows": 108,
+  "w_cols": 344,
+  "shock_meta": {
+    "model": "glmnet_cv_oos",
+    "oos": true,
+    "oos_mode": "expanding",
+    "l1_ratio": 0.1,
+    "cv": 3,
+    "max_iter": 10000,
+    "r2": 0,
+    "n_obs": 108,
+    "top_predictors": [],
+    "w_max": {},
+    "w_select": "variance",
+    "fold_counts": {
+      "0": 27,
+      "1": 27,
+      "2": 27,
+      "3": 27,
+      "4": 27
+    },
+    "train_counts": {
+      "0": 0,
+      "1": 27,
+      "2": 54,
+      "3": 81,
+      "4": 108
+    },
+    "w_cols_used_by_fold": {
+      "0": 0,
+      "1": 316,
+      "2": 344,
+      "3": 344,
+      "4": 344
+    },
+    "rows_without_prediction": 27,
+    "enabled": true,
+    "w_cols": 344
+  }
+}

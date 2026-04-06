@@ -156,6 +156,7 @@ DERIVED_SERIES <- list(
   ),
 
   list(name = "transfer_composite", expression = "S(\"transfers_total\") + S(\"social_security\") + S(\"ui_benefits\")", positive = TRUE),
+  list(name = "transfer_composite_fp", expression = "S(\"ui_benefits\") + S(\"social_security\") + S(\"snap_persons\")", positive = TRUE),
   list(name = "credit_composite", expression = "S(\"total_credit\") + S(\"nonrevolving_credit\") + S(\"revolving_credit\")", positive = TRUE),
   list(name = "wealth_share_gap_top10_bottom50", expression = "S(\"top10_wealth_share\") - S(\"bottom50_wealth_share\")", positive = FALSE),
   list(name = "wealth_share_gap_top1_bottom50", expression = "S(\"top1_wealth_share\") - S(\"bottom50_wealth_share\")", positive = FALSE)
@@ -168,7 +169,7 @@ COFLOW_MONTHLY_SERIES <- c(
   "fed_funds", "transfers_total", "social_security", "ui_benefits", "snap_persons",
   "household_networth", "equity_wealth_proxy", "home_equity", "fhfa_hpi",
   "total_credit", "nonrevolving_credit", "revolving_credit", "cc_delinquency",
-  "transfer_composite", "credit_composite", "recession_nber"
+  "transfer_composite", "transfer_composite_fp", "credit_composite", "recession_nber"
 )
 
 COFLOW_QUARTERLY_SERIES <- c(
