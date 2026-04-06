@@ -1,11 +1,14 @@
 {
   "comparison_version": "v1",
-  "ea_bridge_csv": "/Users/shanewray/Library/CloudStorage/GoogleDrive-wray7830@gmail.com/My Drive/proj/ea-ineq/results/bridge/bridge_results.csv",
-  "ea_bridge_metadata": "/Users/shanewray/Library/CloudStorage/GoogleDrive-wray7830@gmail.com/My Drive/proj/ea-ineq/results/bridge/bridge_metadata.json",
-  "fp_bridge_csv_source": "/Users/shanewray/malus/proj/fp-ineq/docs/bridge_results.csv",
-  "fp_bridge_metadata_source": "/Users/shanewray/malus/proj/fp-ineq/docs/bridge_metadata.json",
-  "archived_fp_bridge_csv": "/Users/shanewray/Library/CloudStorage/GoogleDrive-wray7830@gmail.com/My Drive/proj/ea-ineq/results/bridge/fp_bridge_results.csv",
-  "archived_fp_bridge_metadata": "/Users/shanewray/Library/CloudStorage/GoogleDrive-wray7830@gmail.com/My Drive/proj/ea-ineq/results/bridge/fp_bridge_metadata.json",
+  "comparison_basis": "temporary_representative_fp_scenarios",
+  "comparison_interpretation_status": "diagnostic_only",
+  "polarity_audit_status": "pending",
+  "ea_bridge_csv": "results/bridge/bridge_results.csv",
+  "ea_bridge_metadata": "results/bridge/bridge_metadata.json",
+  "fp_bridge_csv_source": "results/bridge/fp_bridge_results.csv",
+  "fp_bridge_metadata_source": "results/bridge/fp_bridge_metadata.json",
+  "archived_fp_bridge_csv": "results/bridge/fp_bridge_results.csv",
+  "archived_fp_bridge_metadata": "results/bridge/fp_bridge_metadata.json",
   "representative_fp_scenarios": {
     "ui": "ineq-ui-relief",
     "broad_federal_transfers": "ineq-federal-transfer-relief",
@@ -29,13 +32,32 @@
     "delta_iginihh",
     "delta_imedrinc"
   ],
+  "raw_direction_summary": {
+    "delta_ipovall": {
+      "matches": 0,
+      "opposites": 9,
+      "status": "unaudited_raw_direction_relation"
+    },
+    "delta_ipovch": {
+      "matches": 0,
+      "opposites": 9,
+      "status": "unaudited_raw_direction_relation"
+    },
+    "delta_imedrinc": {
+      "matches": 3,
+      "opposites": 6,
+      "status": "unaudited_raw_direction_relation"
+    }
+  },
   "limitations": [
     "ea-ineq bridge rows are per native shock unit rather than delta_trlowz.",
     "ea-ineq currently leaves delta_trlowz and delta_rydpc blank.",
+    "The current comparison uses temporary representative fp-ineq anchor scenarios rather than full fp channel envelopes.",
+    "Raw direction flags are unaudited. They should not yet be read as evidence of cross-repo agreement or disagreement.",
     "fp representative scenarios are explicit medium/default choices rather than exhaustive families."
   ],
   "outputs": {
-    "long_csv": "/Users/shanewray/Library/CloudStorage/GoogleDrive-wray7830@gmail.com/My Drive/proj/ea-ineq/results/bridge/cross_repo_bridge_long.csv",
-    "compare_csv": "/Users/shanewray/Library/CloudStorage/GoogleDrive-wray7830@gmail.com/My Drive/proj/ea-ineq/results/bridge/cross_repo_bridge_compare.csv"
+    "long_csv": "results/bridge/cross_repo_bridge_long.csv",
+    "compare_csv": "results/bridge/cross_repo_bridge_compare.csv"
   }
 }

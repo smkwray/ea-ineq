@@ -24,7 +24,7 @@ const DATA = {
   "overview": {
     "headline_stat": "11 robust rows",
     "headline_label": "10 are transfer-composite rows, covering 5 distinct poverty or inequality outcomes.",
-    "takeaway": "Transfers are the dominant story in this archive. The transfer composite drives robust responses in poverty, child poverty, household inequality, and the wealth-share gap. UI benefits serve as the cross-suite bridge, appearing in both distributional outcomes and the consumption-composition block. The canon v2 consumption basket adds a secondary result: UI benefits tilt spending toward essentials one quarter out."
+    "takeaway": "Transfers are the dominant story in this archive. The transfer composite drives robust responses in poverty, child poverty, household inequality, and the wealth-share gap. UI benefits serve as the strongest internal cross-suite link, appearing in both distributional outcomes and the consumption-composition block. The canon v2 consumption basket adds a secondary result: UI benefits tilt spending toward essentials one quarter out."
   },
   "questions": [
     {
@@ -37,7 +37,7 @@ const DATA = {
       "tag": "Q2",
       "tier": "secondary",
       "title": "Which transfer programs matter individually?",
-      "description": "UI benefits is the strongest program-level bridge. SNAP participation is stable-suggestive. Social Security is method-dependent."
+      "description": "UI benefits is the strongest individual-program result inside this archive. SNAP participation is stable-suggestive. Social Security is method-dependent."
     },
     {
       "tag": "Q3",
@@ -140,10 +140,10 @@ const DATA = {
       "near_count": 2,
       "outcomes_covered": [
         "poverty_child_q",
-        "median_real_income_fred_q",
-        "wealth_share_gap_top1_bottom50",
+        "poverty_all_q",
         "gini_households_q",
-        "poverty_all_q"
+        "median_real_income_fred_q",
+        "wealth_share_gap_top1_bottom50"
       ],
       "diagnostic": {
         "lp_sig": 2,
@@ -5931,9 +5931,26 @@ const DATA = {
       ],
       "ea_dose_metric": "native_shock_unit",
       "fp_dose_metric": "delta_trlowz",
-      "poverty_sign_matches": 0,
-      "child_poverty_sign_matches": 0,
-      "median_income_sign_matches": 3
+      "comparison_basis": "temporary_representative_fp_scenarios",
+      "comparison_interpretation_status": "diagnostic_only",
+      "polarity_audit_status": "pending",
+      "raw_direction_summary": {
+        "delta_ipovall": {
+          "matches": 0,
+          "opposites": 9,
+          "status": "unaudited_raw_direction_relation"
+        },
+        "delta_ipovch": {
+          "matches": 0,
+          "opposites": 9,
+          "status": "unaudited_raw_direction_relation"
+        },
+        "delta_imedrinc": {
+          "matches": 3,
+          "opposites": 6,
+          "status": "unaudited_raw_direction_relation"
+        }
+      }
     },
     "rows": [
       {
@@ -5958,7 +5975,7 @@ const DATA = {
         "fp_delta_ipovall_per_trlowz": -0.013982066334948579,
         "fp_delta_ipovch_per_trlowz": -0.03848366100909457,
         "fp_delta_imedrinc_per_trlowz": 1.7053188037155382,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz."
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
       },
       {
         "channel": "broad_federal_transfers",
@@ -5982,7 +5999,7 @@ const DATA = {
         "fp_delta_ipovall_per_trlowz": -0.01508463017654485,
         "fp_delta_ipovch_per_trlowz": -0.04026605188634953,
         "fp_delta_imedrinc_per_trlowz": 1.8655117240514016,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz."
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
       },
       {
         "channel": "broad_federal_transfers",
@@ -6006,7 +6023,7 @@ const DATA = {
         "fp_delta_ipovall_per_trlowz": -0.015751742462724063,
         "fp_delta_ipovch_per_trlowz": -0.0410170740174468,
         "fp_delta_imedrinc_per_trlowz": 2.0661023085130057,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz."
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
       },
       {
         "channel": "transfer_composite",
@@ -6030,7 +6047,7 @@ const DATA = {
         "fp_delta_ipovall_per_trlowz": -0.01822381191941934,
         "fp_delta_ipovch_per_trlowz": -0.046161625590593586,
         "fp_delta_imedrinc_per_trlowz": 1.3971748276521874,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz."
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
       },
       {
         "channel": "transfer_composite",
@@ -6054,7 +6071,7 @@ const DATA = {
         "fp_delta_ipovall_per_trlowz": -0.019149197401365805,
         "fp_delta_ipovch_per_trlowz": -0.04754641242595562,
         "fp_delta_imedrinc_per_trlowz": 1.5226054030619764,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz."
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
       },
       {
         "channel": "transfer_composite",
@@ -6078,7 +6095,7 @@ const DATA = {
         "fp_delta_ipovall_per_trlowz": -0.019750135192076797,
         "fp_delta_ipovch_per_trlowz": -0.0480863054393732,
         "fp_delta_imedrinc_per_trlowz": 1.6772564612509684,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz."
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
       },
       {
         "channel": "ui",
@@ -6102,7 +6119,7 @@ const DATA = {
         "fp_delta_ipovall_per_trlowz": -0.01918971658473831,
         "fp_delta_ipovch_per_trlowz": -0.0484554122527312,
         "fp_delta_imedrinc_per_trlowz": 1.6539970724499369,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz."
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
       },
       {
         "channel": "ui",
@@ -6126,7 +6143,7 @@ const DATA = {
         "fp_delta_ipovall_per_trlowz": -0.020325077496158618,
         "fp_delta_ipovch_per_trlowz": -0.05023210729404234,
         "fp_delta_imedrinc_per_trlowz": 1.8096704535958117,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz."
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
       },
       {
         "channel": "ui",
@@ -6150,12 +6167,14 @@ const DATA = {
         "fp_delta_ipovall_per_trlowz": -0.021116591461212947,
         "fp_delta_ipovch_per_trlowz": -0.05113217271126433,
         "fp_delta_imedrinc_per_trlowz": 2.0086733022181917,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz."
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
       }
     ],
     "limitations": [
       "ea-ineq bridge rows are per native shock unit rather than delta_trlowz.",
       "ea-ineq currently leaves delta_trlowz and delta_rydpc blank.",
+      "The current comparison uses temporary representative fp-ineq anchor scenarios rather than full fp channel envelopes.",
+      "Raw direction flags are unaudited. They should not yet be read as evidence of cross-repo agreement or disagreement.",
       "fp representative scenarios are explicit medium/default choices rather than exhaustive families."
     ],
     "representative_rules": [

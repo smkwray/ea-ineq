@@ -27,7 +27,7 @@ The archive ranks transfer programs by the strength and breadth of their evidenc
 
 1. **Headline: Transfer Composite.** Dominant signal across all poverty and inequality outcomes. Ten of eleven robust rows. Covers overall poverty, child poverty, household Gini, and the top-1%-versus-bottom-50% wealth-share gap at multiple horizons.
 
-2. **Strong program-level bridge: UI Benefits.** Appears in both the distributional-outcomes suite (Gini, wealth-share gap) and the consumption-composition suite (essential-versus-discretionary gap and essential spending share). This cross-suite presence makes it the most credible individual program result.
+2. **Strong internal bridge within this archive: UI Benefits.** Appears in both the distributional-outcomes suite (Gini, wealth-share gap) and the consumption-composition suite (essential-versus-discretionary gap and essential spending share). This cross-suite presence makes it the most credible individual program result inside `ea-ineq`; it should not be read by itself as cross-repo validation.
 
 3. **Stable suggestive: SNAP Participation.** Near the FDR boundary in the main DFLMX screen (best row: overall poverty at h = 4, q = 0.26). Survives targeted DASS shock diagnostics. Not a headline result, but stable enough to note.
 
@@ -89,8 +89,10 @@ Important limitation:
 - `ea-ineq` still does not expose direct `TRLOWZ` or `RYDPC` analogs
 - bridge rows therefore use `dose_metric = native_shock_unit` and leave `delta_trlowz` / `delta_rydpc` blank
 - `fp-ineq` remains the normalized side of the current bridge because it already publishes `delta_trlowz`
+- the current side-by-side compare uses temporary representative `fp-ineq` anchor scenarios rather than full `fp-ineq` channel envelopes
+- the current bridge remains public, but it should be read as infrastructure-ready and interpretation-limited until the bridge polarity audit is complete
 
-The interactive site now includes a Bridge section that surfaces the side-by-side comparison directly.
+The interactive site now includes a Bridge section that surfaces the side-by-side comparison directly, but the table is currently a diagnostic scaffold rather than evidence of cross-repo agreement or disagreement.
 
 ## Confirmatory Status
 

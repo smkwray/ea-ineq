@@ -118,17 +118,34 @@ out <- wide[, .(
 
 fwrite(out, out_csv)
 
+rel_to_repo <- function(path) {
+  rel <- tryCatch(
+    normalizePath(path, winslash = "/", mustWork = FALSE),
+    error = function(e) path
+  )
+  prefix <- paste0(repo_root, "/")
+  if (startsWith(rel, prefix)) {
+    sub(paste0("^", gsub("([][{}()+*^$|\\\\?.])", "\\\\\\1", prefix)), "", rel)
+  } else {
+    basename(path)
+  }
+}
+
 meta <- list(
   bridge_version = "v1",
   repo = "ea",
-  source_csv = source_csv,
+  source_csv = rel_to_repo(source_csv),
+  source_layer = "dflmx_lp_fdr",
+  baseline_semantics = "implicit_zero_shock",
   channels_by_treatment = as.list(channel_map),
   horizons = as.list(horizons),
   dose_metric = "native_shock_unit",
   headline_metrics = list("delta_ipovall", "delta_ipovch"),
   secondary_metrics = list("delta_iginihh", "delta_imedrinc"),
   unavailable_metrics = list("delta_trlowz", "delta_rydpc"),
-  notes = "Bridge rows are taken from DFLMX LP results. `delta_trlowz` and `delta_rydpc` are not currently available in ea-ineq and remain blank."
+  interpretation_status = "diagnostic_only",
+  polarity_audit_status = "pending",
+  notes = "Bridge rows are taken from DFLMX LP results. `delta_trlowz` and `delta_rydpc` are not currently available in ea-ineq and remain blank. Directional agreement with fp-ineq should not be interpreted until the bridge polarity audit is complete."
 )
 
 write_json(meta, out_json, auto_unbox = TRUE, pretty = TRUE)

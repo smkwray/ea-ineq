@@ -162,9 +162,10 @@ function renderBridgeSummary() {
   renderEvidenceSummary("bridge-summary", [
     `<span class="ev-num">${s.channel_count}</span> aligned channels`,
     `<span class="ev-num">${s.row_count}</span> side-by-side rows`,
-    `<span class="ev-num">${s.poverty_sign_matches}</span>/9 overall-poverty sign matches`,
-    `<span class="ev-num">${s.child_poverty_sign_matches}</span>/9 child-poverty sign matches`,
+    `interpretation: <code>${s.comparison_interpretation_status}</code>`,
+    `polarity audit: <code>${s.polarity_audit_status}</code>`,
     `ea dose metric: <code>${s.ea_dose_metric}</code>`,
+    `fp dose metric: <code>${s.fp_dose_metric}</code>`,
   ]);
 }
 
@@ -175,7 +176,7 @@ function renderBridgeRules() {
   for (const rule of DATA.bridge.representative_rules) {
     const card = el("div", "impl-card");
     card.appendChild(el("strong", "", rule.channel_label));
-    card.appendChild(el("p", "", `Representative fp-ineq scenario: ${rule.fp_scenario_id}`));
+    card.appendChild(el("p", "", `Temporary fp-ineq anchor scenario: ${rule.fp_scenario_id}`));
     host.appendChild(card);
   }
 }
@@ -217,11 +218,10 @@ function renderBridgeComparisonTable() {
       const cell = document.createElement("td");
       const eaVal = row[`ea_delta_${metric}`];
       const fpVal = row[`fp_delta_${metric}`];
-      const sign = row[`sign_match_delta_${metric}`];
       cell.innerHTML = `
         <div class="bridge-metric">
-          <span class="${signBadgeClass(sign)} bridge-sign">${signBadgeText(sign)}</span>
           <span class="bridge-values">ea ${fmtEst(eaVal)} | fp ${fmtEst(fpVal)}</span>
+          <span class="bridge-subtle">raw directional relation withheld pending polarity audit</span>
         </div>`;
       tr.appendChild(cell);
     }

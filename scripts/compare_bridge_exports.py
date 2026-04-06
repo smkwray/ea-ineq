@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import shutil
+from argparse import ArgumentParser
 from pathlib import Path
 
 
@@ -14,8 +16,6 @@ BRIDGE_DIR = REPO / "results" / "bridge"
 
 DEFAULT_EA_CSV = BRIDGE_DIR / "bridge_results.csv"
 DEFAULT_EA_META = BRIDGE_DIR / "bridge_metadata.json"
-DEFAULT_FP_CSV = Path("/Users/shanewray/malus/proj/fp-ineq/docs/bridge_results.csv")
-DEFAULT_FP_META = Path("/Users/shanewray/malus/proj/fp-ineq/docs/bridge_metadata.json")
 
 ARCHIVE_FP_CSV = BRIDGE_DIR / "fp_bridge_results.csv"
 ARCHIVE_FP_META = BRIDGE_DIR / "fp_bridge_metadata.json"
@@ -37,6 +37,15 @@ METRICS = [
     "delta_iginihh",
     "delta_imedrinc",
 ]
+
+
+def parse_args() -> object:
+    parser = ArgumentParser(description=__doc__)
+    parser.add_argument("--ea-csv", type=Path, default=DEFAULT_EA_CSV)
+    parser.add_argument("--ea-meta", type=Path, default=DEFAULT_EA_META)
+    parser.add_argument("--fp-csv", type=Path)
+    parser.add_argument("--fp-meta", type=Path)
+    return parser.parse_args()
 
 
 def read_rows(path: Path) -> list[dict[str, str]]:
@@ -71,19 +80,47 @@ def sign_match(left: float | None, right: float | None) -> str:
     return "match" if (left > 0 and right > 0) or (left < 0 and right < 0) else "opposite"
 
 
+def rel_to_repo(path: Path) -> str:
+    try:
+        return str(path.resolve().relative_to(REPO.resolve()))
+    except ValueError:
+        return path.name
+
+
+def choose_fp_source(cli_path: Path | None, env_name: str, archive_path: Path) -> Path:
+    if cli_path:
+        return cli_path
+    env_path = os.environ.get(env_name, "")
+    if env_path:
+        return Path(env_path)
+    if archive_path.exists():
+        return archive_path
+    raise SystemExit(
+        f"Missing fp bridge source; pass --{'fp-csv' if 'CSV' in env_name else 'fp-meta'} "
+        f"or set {env_name}"
+    )
+
+
 def main() -> None:
-    if not DEFAULT_EA_CSV.exists():
-        raise SystemExit(f"Missing ea bridge results: {DEFAULT_EA_CSV}")
-    if not DEFAULT_FP_CSV.exists():
-        raise SystemExit(f"Missing fp bridge results: {DEFAULT_FP_CSV}")
+    args = parse_args()
+    ea_csv = args.ea_csv
+    ea_meta = args.ea_meta
+    fp_csv = choose_fp_source(args.fp_csv, "FP_INEQ_BRIDGE_CSV", ARCHIVE_FP_CSV)
+    fp_meta = choose_fp_source(args.fp_meta, "FP_INEQ_BRIDGE_META", ARCHIVE_FP_META)
+
+    if not ea_csv.exists():
+        raise SystemExit(f"Missing ea bridge results: {ea_csv}")
+    if not fp_csv.exists():
+        raise SystemExit(f"Missing fp bridge results: {fp_csv}")
 
     BRIDGE_DIR.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(DEFAULT_FP_CSV, ARCHIVE_FP_CSV)
-    if DEFAULT_FP_META.exists():
-        shutil.copy2(DEFAULT_FP_META, ARCHIVE_FP_META)
+    if fp_csv.resolve() != ARCHIVE_FP_CSV.resolve():
+        shutil.copy2(fp_csv, ARCHIVE_FP_CSV)
+    if fp_meta.exists() and fp_meta.resolve() != ARCHIVE_FP_META.resolve():
+        shutil.copy2(fp_meta, ARCHIVE_FP_META)
 
-    ea_rows = read_rows(DEFAULT_EA_CSV)
-    fp_rows = read_rows(DEFAULT_FP_CSV)
+    ea_rows = read_rows(ea_csv)
+    fp_rows = read_rows(ARCHIVE_FP_CSV if ARCHIVE_FP_CSV.exists() else fp_csv)
 
     long_rows = sorted(
         ea_rows + fp_rows,
@@ -118,7 +155,8 @@ def main() -> None:
                 "fp_dose_value": fp_row["dose_value"] if fp_row else "",
                 "notes": (
                     "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks "
-                    "TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz."
+                    "TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. "
+                    "Directional agreement remains unaudited and should not yet be interpreted."
                 ),
             }
 
@@ -162,26 +200,42 @@ def main() -> None:
 
     write_rows(OUT_COMPARE, compare_rows, compare_fieldnames)
 
+    raw_direction_summary = {}
+    for metric in ("delta_ipovall", "delta_ipovch", "delta_imedrinc"):
+        matches = sum(1 for row in compare_rows if row.get(f"sign_match_{metric}") == "match")
+        opposite = sum(1 for row in compare_rows if row.get(f"sign_match_{metric}") == "opposite")
+        raw_direction_summary[metric] = {
+            "matches": matches,
+            "opposites": opposite,
+            "status": "unaudited_raw_direction_relation",
+        }
+
     metadata = {
         "comparison_version": "v1",
-        "ea_bridge_csv": str(DEFAULT_EA_CSV),
-        "ea_bridge_metadata": str(DEFAULT_EA_META),
-        "fp_bridge_csv_source": str(DEFAULT_FP_CSV),
-        "fp_bridge_metadata_source": str(DEFAULT_FP_META),
-        "archived_fp_bridge_csv": str(ARCHIVE_FP_CSV),
-        "archived_fp_bridge_metadata": str(ARCHIVE_FP_META),
+        "comparison_basis": "temporary_representative_fp_scenarios",
+        "comparison_interpretation_status": "diagnostic_only",
+        "polarity_audit_status": "pending",
+        "ea_bridge_csv": rel_to_repo(ea_csv),
+        "ea_bridge_metadata": rel_to_repo(ea_meta),
+        "fp_bridge_csv_source": rel_to_repo(fp_csv),
+        "fp_bridge_metadata_source": rel_to_repo(fp_meta),
+        "archived_fp_bridge_csv": rel_to_repo(ARCHIVE_FP_CSV),
+        "archived_fp_bridge_metadata": rel_to_repo(ARCHIVE_FP_META),
         "representative_fp_scenarios": REPRESENTATIVE_FP_SCENARIOS,
         "channels": sorted(REPRESENTATIVE_FP_SCENARIOS),
         "horizons": [2, 4, 8],
         "metrics": METRICS,
+        "raw_direction_summary": raw_direction_summary,
         "limitations": [
             "ea-ineq bridge rows are per native shock unit rather than delta_trlowz.",
             "ea-ineq currently leaves delta_trlowz and delta_rydpc blank.",
+            "The current comparison uses temporary representative fp-ineq anchor scenarios rather than full fp channel envelopes.",
+            "Raw direction flags are unaudited. They should not yet be read as evidence of cross-repo agreement or disagreement.",
             "fp representative scenarios are explicit medium/default choices rather than exhaustive families.",
         ],
         "outputs": {
-            "long_csv": str(OUT_LONG),
-            "compare_csv": str(OUT_COMPARE),
+            "long_csv": rel_to_repo(OUT_LONG),
+            "compare_csv": rel_to_repo(OUT_COMPARE),
         },
     }
     OUT_META.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")

@@ -795,11 +795,8 @@ def build_bridge_data() -> dict:
     compare_rows = read_csv(BRIDGE_COMPARE)
     bridge_meta = read_json(BRIDGE_METADATA)
     compare_meta = read_json(BRIDGE_COMPARE_METADATA)
-    fp_meta_path = Path(compare_meta.get("archived_fp_bridge_metadata", ""))
+    fp_meta_path = REPO / compare_meta["archived_fp_bridge_metadata"] if compare_meta.get("archived_fp_bridge_metadata") else Path()
     fp_meta = read_json(fp_meta_path) if fp_meta_path.exists() else {}
-
-    def sign_matches(metric: str) -> int:
-        return sum(1 for row in compare_rows if row.get(f"sign_match_{metric}") == "match")
 
     representative_rules = []
     for channel, scenario_id in compare_meta.get("representative_fp_scenarios", {}).items():
@@ -843,13 +840,17 @@ def build_bridge_data() -> dict:
         "summary": {
             "row_count": len(compare_rows),
             "channel_count": len({row["channel"] for row in compare_rows}),
-            "fp_row_count": safe_int(fp_meta.get("row_count"), len(read_csv(Path(compare_meta.get("archived_fp_bridge_csv", BRIDGE_RESULTS))))) if compare_meta.get("archived_fp_bridge_csv") else len(bridge_rows),
+            "fp_row_count": safe_int(
+                fp_meta.get("row_count"),
+                len(read_csv(REPO / compare_meta["archived_fp_bridge_csv"])) if compare_meta.get("archived_fp_bridge_csv") else len(bridge_rows),
+            ),
             "horizons": sorted({safe_int(row.get("h")) for row in compare_rows}),
             "ea_dose_metric": bridge_meta.get("dose_metric", ""),
             "fp_dose_metric": fp_meta.get("dose_metric", ""),
-            "poverty_sign_matches": sign_matches("delta_ipovall"),
-            "child_poverty_sign_matches": sign_matches("delta_ipovch"),
-            "median_income_sign_matches": sign_matches("delta_imedrinc"),
+            "comparison_basis": compare_meta.get("comparison_basis", ""),
+            "comparison_interpretation_status": compare_meta.get("comparison_interpretation_status", ""),
+            "polarity_audit_status": compare_meta.get("polarity_audit_status", bridge_meta.get("polarity_audit_status", "")),
+            "raw_direction_summary": compare_meta.get("raw_direction_summary", {}),
         },
         "rows": rows,
         "limitations": compare_meta.get("limitations", []),
@@ -928,7 +929,7 @@ def build_data() -> dict:
             "takeaway": (
                 "Transfers are the dominant story in this archive. The transfer composite drives "
                 "robust responses in poverty, child poverty, household inequality, and the wealth-share gap. "
-                "UI benefits serve as the cross-suite bridge, appearing in both distributional outcomes "
+                "UI benefits serve as the strongest internal cross-suite link, appearing in both distributional outcomes "
                 "and the consumption-composition block. The canon v2 consumption basket adds a secondary "
                 "result: UI benefits tilt spending toward essentials one quarter out."
             ),
@@ -939,7 +940,7 @@ def build_data() -> dict:
              "description": "Archive headline. The full outcomes run is dominated by transfer-composite responses across poverty, child poverty, inequality, and wealth-gap outcomes."},
             {"tag": "Q2", "tier": "secondary",
              "title": "Which transfer programs matter individually?",
-             "description": "UI benefits is the strongest program-level bridge. SNAP participation is stable-suggestive. Social Security is method-dependent."},
+             "description": "UI benefits is the strongest individual-program result inside this archive. SNAP participation is stable-suggestive. Social Security is method-dependent."},
             {"tag": "Q3", "tier": "secondary",
              "title": "Do shocks shift essential versus discretionary spending?",
              "description": "The canon v2 basket ports the essential-versus-discretionary logic from ea-gender. UI benefits shifts the spending balance one quarter out."},
