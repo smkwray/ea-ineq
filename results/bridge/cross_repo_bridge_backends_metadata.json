@@ -6,8 +6,8 @@
   "ea_bridge_metadata": "results/bridge/bridge_metadata.json",
   "fp_backends": {
     "fp-r": {
-      "csv_source": "fp-ineq/reports/phase1_distribution_block/bridge_results.csv",
-      "meta_source": "fp-ineq/reports/phase1_distribution_block/bridge_metadata.json",
+      "csv_source": "fp-ineq/reports/phase1_distribution_block_fprremote2/bridge_results.csv",
+      "meta_source": "fp-ineq/reports/phase1_distribution_block_fprremote2/bridge_metadata.json",
       "archived_csv": "results/bridge/fp_bridge_results_fpr.csv",
       "archived_meta": "results/bridge/fp_bridge_metadata_fpr.json"
     },
@@ -60,47 +60,47 @@
   },
   "backend_parity": {
     "fp-r_vs_fpexe": {
-      "status": "identical_on_current_bridge_surface",
+      "status": "differs_on_current_bridge_surface",
       "metrics": {
         "delta_trlowz": {
-          "max_abs_diff": 0.0,
+          "max_abs_diff": 0.2282215055613257,
           "max_abs_diff_at": {
-            "scenario_id": "ineq-transfer-composite-large",
-            "h": 8
+            "scenario_id": "ineq-ui-large",
+            "h": 2
           }
         },
         "delta_ipovall": {
-          "max_abs_diff": 0.0,
+          "max_abs_diff": 0.004530726193136006,
           "max_abs_diff_at": {
-            "scenario_id": "ineq-transfer-composite-large",
+            "scenario_id": "ineq-ui-large",
             "h": 8
           }
         },
         "delta_ipovch": {
-          "max_abs_diff": 0.0,
+          "max_abs_diff": 0.011087859732225008,
           "max_abs_diff_at": {
-            "scenario_id": "ineq-transfer-composite-large",
-            "h": 8
+            "scenario_id": "ineq-ui-large",
+            "h": 4
           }
         },
         "delta_rydpc": {
-          "max_abs_diff": 0.0,
+          "max_abs_diff": 0.298461127544698,
           "max_abs_diff_at": {
-            "scenario_id": "ineq-transfer-composite-large",
+            "scenario_id": "ineq-ui-large",
             "h": 8
           }
         },
         "delta_iginihh": {
-          "max_abs_diff": 0.0,
+          "max_abs_diff": 0.0030512551468420135,
           "max_abs_diff_at": {
-            "scenario_id": "ineq-transfer-composite-large",
+            "scenario_id": "ineq-ui-large",
             "h": 8
           }
         },
         "delta_imedrinc": {
-          "max_abs_diff": 0.0,
+          "max_abs_diff": 0.43258973636980613,
           "max_abs_diff_at": {
-            "scenario_id": "ineq-transfer-composite-large",
+            "scenario_id": "ineq-ui-large",
             "h": 8
           }
         }

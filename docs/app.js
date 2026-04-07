@@ -159,14 +159,18 @@ function renderQuestions() {
 function renderBridgeSummary() {
   if (!DATA.bridge || !DATA.bridge.available) return;
   const s = DATA.bridge.summary;
+  const parity = s.fp_backend_parity || {};
+  const fpDoseMetric = s.fp_dose_metric || {};
   renderEvidenceSummary("bridge-summary", [
     `<span class="ev-num">${s.channel_count}</span> aligned channels`,
     `<span class="ev-num">${s.row_count}</span> side-by-side rows`,
+    `<span class="ev-num">${s.fp_backend_count || 0}</span> fp backends`,
     `<span class="ev-num">${s.max_fp_scenarios_per_cell}</span> max fp scenarios per cell`,
     `interpretation: <code>${s.comparison_interpretation_status}</code>`,
     `polarity audit: <code>${s.polarity_audit_status}</code>`,
     `ea dose metric: <code>${s.ea_dose_metric}</code>`,
-    `fp dose metric: <code>${s.fp_dose_metric}</code>`,
+    `fp dose metric(s): <code>${Object.entries(fpDoseMetric).map(([backend, metric]) => `${backend}=${metric}`).join("; ")}</code>`,
+    `fp parity: <code>${parity.status || "unavailable"}</code>`,
   ]);
 }
 
@@ -232,7 +236,7 @@ function renderBridgeComparisonTable() {
     tr.appendChild(eaCell);
 
     const fpCell = document.createElement("td");
-    fpCell.innerHTML = `<strong>${row.fp_scenario_count} fp scenario(s)</strong><br><span class="bridge-subtle">${row.fp_dose_metric}</span>`;
+    fpCell.innerHTML = `<strong>${row.fp_backend}: ${row.fp_scenario_count} fp scenario(s)</strong><br><span class="bridge-subtle">${row.fp_dose_metric}</span>`;
     tr.appendChild(fpCell);
 
     for (const metric of ["ipovall", "ipovch", "imedrinc"]) {

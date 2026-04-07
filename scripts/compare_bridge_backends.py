@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import shutil
 from pathlib import Path
 
@@ -17,16 +18,16 @@ EA_META = BRIDGE_DIR / "bridge_metadata.json"
 
 FP_SOURCES = {
     "fp-r": {
-        "csv": Path("/Users/shanewray/malus/proj/fp-ineq/reports/phase1_distribution_block/bridge_results.csv"),
-        "meta": Path("/Users/shanewray/malus/proj/fp-ineq/reports/phase1_distribution_block/bridge_metadata.json"),
+        "csv_env": "FP_INEQ_BRIDGE_FPR_CSV",
+        "meta_env": "FP_INEQ_BRIDGE_FPR_META",
         "archive_csv": BRIDGE_DIR / "fp_bridge_results_fpr.csv",
         "archive_meta": BRIDGE_DIR / "fp_bridge_metadata_fpr.json",
-        "source_label_csv": "fp-ineq/reports/phase1_distribution_block/bridge_results.csv",
-        "source_label_meta": "fp-ineq/reports/phase1_distribution_block/bridge_metadata.json",
+        "source_label_csv": "fp-ineq/reports/phase1_distribution_block_fprremote2/bridge_results.csv",
+        "source_label_meta": "fp-ineq/reports/phase1_distribution_block_fprremote2/bridge_metadata.json",
     },
     "fpexe": {
-        "csv": Path("/Users/shanewray/malus/proj/fp-ineq/reports/phase1_distribution_block_fpexe/bridge_results.csv"),
-        "meta": Path("/Users/shanewray/malus/proj/fp-ineq/reports/phase1_distribution_block_fpexe/bridge_metadata.json"),
+        "csv_env": "FP_INEQ_BRIDGE_FPEXE_CSV",
+        "meta_env": "FP_INEQ_BRIDGE_FPEXE_META",
         "archive_csv": BRIDGE_DIR / "fp_bridge_results_fpexe.csv",
         "archive_meta": BRIDGE_DIR / "fp_bridge_metadata_fpexe.json",
         "source_label_csv": "fp-ineq/reports/phase1_distribution_block_fpexe/bridge_results.csv",
@@ -73,6 +74,17 @@ def rel_to_repo(path: Path) -> str:
         return path.name
 
 
+def choose_source(path_env: str, archive_path: Path, label: str) -> tuple[Path, str]:
+    env_path = os.environ.get(path_env, "").strip()
+    if env_path:
+        return Path(env_path), label
+    if archive_path.exists():
+        return archive_path, rel_to_repo(archive_path)
+    raise SystemExit(
+        f"Missing bridge source for {label}. Set {path_env} or populate {archive_path} first."
+    )
+
+
 def envelope_summary(rows: list[dict[str, str]], metric: str) -> dict[str, object]:
     values = [maybe_float(row.get(metric)) for row in rows]
     values = [value for value in values if value is not None]
@@ -105,11 +117,20 @@ def main() -> None:
     backend_parity = {}
 
     for backend, config in FP_SOURCES.items():
-        if not config["csv"].exists():
-            raise SystemExit(f"Missing fp backend bridge results for {backend}: {config['csv']}")
-        shutil.copy2(config["csv"], config["archive_csv"])
-        if config["meta"].exists():
-            shutil.copy2(config["meta"], config["archive_meta"])
+        source_csv, source_label_csv = choose_source(
+            config["csv_env"],
+            config["archive_csv"],
+            config["source_label_csv"],
+        )
+        source_meta, source_label_meta = choose_source(
+            config["meta_env"],
+            config["archive_meta"],
+            config["source_label_meta"],
+        )
+        if source_csv.resolve() != config["archive_csv"].resolve():
+            shutil.copy2(source_csv, config["archive_csv"])
+        if source_meta.exists() and source_meta.resolve() != config["archive_meta"].resolve():
+            shutil.copy2(source_meta, config["archive_meta"])
 
         fp_rows = read_rows(config["archive_csv"])
         fp_by_key: dict[tuple[str, str], list[dict[str, str]]] = {}
@@ -117,8 +138,8 @@ def main() -> None:
             fp_by_key.setdefault((row["channel"], row["h"]), []).append(row)
 
         metadata_sources[backend] = {
-            "csv_source": config["source_label_csv"],
-            "meta_source": config["source_label_meta"],
+            "csv_source": source_label_csv,
+            "meta_source": source_label_meta,
             "archived_csv": rel_to_repo(config["archive_csv"]),
             "archived_meta": rel_to_repo(config["archive_meta"]),
         }

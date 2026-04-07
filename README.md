@@ -100,11 +100,11 @@ Important limitation:
 - the published polarity audit rules out a simple sign-convention flip in `ea-ineq`, but it does not resolve the deeper estimand mismatch with `fp-ineq`
 - the current bridge remains public, but it should still be read as infrastructure-ready and interpretation-limited rather than a validated cross-repo effect comparison
 
-The interactive site now includes a Bridge section that surfaces the side-by-side comparison directly, but the table is currently a diagnostic scaffold rather than evidence of cross-repo agreement, disagreement, or effect-size comparability.
+The interactive site now includes a Bridge section that surfaces the side-by-side comparison directly, with separate `fp-r` and `fpexe` rows for each channel-horizon cell. The table remains a diagnostic scaffold rather than evidence of cross-repo agreement, disagreement, or effect-size comparability.
 
 For backend-sensitive work, the archive also packages both tracked `fp-ineq` bridge backends:
 
-- `fp-r`, copied from `fp-ineq/reports/phase1_distribution_block/`
+- `fp-r`, copied from `fp-ineq/reports/phase1_distribution_block_fprremote2/`
 - `fpexe`, copied from `fp-ineq/reports/phase1_distribution_block_fpexe/`
 
 The backend-aware compare export is additive. It does not replace the existing public-default bridge files.

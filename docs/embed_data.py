@@ -24,8 +24,8 @@ OUTCOMES_BASE_DFLMX = RESULTS / "dflmx" / "poverty_outcomes_baseline"
 OUTCOMES_FULL_DFLMX = RESULTS / "dflmx" / "poverty_outcomes_full"
 BRIDGE_RESULTS = RESULTS / "bridge" / "bridge_results.csv"
 BRIDGE_METADATA = RESULTS / "bridge" / "bridge_metadata.json"
-BRIDGE_COMPARE = RESULTS / "bridge" / "cross_repo_bridge_compare.csv"
-BRIDGE_COMPARE_METADATA = RESULTS / "bridge" / "cross_repo_bridge_metadata.json"
+BRIDGE_COMPARE = RESULTS / "bridge" / "cross_repo_bridge_compare_backends.csv"
+BRIDGE_COMPARE_METADATA = RESULTS / "bridge" / "cross_repo_bridge_backends_metadata.json"
 BRIDGE_POLARITY_AUDIT = RESULTS / "bridge" / "polarity_audit.json"
 
 CONSUMPTION_DASS = RESULTS / "dass" / "poverty_consumption_baseline" / "results.csv"
@@ -797,12 +797,20 @@ def build_bridge_data() -> dict:
     bridge_meta = read_json(BRIDGE_METADATA)
     compare_meta = read_json(BRIDGE_COMPARE_METADATA)
     polarity_audit = read_json(BRIDGE_POLARITY_AUDIT)
-    fp_meta_path = REPO / compare_meta["archived_fp_bridge_metadata"] if compare_meta.get("archived_fp_bridge_metadata") else Path()
-    fp_meta = read_json(fp_meta_path) if fp_meta_path.exists() else {}
+    fp_backends = dict(compare_meta.get("fp_backends", {}))
+    archived_meta_paths = {
+        backend: (REPO / meta["archived_meta"]) if meta.get("archived_meta") else Path()
+        for backend, meta in fp_backends.items()
+    }
+    fp_backend_meta = {
+        backend: read_json(path) if path.exists() else {}
+        for backend, path in archived_meta_paths.items()
+    }
 
     rows = []
     for row in compare_rows:
         rows.append({
+            "fp_backend": row.get("fp_backend", ""),
             "channel": row["channel"],
             "channel_label": BRIDGE_CHANNEL_LABELS.get(row["channel"], row["channel"].replace("_", " ").title()),
             "h": safe_int(row.get("h")),
@@ -837,17 +845,24 @@ def build_bridge_data() -> dict:
         "summary": {
             "row_count": len(compare_rows),
             "channel_count": len({row["channel"] for row in compare_rows}),
-            "fp_row_count": safe_int(
-                fp_meta.get("row_count"),
-                len(read_csv(REPO / compare_meta["archived_fp_bridge_csv"])) if compare_meta.get("archived_fp_bridge_csv") else len(bridge_rows),
-            ),
+            "fp_row_count": {
+                backend: safe_int(
+                    fp_backend_meta.get(backend, {}).get("row_count"),
+                    len(read_csv(REPO / meta["archived_csv"])) if meta.get("archived_csv") else 0,
+                )
+                for backend, meta in fp_backends.items()
+            },
+            "fp_backend_count": len(fp_backends),
+            "fp_backend_parity": dict(compare_meta.get("backend_parity", {})).get("fp-r_vs_fpexe", {}),
             "horizons": sorted({safe_int(row.get("h")) for row in compare_rows}),
             "ea_dose_metric": bridge_meta.get("dose_metric", ""),
-            "fp_dose_metric": fp_meta.get("dose_metric", ""),
+            "fp_dose_metric": {
+                backend: fp_backend_meta.get(backend, {}).get("dose_metric", "")
+                for backend in fp_backends
+            },
             "comparison_basis": compare_meta.get("comparison_basis", ""),
             "comparison_interpretation_status": compare_meta.get("comparison_interpretation_status", ""),
             "polarity_audit_status": compare_meta.get("polarity_audit_status", bridge_meta.get("polarity_audit_status", "")),
-            "raw_direction_summary": compare_meta.get("raw_direction_summary", {}),
             "max_fp_scenarios_per_cell": max((safe_int(row.get("fp_scenario_count")) for row in compare_rows), default=0),
         },
         "rows": rows,
