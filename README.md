@@ -73,6 +73,7 @@ Archived bridge artifacts:
 
 - `results/bridge/bridge_results.csv`
 - `results/bridge/bridge_metadata.json`
+- `results/bridge/polarity_audit.json`
 - `results/bridge/fp_bridge_results.csv`
 - `results/bridge/fp_bridge_metadata.json`
 - `results/bridge/cross_repo_bridge_long.csv`
@@ -89,10 +90,11 @@ Important limitation:
 - `ea-ineq` still does not expose direct `TRLOWZ` or `RYDPC` analogs
 - bridge rows therefore use `dose_metric = native_shock_unit` and leave `delta_trlowz` / `delta_rydpc` blank
 - `fp-ineq` remains the normalized side of the current bridge because it already publishes `delta_trlowz`
-- the current side-by-side compare uses temporary representative `fp-ineq` anchor scenarios rather than full `fp-ineq` channel envelopes
-- the current bridge remains public, but it should be read as infrastructure-ready and interpretation-limited until the bridge polarity audit is complete
+- the current side-by-side compare uses full `fp-ineq` channel envelopes rather than one-to-one scenario pairings
+- the published polarity audit rules out a simple sign-convention flip in `ea-ineq`, but it does not resolve the deeper estimand mismatch with `fp-ineq`
+- the current bridge remains public, but it should still be read as infrastructure-ready and interpretation-limited rather than a validated cross-repo effect comparison
 
-The interactive site now includes a Bridge section that surfaces the side-by-side comparison directly, but the table is currently a diagnostic scaffold rather than evidence of cross-repo agreement or disagreement.
+The interactive site now includes a Bridge section that surfaces the side-by-side comparison directly, but the table is currently a diagnostic scaffold rather than evidence of cross-repo agreement, disagreement, or effect-size comparability.
 
 ## Confirmatory Status
 

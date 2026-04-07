@@ -1,19 +1,14 @@
 {
   "comparison_version": "v1",
-  "comparison_basis": "temporary_representative_fp_scenarios",
+  "comparison_basis": "fp_channel_envelope",
   "comparison_interpretation_status": "diagnostic_only",
-  "polarity_audit_status": "pending",
+  "polarity_audit_status": "completed_no_mechanical_sign_flip",
   "ea_bridge_csv": "results/bridge/bridge_results.csv",
   "ea_bridge_metadata": "results/bridge/bridge_metadata.json",
   "fp_bridge_csv_source": "results/bridge/fp_bridge_results.csv",
   "fp_bridge_metadata_source": "results/bridge/fp_bridge_metadata.json",
   "archived_fp_bridge_csv": "results/bridge/fp_bridge_results.csv",
   "archived_fp_bridge_metadata": "results/bridge/fp_bridge_metadata.json",
-  "representative_fp_scenarios": {
-    "ui": "ineq-ui-relief",
-    "broad_federal_transfers": "ineq-federal-transfer-relief",
-    "transfer_composite": "ineq-transfer-composite-medium"
-  },
   "channels": [
     "broad_federal_transfers",
     "transfer_composite",
@@ -34,27 +29,29 @@
   ],
   "raw_direction_summary": {
     "delta_ipovall": {
-      "matches": 0,
-      "opposites": 9,
-      "status": "unaudited_raw_direction_relation"
+      "all_positive_envelopes": 0,
+      "all_negative_envelopes": 3,
+      "mixed_sign_envelopes": 6,
+      "status": "fp_channel_envelope_direction_summary"
     },
     "delta_ipovch": {
-      "matches": 0,
-      "opposites": 9,
-      "status": "unaudited_raw_direction_relation"
+      "all_positive_envelopes": 0,
+      "all_negative_envelopes": 3,
+      "mixed_sign_envelopes": 6,
+      "status": "fp_channel_envelope_direction_summary"
     },
     "delta_imedrinc": {
-      "matches": 3,
-      "opposites": 6,
-      "status": "unaudited_raw_direction_relation"
+      "all_positive_envelopes": 3,
+      "all_negative_envelopes": 0,
+      "mixed_sign_envelopes": 6,
+      "status": "fp_channel_envelope_direction_summary"
     }
   },
   "limitations": [
     "ea-ineq bridge rows are per native shock unit rather than delta_trlowz.",
     "ea-ineq currently leaves delta_trlowz and delta_rydpc blank.",
-    "The current comparison uses temporary representative fp-ineq anchor scenarios rather than full fp channel envelopes.",
-    "Raw direction flags are unaudited. They should not yet be read as evidence of cross-repo agreement or disagreement.",
-    "fp representative scenarios are explicit medium/default choices rather than exhaustive families."
+    "fp-ineq values are summarized as channel envelopes, not one-to-one scenario matches.",
+    "The polarity audit rules out a simple sign-convention flip, but it does not resolve the deeper estimand mismatch."
   ],
   "outputs": {
     "long_csv": "results/bridge/cross_repo_bridge_long.csv",

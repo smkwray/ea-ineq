@@ -139,11 +139,11 @@ const DATA = {
       "robust_count": 10,
       "near_count": 2,
       "outcomes_covered": [
-        "poverty_child_q",
+        "wealth_share_gap_top1_bottom50",
         "poverty_all_q",
-        "gini_households_q",
         "median_real_income_fred_q",
-        "wealth_share_gap_top1_bottom50"
+        "poverty_child_q",
+        "gini_households_q"
       ],
       "diagnostic": {
         "lp_sig": 2,
@@ -5931,26 +5931,30 @@ const DATA = {
       ],
       "ea_dose_metric": "native_shock_unit",
       "fp_dose_metric": "delta_trlowz",
-      "comparison_basis": "temporary_representative_fp_scenarios",
+      "comparison_basis": "fp_channel_envelope",
       "comparison_interpretation_status": "diagnostic_only",
-      "polarity_audit_status": "pending",
+      "polarity_audit_status": "completed_no_mechanical_sign_flip",
       "raw_direction_summary": {
         "delta_ipovall": {
-          "matches": 0,
-          "opposites": 9,
-          "status": "unaudited_raw_direction_relation"
+          "all_positive_envelopes": 0,
+          "all_negative_envelopes": 3,
+          "mixed_sign_envelopes": 6,
+          "status": "fp_channel_envelope_direction_summary"
         },
         "delta_ipovch": {
-          "matches": 0,
-          "opposites": 9,
-          "status": "unaudited_raw_direction_relation"
+          "all_positive_envelopes": 0,
+          "all_negative_envelopes": 3,
+          "mixed_sign_envelopes": 6,
+          "status": "fp_channel_envelope_direction_summary"
         },
         "delta_imedrinc": {
-          "matches": 3,
-          "opposites": 6,
-          "status": "unaudited_raw_direction_relation"
+          "all_positive_envelopes": 3,
+          "all_negative_envelopes": 0,
+          "mixed_sign_envelopes": 6,
+          "status": "fp_channel_envelope_direction_summary"
         }
-      }
+      },
+      "max_fp_scenarios_per_cell": 4
     },
     "rows": [
       {
@@ -5960,22 +5964,28 @@ const DATA = {
         "ea_scenario_id": "transfers_total",
         "ea_scenario_label": "Broad Federal Transfers",
         "ea_dose_metric": "native_shock_unit",
-        "fp_scenario_id": "ineq-federal-transfer-relief",
-        "fp_scenario_label": "Federal Transfer Relief",
+        "fp_scenario_count": 2,
+        "fp_scenario_ids": [
+          "ineq-federal-transfer-relief",
+          "ineq-federal-transfer-shock"
+        ],
         "fp_dose_metric": "delta_trlowz",
         "ea_delta_ipovall": 1.26141375263487e-06,
-        "fp_delta_ipovall": -0.00010237490000000737,
-        "sign_match_delta_ipovall": "opposite",
+        "fp_delta_ipovall_min": -0.00010237490000000737,
+        "fp_delta_ipovall_max": 0.00010246203000000009,
+        "fp_delta_ipovall_positive_count": 1,
+        "fp_delta_ipovall_negative_count": 1,
         "ea_delta_ipovch": 2.20505807896807e-06,
-        "fp_delta_ipovch": -0.00028177243999999435,
-        "sign_match_delta_ipovch": "opposite",
+        "fp_delta_ipovch_min": -0.00028177243999999435,
+        "fp_delta_ipovch_max": 0.0002822461300000245,
+        "fp_delta_ipovch_positive_count": 1,
+        "fp_delta_ipovch_negative_count": 1,
         "ea_delta_imedrinc": 0.00213490543842627,
-        "fp_delta_imedrinc": 0.012486125999998876,
-        "sign_match_delta_imedrinc": "match",
-        "fp_delta_ipovall_per_trlowz": -0.013982066334948579,
-        "fp_delta_ipovch_per_trlowz": -0.03848366100909457,
-        "fp_delta_imedrinc_per_trlowz": 1.7053188037155382,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
+        "fp_delta_imedrinc_min": -0.01249074900000835,
+        "fp_delta_imedrinc_max": 0.012486125999998876,
+        "fp_delta_imedrinc_positive_count": 1,
+        "fp_delta_imedrinc_negative_count": 1,
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. fp-ineq values are reported as channel envelopes across all published scenarios at this channel and horizon."
       },
       {
         "channel": "broad_federal_transfers",
@@ -5984,22 +5994,28 @@ const DATA = {
         "ea_scenario_id": "transfers_total",
         "ea_scenario_label": "Broad Federal Transfers",
         "ea_dose_metric": "native_shock_unit",
-        "fp_scenario_id": "ineq-federal-transfer-relief",
-        "fp_scenario_label": "Federal Transfer Relief",
+        "fp_scenario_count": 2,
+        "fp_scenario_ids": [
+          "ineq-federal-transfer-relief",
+          "ineq-federal-transfer-shock"
+        ],
         "fp_dose_metric": "delta_trlowz",
         "ea_delta_ipovall": 2.13442603658104e-06,
-        "fp_delta_ipovall": -0.00011041871000000425,
-        "sign_match_delta_ipovall": "opposite",
+        "fp_delta_ipovall_min": -0.00011041871000000425,
+        "fp_delta_ipovall_max": 0.00011052346999999851,
+        "fp_delta_ipovall_positive_count": 1,
+        "fp_delta_ipovall_negative_count": 1,
         "ea_delta_ipovch": 3.73834280284858e-06,
-        "fp_delta_ipovch": -0.0002947454099999913,
-        "sign_match_delta_ipovch": "opposite",
+        "fp_delta_ipovch_min": -0.0002947454099999913,
+        "fp_delta_ipovch_max": 0.0002952746500000103,
+        "fp_delta_ipovch_positive_count": 1,
+        "fp_delta_ipovch_negative_count": 1,
         "ea_delta_imedrinc": 0.00063429280812552,
-        "fp_delta_imedrinc": 0.013655448999998043,
-        "sign_match_delta_imedrinc": "match",
-        "fp_delta_ipovall_per_trlowz": -0.01508463017654485,
-        "fp_delta_ipovch_per_trlowz": -0.04026605188634953,
-        "fp_delta_imedrinc_per_trlowz": 1.8655117240514016,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
+        "fp_delta_imedrinc_min": -0.013660827999999015,
+        "fp_delta_imedrinc_max": 0.013655448999998043,
+        "fp_delta_imedrinc_positive_count": 1,
+        "fp_delta_imedrinc_negative_count": 1,
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. fp-ineq values are reported as channel envelopes across all published scenarios at this channel and horizon."
       },
       {
         "channel": "broad_federal_transfers",
@@ -6008,22 +6024,28 @@ const DATA = {
         "ea_scenario_id": "transfers_total",
         "ea_scenario_label": "Broad Federal Transfers",
         "ea_dose_metric": "native_shock_unit",
-        "fp_scenario_id": "ineq-federal-transfer-relief",
-        "fp_scenario_label": "Federal Transfer Relief",
+        "fp_scenario_count": 2,
+        "fp_scenario_ids": [
+          "ineq-federal-transfer-relief",
+          "ineq-federal-transfer-shock"
+        ],
         "fp_dose_metric": "delta_trlowz",
         "ea_delta_ipovall": 1.94432437500893e-06,
-        "fp_delta_ipovall": -0.00011524149000000095,
-        "sign_match_delta_ipovall": "opposite",
+        "fp_delta_ipovall_min": -0.00011524149000000095,
+        "fp_delta_ipovall_max": 0.00011536346000000364,
+        "fp_delta_ipovall_positive_count": 1,
+        "fp_delta_ipovall_negative_count": 1,
         "ea_delta_ipovch": 3.28185861928299e-06,
-        "fp_delta_ipovch": -0.00030008545000001496,
-        "sign_match_delta_ipovch": "opposite",
+        "fp_delta_ipovch_min": -0.00030008545000001496,
+        "fp_delta_ipovch_max": 0.0003006560699999883,
+        "fp_delta_ipovch_positive_count": 1,
+        "fp_delta_ipovch_negative_count": 1,
         "ea_delta_imedrinc": -0.00566217833404216,
-        "fp_delta_imedrinc": 0.01511583299999586,
-        "sign_match_delta_imedrinc": "opposite",
-        "fp_delta_ipovall_per_trlowz": -0.015751742462724063,
-        "fp_delta_ipovch_per_trlowz": -0.0410170740174468,
-        "fp_delta_imedrinc_per_trlowz": 2.0661023085130057,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
+        "fp_delta_imedrinc_min": -0.015122149000006857,
+        "fp_delta_imedrinc_max": 0.01511583299999586,
+        "fp_delta_imedrinc_positive_count": 1,
+        "fp_delta_imedrinc_negative_count": 1,
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. fp-ineq values are reported as channel envelopes across all published scenarios at this channel and horizon."
       },
       {
         "channel": "transfer_composite",
@@ -6032,22 +6054,29 @@ const DATA = {
         "ea_scenario_id": "transfer_composite_fp",
         "ea_scenario_label": "Transfer Composite (FP-aligned)",
         "ea_dose_metric": "native_shock_unit",
-        "fp_scenario_id": "ineq-transfer-composite-medium",
-        "fp_scenario_label": "Transfer Composite Medium",
+        "fp_scenario_count": 3,
+        "fp_scenario_ids": [
+          "ineq-transfer-composite-large",
+          "ineq-transfer-composite-medium",
+          "ineq-transfer-composite-small"
+        ],
         "fp_dose_metric": "delta_trlowz",
         "ea_delta_ipovall": 7.72728222052953e-06,
-        "fp_delta_ipovall": -0.0032291098200000062,
-        "sign_match_delta_ipovall": "opposite",
+        "fp_delta_ipovall_min": -0.008704503959999998,
+        "fp_delta_ipovall_max": -0.000965576349999997,
+        "fp_delta_ipovall_positive_count": 0,
+        "fp_delta_ipovall_negative_count": 3,
         "ea_delta_ipovch": 1.132081577613e-05,
-        "fp_delta_ipovch": -0.008179460979999997,
-        "sign_match_delta_ipovch": "opposite",
+        "fp_delta_ipovch_min": -0.02156608941999999,
+        "fp_delta_ipovch_max": -0.0024715899999999957,
+        "fp_delta_ipovch_positive_count": 0,
+        "fp_delta_ipovch_negative_count": 3,
         "ea_delta_imedrinc": -0.00906443141149485,
-        "fp_delta_imedrinc": 0.24756790600000045,
-        "sign_match_delta_imedrinc": "opposite",
-        "fp_delta_ipovall_per_trlowz": -0.01822381191941934,
-        "fp_delta_ipovch_per_trlowz": -0.046161625590593586,
-        "fp_delta_imedrinc_per_trlowz": 1.3971748276521874,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
+        "fp_delta_imedrinc_min": 0.06888170799999216,
+        "fp_delta_imedrinc_max": 0.7038919729999975,
+        "fp_delta_imedrinc_positive_count": 3,
+        "fp_delta_imedrinc_negative_count": 0,
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. fp-ineq values are reported as channel envelopes across all published scenarios at this channel and horizon."
       },
       {
         "channel": "transfer_composite",
@@ -6056,22 +6085,29 @@ const DATA = {
         "ea_scenario_id": "transfer_composite_fp",
         "ea_scenario_label": "Transfer Composite (FP-aligned)",
         "ea_dose_metric": "native_shock_unit",
-        "fp_scenario_id": "ineq-transfer-composite-medium",
-        "fp_scenario_label": "Transfer Composite Medium",
+        "fp_scenario_count": 3,
+        "fp_scenario_ids": [
+          "ineq-transfer-composite-large",
+          "ineq-transfer-composite-medium",
+          "ineq-transfer-composite-small"
+        ],
         "fp_dose_metric": "delta_trlowz",
         "ea_delta_ipovall": 1.56694916998862e-05,
-        "fp_delta_ipovall": -0.0033449235999999938,
-        "sign_match_delta_ipovall": "opposite",
+        "fp_delta_ipovall_min": -0.009001894169999997,
+        "fp_delta_ipovall_max": -0.0009997413399999988,
+        "fp_delta_ipovall_positive_count": 0,
+        "fp_delta_ipovall_negative_count": 3,
         "ea_delta_ipovch": 2.37303748333883e-05,
-        "fp_delta_ipovch": -0.008305262809999991,
-        "sign_match_delta_ipovch": "opposite",
+        "fp_delta_ipovch_min": -0.021849674989999998,
+        "fp_delta_ipovch_max": -0.002510396299999995,
+        "fp_delta_ipovch_positive_count": 0,
+        "fp_delta_ipovch_negative_count": 3,
         "ea_delta_imedrinc": -0.0231354831805237,
-        "fp_delta_imedrinc": 0.2659640840000037,
-        "sign_match_delta_imedrinc": "opposite",
-        "fp_delta_ipovall_per_trlowz": -0.019149197401365805,
-        "fp_delta_ipovch_per_trlowz": -0.04754641242595562,
-        "fp_delta_imedrinc_per_trlowz": 1.5226054030619764,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
+        "fp_delta_imedrinc_min": 0.07409424000000797,
+        "fp_delta_imedrinc_max": 0.7545125019999972,
+        "fp_delta_imedrinc_positive_count": 3,
+        "fp_delta_imedrinc_negative_count": 0,
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. fp-ineq values are reported as channel envelopes across all published scenarios at this channel and horizon."
       },
       {
         "channel": "transfer_composite",
@@ -6080,22 +6116,29 @@ const DATA = {
         "ea_scenario_id": "transfer_composite_fp",
         "ea_scenario_label": "Transfer Composite (FP-aligned)",
         "ea_dose_metric": "native_shock_unit",
-        "fp_scenario_id": "ineq-transfer-composite-medium",
-        "fp_scenario_label": "Transfer Composite Medium",
+        "fp_scenario_count": 3,
+        "fp_scenario_ids": [
+          "ineq-transfer-composite-large",
+          "ineq-transfer-composite-medium",
+          "ineq-transfer-composite-small"
+        ],
         "fp_dose_metric": "delta_trlowz",
         "ea_delta_ipovall": 2.25742058091145e-05,
-        "fp_delta_ipovall": -0.003364600570000001,
-        "sign_match_delta_ipovall": "opposite",
+        "fp_delta_ipovall_min": -0.009021998660000002,
+        "fp_delta_ipovall_max": -0.0010077508600000035,
+        "fp_delta_ipovall_positive_count": 0,
+        "fp_delta_ipovall_negative_count": 3,
         "ea_delta_ipovch": 3.34154363375894e-05,
-        "fp_delta_ipovch": -0.008191903959999997,
-        "sign_match_delta_ipovch": "opposite",
+        "fp_delta_ipovch_min": -0.021474823160000003,
+        "fp_delta_ipovch_max": -0.0024821841800000133,
+        "fp_delta_ipovch_positive_count": 0,
+        "fp_delta_ipovch_negative_count": 3,
         "ea_delta_imedrinc": -0.0458093420707808,
-        "fp_delta_imedrinc": 0.2857346539999952,
-        "sign_match_delta_imedrinc": "opposite",
-        "fp_delta_ipovall_per_trlowz": -0.019750135192076797,
-        "fp_delta_ipovch_per_trlowz": -0.0480863054393732,
-        "fp_delta_imedrinc_per_trlowz": 1.6772564612509684,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
+        "fp_delta_imedrinc_min": 0.07973428900000101,
+        "fp_delta_imedrinc_max": 0.8079842639999981,
+        "fp_delta_imedrinc_positive_count": 3,
+        "fp_delta_imedrinc_negative_count": 0,
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. fp-ineq values are reported as channel envelopes across all published scenarios at this channel and horizon."
       },
       {
         "channel": "ui",
@@ -6104,22 +6147,30 @@ const DATA = {
         "ea_scenario_id": "ui_benefits",
         "ea_scenario_label": "UI Benefits",
         "ea_dose_metric": "native_shock_unit",
-        "fp_scenario_id": "ineq-ui-relief",
-        "fp_scenario_label": "UI Medium",
+        "fp_scenario_count": 4,
+        "fp_scenario_ids": [
+          "ineq-ui-large",
+          "ineq-ui-relief",
+          "ineq-ui-shock",
+          "ineq-ui-small"
+        ],
         "fp_dose_metric": "delta_trlowz",
         "ea_delta_ipovall": 5.17664072341427e-06,
-        "fp_delta_ipovall": -0.002939141850000007,
-        "sign_match_delta_ipovall": "opposite",
+        "fp_delta_ipovall_min": -0.004351181110000005,
+        "fp_delta_ipovall_max": 0.0004234644799999965,
+        "fp_delta_ipovall_positive_count": 1,
+        "fp_delta_ipovall_negative_count": 3,
         "ea_delta_ipovch": 7.19199405965614e-06,
-        "fp_delta_ipovch": -0.007421544209999992,
-        "sign_match_delta_ipovch": "opposite",
+        "fp_delta_ipovch_min": -0.010931046619999996,
+        "fp_delta_ipovch_max": 0.0010814284100000016,
+        "fp_delta_ipovch_positive_count": 1,
+        "fp_delta_ipovch_negative_count": 3,
         "ea_delta_imedrinc": 0.0059617854970296,
-        "fp_delta_imedrinc": 0.25333005799998887,
-        "sign_match_delta_imedrinc": "match",
-        "fp_delta_ipovall_per_trlowz": -0.01918971658473831,
-        "fp_delta_ipovch_per_trlowz": -0.0484554122527312,
-        "fp_delta_imedrinc_per_trlowz": 1.6539970724499369,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
+        "fp_delta_imedrinc_min": -0.03623955700000181,
+        "fp_delta_imedrinc_max": 0.3764138379999906,
+        "fp_delta_imedrinc_positive_count": 3,
+        "fp_delta_imedrinc_negative_count": 1,
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. fp-ineq values are reported as channel envelopes across all published scenarios at this channel and horizon."
       },
       {
         "channel": "ui",
@@ -6128,22 +6179,30 @@ const DATA = {
         "ea_scenario_id": "ui_benefits",
         "ea_scenario_label": "UI Benefits",
         "ea_dose_metric": "native_shock_unit",
-        "fp_scenario_id": "ineq-ui-relief",
-        "fp_scenario_label": "UI Medium",
+        "fp_scenario_count": 4,
+        "fp_scenario_ids": [
+          "ineq-ui-large",
+          "ineq-ui-relief",
+          "ineq-ui-shock",
+          "ineq-ui-small"
+        ],
         "fp_dose_metric": "delta_trlowz",
         "ea_delta_ipovall": 9.84587991941564e-06,
-        "fp_delta_ipovall": -0.003056637969999998,
-        "sign_match_delta_ipovall": "opposite",
+        "fp_delta_ipovall_min": -0.00452166708,
+        "fp_delta_ipovall_max": 0.00044160853999999916,
+        "fp_delta_ipovall_positive_count": 1,
+        "fp_delta_ipovall_negative_count": 3,
         "ea_delta_ipovch": 1.30998141756821e-05,
-        "fp_delta_ipovch": -0.007554281969999993,
-        "sign_match_delta_ipovch": "opposite",
+        "fp_delta_ipovch_min": -0.011117923279999997,
+        "fp_delta_ipovch_max": 0.001103606360000009,
+        "fp_delta_ipovch_positive_count": 1,
+        "fp_delta_ipovch_negative_count": 3,
         "ea_delta_imedrinc": -0.000343702883503663,
-        "fp_delta_imedrinc": 0.27215184900001077,
-        "sign_match_delta_imedrinc": "opposite",
-        "fp_delta_ipovall_per_trlowz": -0.020325077496158618,
-        "fp_delta_ipovch_per_trlowz": -0.05023210729404234,
-        "fp_delta_imedrinc_per_trlowz": 1.8096704535958117,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
+        "fp_delta_imedrinc_min": -0.03904707399999552,
+        "fp_delta_imedrinc_max": 0.4041116970000047,
+        "fp_delta_imedrinc_positive_count": 3,
+        "fp_delta_imedrinc_negative_count": 1,
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. fp-ineq values are reported as channel envelopes across all published scenarios at this channel and horizon."
       },
       {
         "channel": "ui",
@@ -6152,48 +6211,319 @@ const DATA = {
         "ea_scenario_id": "ui_benefits",
         "ea_scenario_label": "UI Benefits",
         "ea_dose_metric": "native_shock_unit",
-        "fp_scenario_id": "ineq-ui-relief",
-        "fp_scenario_label": "UI Medium",
+        "fp_scenario_count": 4,
+        "fp_scenario_ids": [
+          "ineq-ui-large",
+          "ineq-ui-relief",
+          "ineq-ui-shock",
+          "ineq-ui-small"
+        ],
         "fp_dose_metric": "delta_trlowz",
         "ea_delta_ipovall": 7.11598068384924e-06,
-        "fp_delta_ipovall": -0.0030736690400000044,
-        "sign_match_delta_ipovall": "opposite",
+        "fp_delta_ipovall_min": -0.0045428782200000045,
+        "fp_delta_ipovall_max": 0.0004453340100000064,
+        "fp_delta_ipovall_positive_count": 1,
+        "fp_delta_ipovall_negative_count": 3,
         "ea_delta_ipovch": 6.9793745396557e-06,
-        "fp_delta_ipovch": -0.007442648900000015,
-        "sign_match_delta_ipovch": "opposite",
+        "fp_delta_ipovch_min": -0.010945120410000009,
+        "fp_delta_ipovch_max": 0.0010900014699999905,
+        "fp_delta_ipovch_positive_count": 1,
+        "fp_delta_ipovch_negative_count": 3,
         "ea_delta_imedrinc": -0.0312460818803908,
-        "fp_delta_imedrinc": 0.2923765869999926,
-        "sign_match_delta_imedrinc": "opposite",
-        "fp_delta_ipovall_per_trlowz": -0.021116591461212947,
-        "fp_delta_ipovch_per_trlowz": -0.05113217271126433,
-        "fp_delta_imedrinc_per_trlowz": 2.0086733022181917,
-        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. Directional agreement remains unaudited and should not yet be interpreted."
+        "fp_delta_imedrinc_min": -0.042102524000000585,
+        "fp_delta_imedrinc_max": 0.4337408399999987,
+        "fp_delta_imedrinc_positive_count": 3,
+        "fp_delta_imedrinc_negative_count": 1,
+        "notes": "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. fp-ineq values are reported as channel envelopes across all published scenarios at this channel and horizon."
       }
     ],
     "limitations": [
       "ea-ineq bridge rows are per native shock unit rather than delta_trlowz.",
       "ea-ineq currently leaves delta_trlowz and delta_rydpc blank.",
-      "The current comparison uses temporary representative fp-ineq anchor scenarios rather than full fp channel envelopes.",
-      "Raw direction flags are unaudited. They should not yet be read as evidence of cross-repo agreement or disagreement.",
-      "fp representative scenarios are explicit medium/default choices rather than exhaustive families."
+      "fp-ineq values are summarized as channel envelopes, not one-to-one scenario matches.",
+      "The polarity audit rules out a simple sign-convention flip, but it does not resolve the deeper estimand mismatch."
     ],
-    "representative_rules": [
-      {
-        "channel": "ui",
-        "channel_label": "UI",
-        "fp_scenario_id": "ineq-ui-relief"
+    "polarity_audit": {
+      "audit_version": "v1",
+      "status": "completed_no_mechanical_sign_flip",
+      "scope": "ea-ineq public bridge artifacts",
+      "inputs": {
+        "stacked_quarterly": "results/dass/poverty_outcomes_bridge/stacked_quarterly.csv",
+        "shock_series": "results/dflmx/poverty_outcomes_bridge/shock_series.csv",
+        "irf_lp_fdr": "results/dflmx/poverty_outcomes_bridge/irf_lp_fdr.csv"
       },
-      {
-        "channel": "broad_federal_transfers",
-        "channel_label": "Broad Federal Transfers",
-        "fp_scenario_id": "ineq-federal-transfer-relief"
+      "summary": "Across the three bridge treatments, positive DFLMX shock values move with increases in the underlying treatment series, especially in quarter-to-quarter treatment changes. The bridge therefore keeps the published ea-ineq coefficient signs as-is rather than applying a mechanical polarity flip.",
+      "per_treatment": {
+        "ui_benefits": {
+          "treatment_column": "qend__ui_benefits",
+          "n_obs": 143,
+          "corr_shock_level": 0.77277896549876,
+          "corr_shock_delta_level": 0.6973020349360715,
+          "bridge_outcome_signs": {
+            "poverty_all_q": [
+              {
+                "h": 2,
+                "beta": 5.17664072341427e-06,
+                "sign": "positive",
+                "q_value": 0.118233390346744
+              },
+              {
+                "h": 4,
+                "beta": 9.84587991941564e-06,
+                "sign": "positive",
+                "q_value": 0.058255599252015
+              },
+              {
+                "h": 8,
+                "beta": 7.11598068384924e-06,
+                "sign": "positive",
+                "q_value": 0.45605892325844
+              }
+            ],
+            "poverty_child_q": [
+              {
+                "h": 2,
+                "beta": 7.19199405965614e-06,
+                "sign": "positive",
+                "q_value": 0.209101420338481
+              },
+              {
+                "h": 4,
+                "beta": 1.30998141756821e-05,
+                "sign": "positive",
+                "q_value": 0.180645853414323
+              },
+              {
+                "h": 8,
+                "beta": 6.9793745396557e-06,
+                "sign": "positive",
+                "q_value": 0.65655768028946
+              }
+            ],
+            "gini_households_q": [
+              {
+                "h": 2,
+                "beta": 5.42920399389045e-08,
+                "sign": "positive",
+                "q_value": 0.0422333867719807
+              },
+              {
+                "h": 4,
+                "beta": 8.67268656206855e-08,
+                "sign": "positive",
+                "q_value": 0.056335236615113
+              },
+              {
+                "h": 8,
+                "beta": -1.69416711880867e-08,
+                "sign": "negative",
+                "q_value": 0.746261366819046
+              }
+            ],
+            "median_real_income_fred_q": [
+              {
+                "h": 2,
+                "beta": 0.0059617854970296,
+                "sign": "positive",
+                "q_value": 0.65655768028946
+              },
+              {
+                "h": 4,
+                "beta": -0.000343702883503663,
+                "sign": "negative",
+                "q_value": 0.987636524595508
+              },
+              {
+                "h": 8,
+                "beta": -0.0312460818803908,
+                "sign": "negative",
+                "q_value": 0.45605892325844
+              }
+            ]
+          },
+          "conclusion": "Positive bridge shocks track increases in the underlying treatment series; no mechanical sign inversion is warranted from the public bridge data."
+        },
+        "transfers_total": {
+          "treatment_column": "qend__transfers_total",
+          "n_obs": 143,
+          "corr_shock_level": 0.17663041342388533,
+          "corr_shock_delta_level": 1.0,
+          "bridge_outcome_signs": {
+            "poverty_all_q": [
+              {
+                "h": 2,
+                "beta": 1.26141375263487e-06,
+                "sign": "positive",
+                "q_value": 2.48745092344179e-08
+              },
+              {
+                "h": 4,
+                "beta": 2.13442603658104e-06,
+                "sign": "positive",
+                "q_value": 8.82737456123543e-09
+              },
+              {
+                "h": 8,
+                "beta": 1.94432437500893e-06,
+                "sign": "positive",
+                "q_value": 0.0369578094859577
+              }
+            ],
+            "poverty_child_q": [
+              {
+                "h": 2,
+                "beta": 2.20505807896807e-06,
+                "sign": "positive",
+                "q_value": 1.63988223536316e-07
+              },
+              {
+                "h": 4,
+                "beta": 3.73834280284858e-06,
+                "sign": "positive",
+                "q_value": 8.82737456123543e-09
+              },
+              {
+                "h": 8,
+                "beta": 3.28185861928299e-06,
+                "sign": "positive",
+                "q_value": 0.058255599252015
+              }
+            ],
+            "gini_households_q": [
+              {
+                "h": 2,
+                "beta": 1.11035853401323e-08,
+                "sign": "positive",
+                "q_value": 1.0940108908396e-09
+              },
+              {
+                "h": 4,
+                "beta": 1.82651988713184e-08,
+                "sign": "positive",
+                "q_value": 6.5155083146186e-13
+              },
+              {
+                "h": 8,
+                "beta": 1.19277287585989e-08,
+                "sign": "positive",
+                "q_value": 0.000559883667575659
+              }
+            ],
+            "median_real_income_fred_q": [
+              {
+                "h": 2,
+                "beta": 0.00213490543842627,
+                "sign": "positive",
+                "q_value": 0.0908647749978372
+              },
+              {
+                "h": 4,
+                "beta": 0.00063429280812552,
+                "sign": "positive",
+                "q_value": 0.657358779742365
+              },
+              {
+                "h": 8,
+                "beta": -0.00566217833404216,
+                "sign": "negative",
+                "q_value": 0.0039799516420924
+              }
+            ]
+          },
+          "conclusion": "Positive bridge shocks track increases in the underlying treatment series; no mechanical sign inversion is warranted from the public bridge data."
+        },
+        "transfer_composite_fp": {
+          "treatment_column": "qend__transfer_composite_fp",
+          "n_obs": 143,
+          "corr_shock_level": 0.06384893995835048,
+          "corr_shock_delta_level": 0.9949784786606185,
+          "bridge_outcome_signs": {
+            "poverty_all_q": [
+              {
+                "h": 2,
+                "beta": 7.72728222052953e-06,
+                "sign": "positive",
+                "q_value": 0.0120701839898951
+              },
+              {
+                "h": 4,
+                "beta": 1.56694916998862e-05,
+                "sign": "positive",
+                "q_value": 0.00546892476219029
+              },
+              {
+                "h": 8,
+                "beta": 2.25742058091145e-05,
+                "sign": "positive",
+                "q_value": 0.058255599252015
+              }
+            ],
+            "poverty_child_q": [
+              {
+                "h": 2,
+                "beta": 1.132081577613e-05,
+                "sign": "positive",
+                "q_value": 0.0112711809931969
+              },
+              {
+                "h": 4,
+                "beta": 2.37303748333883e-05,
+                "sign": "positive",
+                "q_value": 0.0039799516420924
+              },
+              {
+                "h": 8,
+                "beta": 3.34154363375894e-05,
+                "sign": "positive",
+                "q_value": 0.058255599252015
+              }
+            ],
+            "gini_households_q": [
+              {
+                "h": 2,
+                "beta": 2.5413900841501e-08,
+                "sign": "positive",
+                "q_value": 0.0933172444037366
+              },
+              {
+                "h": 4,
+                "beta": 5.59277940169927e-08,
+                "sign": "positive",
+                "q_value": 0.0197768351675253
+              },
+              {
+                "h": 8,
+                "beta": 7.45684251294247e-08,
+                "sign": "positive",
+                "q_value": 0.028811553158098
+              }
+            ],
+            "median_real_income_fred_q": [
+              {
+                "h": 2,
+                "beta": -0.00906443141149485,
+                "sign": "negative",
+                "q_value": 0.302270934554309
+              },
+              {
+                "h": 4,
+                "beta": -0.0231354831805237,
+                "sign": "negative",
+                "q_value": 0.183978804966943
+              },
+              {
+                "h": 8,
+                "beta": -0.0458093420707808,
+                "sign": "negative",
+                "q_value": 0.0520900971410617
+              }
+            ]
+          },
+          "conclusion": "Positive bridge shocks track increases in the underlying treatment series; no mechanical sign inversion is warranted from the public bridge data."
+        }
       },
-      {
-        "channel": "transfer_composite",
-        "channel_label": "Transfer Composite",
-        "fp_scenario_id": "ineq-transfer-composite-medium"
-      }
-    ]
+      "caveat": "This audit rules out a simple sign-convention mistake in the public bridge export. It does not resolve the deeper estimand mismatch between ea-ineq reduced-form bridge rows and fp-ineq structural scenario deltas."
+    }
   },
   "runs": [
     {

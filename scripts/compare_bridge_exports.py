@@ -23,12 +23,6 @@ OUT_LONG = BRIDGE_DIR / "cross_repo_bridge_long.csv"
 OUT_COMPARE = BRIDGE_DIR / "cross_repo_bridge_compare.csv"
 OUT_META = BRIDGE_DIR / "cross_repo_bridge_metadata.json"
 
-REPRESENTATIVE_FP_SCENARIOS = {
-    "ui": "ineq-ui-relief",
-    "broad_federal_transfers": "ineq-federal-transfer-relief",
-    "transfer_composite": "ineq-transfer-composite-medium",
-}
-
 METRICS = [
     "delta_trlowz",
     "delta_ipovall",
@@ -129,46 +123,45 @@ def main() -> None:
     write_rows(OUT_LONG, long_rows, list(long_rows[0].keys()))
 
     ea_by_key = {(row["channel"], row["h"]): row for row in ea_rows}
-    fp_rep_rows = {
-        (row["channel"], row["h"]): row
-        for row in fp_rows
-        if REPRESENTATIVE_FP_SCENARIOS.get(row["channel"]) == row["scenario_id"]
-    }
+    fp_by_key: dict[tuple[str, str], list[dict[str, str]]] = {}
+    for row in fp_rows:
+        fp_by_key.setdefault((row["channel"], row["h"]), []).append(row)
 
     compare_rows: list[dict[str, object]] = []
-    for channel in sorted(REPRESENTATIVE_FP_SCENARIOS):
+    for channel in sorted({row["channel"] for row in fp_rows}):
         for h in ("2", "4", "8"):
             ea_row = ea_by_key.get((channel, h))
-            fp_row = fp_rep_rows.get((channel, h))
+            fp_group = sorted(fp_by_key.get((channel, h), []), key=lambda row: row["scenario_id"])
             row: dict[str, object] = {
                 "channel": channel,
                 "h": h,
-                "comparison_basis": "representative_fp_scenario",
-                "representative_fp_rule": REPRESENTATIVE_FP_SCENARIOS[channel],
+                "comparison_basis": "fp_channel_envelope",
                 "ea_scenario_id": ea_row["scenario_id"] if ea_row else "",
                 "ea_scenario_label": ea_row["scenario_label"] if ea_row else "",
                 "ea_dose_metric": ea_row["dose_metric"] if ea_row else "",
                 "ea_dose_value": ea_row["dose_value"] if ea_row else "",
-                "fp_scenario_id": fp_row["scenario_id"] if fp_row else "",
-                "fp_scenario_label": fp_row["scenario_label"] if fp_row else "",
-                "fp_dose_metric": fp_row["dose_metric"] if fp_row else "",
-                "fp_dose_value": fp_row["dose_value"] if fp_row else "",
+                "fp_scenario_count": len(fp_group),
+                "fp_scenario_ids": "|".join(item["scenario_id"] for item in fp_group),
+                "fp_dose_metric": fp_group[0]["dose_metric"] if fp_group else "",
                 "notes": (
                     "Raw bridge deltas are aligned by channel and horizon, but ea-ineq still lacks "
                     "TRLOWZ/RYDPC analogs, so only fp-ineq can be normalized by delta_trlowz. "
-                    "Directional agreement remains unaudited and should not yet be interpreted."
+                    "fp-ineq values are reported as channel envelopes across all published scenarios at this "
+                    "channel and horizon."
                 ),
             }
 
-            fp_trlowz = maybe_float(fp_row["delta_trlowz"]) if fp_row else None
             for metric in METRICS:
                 ea_val = maybe_float(ea_row.get(metric)) if ea_row else None
-                fp_val = maybe_float(fp_row.get(metric)) if fp_row else None
+                fp_vals = [maybe_float(item.get(metric)) for item in fp_group]
+                fp_vals = [value for value in fp_vals if value is not None]
                 row[f"ea_{metric}"] = "" if ea_val is None else ea_val
-                row[f"fp_{metric}"] = "" if fp_val is None else fp_val
-                row[f"sign_match_{metric}"] = sign_match(ea_val, fp_val)
-                row[f"fp_{metric}_per_trlowz"] = "" if metric == "delta_trlowz" else (
-                    "" if safe_div(fp_val, fp_trlowz) is None else safe_div(fp_val, fp_trlowz)
+                row[f"fp_{metric}_min"] = "" if not fp_vals else min(fp_vals)
+                row[f"fp_{metric}_max"] = "" if not fp_vals else max(fp_vals)
+                row[f"fp_{metric}_positive_count"] = sum(1 for value in fp_vals if value > 0)
+                row[f"fp_{metric}_negative_count"] = sum(1 for value in fp_vals if value < 0)
+                row[f"ea_within_fp_{metric}_envelope"] = (
+                    "" if ea_val is None or not fp_vals else min(fp_vals) <= ea_val <= max(fp_vals)
                 )
 
             compare_rows.append(row)
@@ -177,23 +170,23 @@ def main() -> None:
         "channel",
         "h",
         "comparison_basis",
-        "representative_fp_rule",
         "ea_scenario_id",
         "ea_scenario_label",
         "ea_dose_metric",
         "ea_dose_value",
-        "fp_scenario_id",
-        "fp_scenario_label",
+        "fp_scenario_count",
+        "fp_scenario_ids",
         "fp_dose_metric",
-        "fp_dose_value",
     ]
     for metric in METRICS:
         compare_fieldnames.extend(
             [
                 f"ea_{metric}",
-                f"fp_{metric}",
-                f"sign_match_{metric}",
-                f"fp_{metric}_per_trlowz",
+                f"fp_{metric}_min",
+                f"fp_{metric}_max",
+                f"fp_{metric}_positive_count",
+                f"fp_{metric}_negative_count",
+                f"ea_within_fp_{metric}_envelope",
             ]
         )
     compare_fieldnames.append("notes")
@@ -202,36 +195,39 @@ def main() -> None:
 
     raw_direction_summary = {}
     for metric in ("delta_ipovall", "delta_ipovch", "delta_imedrinc"):
-        matches = sum(1 for row in compare_rows if row.get(f"sign_match_{metric}") == "match")
-        opposite = sum(1 for row in compare_rows if row.get(f"sign_match_{metric}") == "opposite")
+        all_positive = sum(1 for row in compare_rows if row.get(f"fp_{metric}_negative_count") == 0 and row.get(f"fp_{metric}_positive_count", 0) > 0)
+        all_negative = sum(1 for row in compare_rows if row.get(f"fp_{metric}_positive_count") == 0 and row.get(f"fp_{metric}_negative_count", 0) > 0)
+        mixed = sum(
+            1 for row in compare_rows
+            if row.get(f"fp_{metric}_positive_count", 0) > 0 and row.get(f"fp_{metric}_negative_count", 0) > 0
+        )
         raw_direction_summary[metric] = {
-            "matches": matches,
-            "opposites": opposite,
-            "status": "unaudited_raw_direction_relation",
+            "all_positive_envelopes": all_positive,
+            "all_negative_envelopes": all_negative,
+            "mixed_sign_envelopes": mixed,
+            "status": "fp_channel_envelope_direction_summary",
         }
 
     metadata = {
         "comparison_version": "v1",
-        "comparison_basis": "temporary_representative_fp_scenarios",
+        "comparison_basis": "fp_channel_envelope",
         "comparison_interpretation_status": "diagnostic_only",
-        "polarity_audit_status": "pending",
+        "polarity_audit_status": "completed_no_mechanical_sign_flip",
         "ea_bridge_csv": rel_to_repo(ea_csv),
         "ea_bridge_metadata": rel_to_repo(ea_meta),
         "fp_bridge_csv_source": rel_to_repo(fp_csv),
         "fp_bridge_metadata_source": rel_to_repo(fp_meta),
         "archived_fp_bridge_csv": rel_to_repo(ARCHIVE_FP_CSV),
         "archived_fp_bridge_metadata": rel_to_repo(ARCHIVE_FP_META),
-        "representative_fp_scenarios": REPRESENTATIVE_FP_SCENARIOS,
-        "channels": sorted(REPRESENTATIVE_FP_SCENARIOS),
+        "channels": sorted({row["channel"] for row in fp_rows}),
         "horizons": [2, 4, 8],
         "metrics": METRICS,
         "raw_direction_summary": raw_direction_summary,
         "limitations": [
             "ea-ineq bridge rows are per native shock unit rather than delta_trlowz.",
             "ea-ineq currently leaves delta_trlowz and delta_rydpc blank.",
-            "The current comparison uses temporary representative fp-ineq anchor scenarios rather than full fp channel envelopes.",
-            "Raw direction flags are unaudited. They should not yet be read as evidence of cross-repo agreement or disagreement.",
-            "fp representative scenarios are explicit medium/default choices rather than exhaustive families.",
+            "fp-ineq values are summarized as channel envelopes, not one-to-one scenario matches.",
+            "The polarity audit rules out a simple sign-convention flip, but it does not resolve the deeper estimand mismatch.",
         ],
         "outputs": {
             "long_csv": rel_to_repo(OUT_LONG),

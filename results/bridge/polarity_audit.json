@@ -1,0 +1,281 @@
+{
+  "audit_version": "v1",
+  "status": "completed_no_mechanical_sign_flip",
+  "scope": "ea-ineq public bridge artifacts",
+  "inputs": {
+    "stacked_quarterly": "results/dass/poverty_outcomes_bridge/stacked_quarterly.csv",
+    "shock_series": "results/dflmx/poverty_outcomes_bridge/shock_series.csv",
+    "irf_lp_fdr": "results/dflmx/poverty_outcomes_bridge/irf_lp_fdr.csv"
+  },
+  "summary": "Across the three bridge treatments, positive DFLMX shock values move with increases in the underlying treatment series, especially in quarter-to-quarter treatment changes. The bridge therefore keeps the published ea-ineq coefficient signs as-is rather than applying a mechanical polarity flip.",
+  "per_treatment": {
+    "ui_benefits": {
+      "treatment_column": "qend__ui_benefits",
+      "n_obs": 143,
+      "corr_shock_level": 0.77277896549876,
+      "corr_shock_delta_level": 0.6973020349360715,
+      "bridge_outcome_signs": {
+        "poverty_all_q": [
+          {
+            "h": 2,
+            "beta": 5.17664072341427e-06,
+            "sign": "positive",
+            "q_value": 0.118233390346744
+          },
+          {
+            "h": 4,
+            "beta": 9.84587991941564e-06,
+            "sign": "positive",
+            "q_value": 0.058255599252015
+          },
+          {
+            "h": 8,
+            "beta": 7.11598068384924e-06,
+            "sign": "positive",
+            "q_value": 0.45605892325844
+          }
+        ],
+        "poverty_child_q": [
+          {
+            "h": 2,
+            "beta": 7.19199405965614e-06,
+            "sign": "positive",
+            "q_value": 0.209101420338481
+          },
+          {
+            "h": 4,
+            "beta": 1.30998141756821e-05,
+            "sign": "positive",
+            "q_value": 0.180645853414323
+          },
+          {
+            "h": 8,
+            "beta": 6.9793745396557e-06,
+            "sign": "positive",
+            "q_value": 0.65655768028946
+          }
+        ],
+        "gini_households_q": [
+          {
+            "h": 2,
+            "beta": 5.42920399389045e-08,
+            "sign": "positive",
+            "q_value": 0.0422333867719807
+          },
+          {
+            "h": 4,
+            "beta": 8.67268656206855e-08,
+            "sign": "positive",
+            "q_value": 0.056335236615113
+          },
+          {
+            "h": 8,
+            "beta": -1.69416711880867e-08,
+            "sign": "negative",
+            "q_value": 0.746261366819046
+          }
+        ],
+        "median_real_income_fred_q": [
+          {
+            "h": 2,
+            "beta": 0.0059617854970296,
+            "sign": "positive",
+            "q_value": 0.65655768028946
+          },
+          {
+            "h": 4,
+            "beta": -0.000343702883503663,
+            "sign": "negative",
+            "q_value": 0.987636524595508
+          },
+          {
+            "h": 8,
+            "beta": -0.0312460818803908,
+            "sign": "negative",
+            "q_value": 0.45605892325844
+          }
+        ]
+      },
+      "conclusion": "Positive bridge shocks track increases in the underlying treatment series; no mechanical sign inversion is warranted from the public bridge data."
+    },
+    "transfers_total": {
+      "treatment_column": "qend__transfers_total",
+      "n_obs": 143,
+      "corr_shock_level": 0.17663041342388533,
+      "corr_shock_delta_level": 1.0,
+      "bridge_outcome_signs": {
+        "poverty_all_q": [
+          {
+            "h": 2,
+            "beta": 1.26141375263487e-06,
+            "sign": "positive",
+            "q_value": 2.48745092344179e-08
+          },
+          {
+            "h": 4,
+            "beta": 2.13442603658104e-06,
+            "sign": "positive",
+            "q_value": 8.82737456123543e-09
+          },
+          {
+            "h": 8,
+            "beta": 1.94432437500893e-06,
+            "sign": "positive",
+            "q_value": 0.0369578094859577
+          }
+        ],
+        "poverty_child_q": [
+          {
+            "h": 2,
+            "beta": 2.20505807896807e-06,
+            "sign": "positive",
+            "q_value": 1.63988223536316e-07
+          },
+          {
+            "h": 4,
+            "beta": 3.73834280284858e-06,
+            "sign": "positive",
+            "q_value": 8.82737456123543e-09
+          },
+          {
+            "h": 8,
+            "beta": 3.28185861928299e-06,
+            "sign": "positive",
+            "q_value": 0.058255599252015
+          }
+        ],
+        "gini_households_q": [
+          {
+            "h": 2,
+            "beta": 1.11035853401323e-08,
+            "sign": "positive",
+            "q_value": 1.0940108908396e-09
+          },
+          {
+            "h": 4,
+            "beta": 1.82651988713184e-08,
+            "sign": "positive",
+            "q_value": 6.5155083146186e-13
+          },
+          {
+            "h": 8,
+            "beta": 1.19277287585989e-08,
+            "sign": "positive",
+            "q_value": 0.000559883667575659
+          }
+        ],
+        "median_real_income_fred_q": [
+          {
+            "h": 2,
+            "beta": 0.00213490543842627,
+            "sign": "positive",
+            "q_value": 0.0908647749978372
+          },
+          {
+            "h": 4,
+            "beta": 0.00063429280812552,
+            "sign": "positive",
+            "q_value": 0.657358779742365
+          },
+          {
+            "h": 8,
+            "beta": -0.00566217833404216,
+            "sign": "negative",
+            "q_value": 0.0039799516420924
+          }
+        ]
+      },
+      "conclusion": "Positive bridge shocks track increases in the underlying treatment series; no mechanical sign inversion is warranted from the public bridge data."
+    },
+    "transfer_composite_fp": {
+      "treatment_column": "qend__transfer_composite_fp",
+      "n_obs": 143,
+      "corr_shock_level": 0.06384893995835048,
+      "corr_shock_delta_level": 0.9949784786606185,
+      "bridge_outcome_signs": {
+        "poverty_all_q": [
+          {
+            "h": 2,
+            "beta": 7.72728222052953e-06,
+            "sign": "positive",
+            "q_value": 0.0120701839898951
+          },
+          {
+            "h": 4,
+            "beta": 1.56694916998862e-05,
+            "sign": "positive",
+            "q_value": 0.00546892476219029
+          },
+          {
+            "h": 8,
+            "beta": 2.25742058091145e-05,
+            "sign": "positive",
+            "q_value": 0.058255599252015
+          }
+        ],
+        "poverty_child_q": [
+          {
+            "h": 2,
+            "beta": 1.132081577613e-05,
+            "sign": "positive",
+            "q_value": 0.0112711809931969
+          },
+          {
+            "h": 4,
+            "beta": 2.37303748333883e-05,
+            "sign": "positive",
+            "q_value": 0.0039799516420924
+          },
+          {
+            "h": 8,
+            "beta": 3.34154363375894e-05,
+            "sign": "positive",
+            "q_value": 0.058255599252015
+          }
+        ],
+        "gini_households_q": [
+          {
+            "h": 2,
+            "beta": 2.5413900841501e-08,
+            "sign": "positive",
+            "q_value": 0.0933172444037366
+          },
+          {
+            "h": 4,
+            "beta": 5.59277940169927e-08,
+            "sign": "positive",
+            "q_value": 0.0197768351675253
+          },
+          {
+            "h": 8,
+            "beta": 7.45684251294247e-08,
+            "sign": "positive",
+            "q_value": 0.028811553158098
+          }
+        ],
+        "median_real_income_fred_q": [
+          {
+            "h": 2,
+            "beta": -0.00906443141149485,
+            "sign": "negative",
+            "q_value": 0.302270934554309
+          },
+          {
+            "h": 4,
+            "beta": -0.0231354831805237,
+            "sign": "negative",
+            "q_value": 0.183978804966943
+          },
+          {
+            "h": 8,
+            "beta": -0.0458093420707808,
+            "sign": "negative",
+            "q_value": 0.0520900971410617
+          }
+        ]
+      },
+      "conclusion": "Positive bridge shocks track increases in the underlying treatment series; no mechanical sign inversion is warranted from the public bridge data."
+    }
+  },
+  "caveat": "This audit rules out a simple sign-convention mistake in the public bridge export. It does not resolve the deeper estimand mismatch between ea-ineq reduced-form bridge rows and fp-ineq structural scenario deltas."
+}

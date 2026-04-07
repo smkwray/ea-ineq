@@ -26,6 +26,7 @@ BRIDGE_RESULTS = RESULTS / "bridge" / "bridge_results.csv"
 BRIDGE_METADATA = RESULTS / "bridge" / "bridge_metadata.json"
 BRIDGE_COMPARE = RESULTS / "bridge" / "cross_repo_bridge_compare.csv"
 BRIDGE_COMPARE_METADATA = RESULTS / "bridge" / "cross_repo_bridge_metadata.json"
+BRIDGE_POLARITY_AUDIT = RESULTS / "bridge" / "polarity_audit.json"
 
 CONSUMPTION_DASS = RESULTS / "dass" / "poverty_consumption_baseline" / "results.csv"
 OUTCOMES_BASE_DASS = RESULTS / "dass" / "poverty_outcomes_baseline" / "results.csv"
@@ -795,16 +796,9 @@ def build_bridge_data() -> dict:
     compare_rows = read_csv(BRIDGE_COMPARE)
     bridge_meta = read_json(BRIDGE_METADATA)
     compare_meta = read_json(BRIDGE_COMPARE_METADATA)
+    polarity_audit = read_json(BRIDGE_POLARITY_AUDIT)
     fp_meta_path = REPO / compare_meta["archived_fp_bridge_metadata"] if compare_meta.get("archived_fp_bridge_metadata") else Path()
     fp_meta = read_json(fp_meta_path) if fp_meta_path.exists() else {}
-
-    representative_rules = []
-    for channel, scenario_id in compare_meta.get("representative_fp_scenarios", {}).items():
-        representative_rules.append({
-            "channel": channel,
-            "channel_label": BRIDGE_CHANNEL_LABELS.get(channel, channel.replace("_", " ").title()),
-            "fp_scenario_id": scenario_id,
-        })
 
     rows = []
     for row in compare_rows:
@@ -815,21 +809,24 @@ def build_bridge_data() -> dict:
             "ea_scenario_id": row.get("ea_scenario_id", ""),
             "ea_scenario_label": row.get("ea_scenario_label", ""),
             "ea_dose_metric": row.get("ea_dose_metric", ""),
-            "fp_scenario_id": row.get("fp_scenario_id", ""),
-            "fp_scenario_label": row.get("fp_scenario_label", ""),
+            "fp_scenario_count": safe_int(row.get("fp_scenario_count")),
+            "fp_scenario_ids": row.get("fp_scenario_ids", "").split("|") if row.get("fp_scenario_ids") else [],
             "fp_dose_metric": row.get("fp_dose_metric", ""),
             "ea_delta_ipovall": safe_float(row.get("ea_delta_ipovall")),
-            "fp_delta_ipovall": safe_float(row.get("fp_delta_ipovall")),
-            "sign_match_delta_ipovall": row.get("sign_match_delta_ipovall", ""),
+            "fp_delta_ipovall_min": safe_float(row.get("fp_delta_ipovall_min")),
+            "fp_delta_ipovall_max": safe_float(row.get("fp_delta_ipovall_max")),
+            "fp_delta_ipovall_positive_count": safe_int(row.get("fp_delta_ipovall_positive_count")),
+            "fp_delta_ipovall_negative_count": safe_int(row.get("fp_delta_ipovall_negative_count")),
             "ea_delta_ipovch": safe_float(row.get("ea_delta_ipovch")),
-            "fp_delta_ipovch": safe_float(row.get("fp_delta_ipovch")),
-            "sign_match_delta_ipovch": row.get("sign_match_delta_ipovch", ""),
+            "fp_delta_ipovch_min": safe_float(row.get("fp_delta_ipovch_min")),
+            "fp_delta_ipovch_max": safe_float(row.get("fp_delta_ipovch_max")),
+            "fp_delta_ipovch_positive_count": safe_int(row.get("fp_delta_ipovch_positive_count")),
+            "fp_delta_ipovch_negative_count": safe_int(row.get("fp_delta_ipovch_negative_count")),
             "ea_delta_imedrinc": safe_float(row.get("ea_delta_imedrinc")),
-            "fp_delta_imedrinc": safe_float(row.get("fp_delta_imedrinc")),
-            "sign_match_delta_imedrinc": row.get("sign_match_delta_imedrinc", ""),
-            "fp_delta_ipovall_per_trlowz": safe_float(row.get("fp_delta_ipovall_per_trlowz")),
-            "fp_delta_ipovch_per_trlowz": safe_float(row.get("fp_delta_ipovch_per_trlowz")),
-            "fp_delta_imedrinc_per_trlowz": safe_float(row.get("fp_delta_imedrinc_per_trlowz")),
+            "fp_delta_imedrinc_min": safe_float(row.get("fp_delta_imedrinc_min")),
+            "fp_delta_imedrinc_max": safe_float(row.get("fp_delta_imedrinc_max")),
+            "fp_delta_imedrinc_positive_count": safe_int(row.get("fp_delta_imedrinc_positive_count")),
+            "fp_delta_imedrinc_negative_count": safe_int(row.get("fp_delta_imedrinc_negative_count")),
             "notes": row.get("notes", ""),
         })
 
@@ -851,10 +848,11 @@ def build_bridge_data() -> dict:
             "comparison_interpretation_status": compare_meta.get("comparison_interpretation_status", ""),
             "polarity_audit_status": compare_meta.get("polarity_audit_status", bridge_meta.get("polarity_audit_status", "")),
             "raw_direction_summary": compare_meta.get("raw_direction_summary", {}),
+            "max_fp_scenarios_per_cell": max((safe_int(row.get("fp_scenario_count")) for row in compare_rows), default=0),
         },
         "rows": rows,
         "limitations": compare_meta.get("limitations", []),
-        "representative_rules": representative_rules,
+        "polarity_audit": polarity_audit,
     }
 
 

@@ -162,6 +162,7 @@ function renderBridgeSummary() {
   renderEvidenceSummary("bridge-summary", [
     `<span class="ev-num">${s.channel_count}</span> aligned channels`,
     `<span class="ev-num">${s.row_count}</span> side-by-side rows`,
+    `<span class="ev-num">${s.max_fp_scenarios_per_cell}</span> max fp scenarios per cell`,
     `interpretation: <code>${s.comparison_interpretation_status}</code>`,
     `polarity audit: <code>${s.polarity_audit_status}</code>`,
     `ea dose metric: <code>${s.ea_dose_metric}</code>`,
@@ -173,12 +174,32 @@ function renderBridgeRules() {
   const host = document.getElementById("bridge-rules");
   if (!host || !DATA.bridge || !DATA.bridge.available) return;
   host.innerHTML = "";
-  for (const rule of DATA.bridge.representative_rules) {
+  for (const channel of ["ui", "broad_federal_transfers", "transfer_composite"]) {
+    const channelRows = DATA.bridge.rows.filter((row) => row.channel === channel);
+    if (!channelRows.length) continue;
+    const maxCount = Math.max(...channelRows.map((row) => row.fp_scenario_count || 0));
     const card = el("div", "impl-card");
-    card.appendChild(el("strong", "", rule.channel_label));
-    card.appendChild(el("p", "", `Temporary fp-ineq anchor scenario: ${rule.fp_scenario_id}`));
+    card.appendChild(el("strong", "", channelRows[0].channel_label));
+    card.appendChild(el("p", "", `fp envelope uses up to ${maxCount} published scenario(s) per channel-horizon cell.`));
     host.appendChild(card);
   }
+}
+
+function bridgeEnvelopeText(row, metric) {
+  const minVal = row[`fp_delta_${metric}_min`];
+  const maxVal = row[`fp_delta_${metric}_max`];
+  if (minVal == null && maxVal == null) return "fp n/a";
+  if (minVal === maxVal) return `fp ${fmtEst(minVal)}`;
+  return `fp ${fmtEst(minVal)} to ${fmtEst(maxVal)}`;
+}
+
+function bridgeEnvelopeSignText(row, metric) {
+  const pos = row[`fp_delta_${metric}_positive_count`] || 0;
+  const neg = row[`fp_delta_${metric}_negative_count`] || 0;
+  if (pos > 0 && neg > 0) return "fp envelope spans both signs";
+  if (pos > 0) return "fp envelope is entirely positive";
+  if (neg > 0) return "fp envelope is entirely negative";
+  return "fp envelope sign unavailable";
 }
 
 function renderBridgeComparisonTable() {
@@ -211,17 +232,16 @@ function renderBridgeComparisonTable() {
     tr.appendChild(eaCell);
 
     const fpCell = document.createElement("td");
-    fpCell.innerHTML = `<strong>${row.fp_scenario_label}</strong><br><span class="bridge-subtle">${row.fp_dose_metric}</span>`;
+    fpCell.innerHTML = `<strong>${row.fp_scenario_count} fp scenario(s)</strong><br><span class="bridge-subtle">${row.fp_dose_metric}</span>`;
     tr.appendChild(fpCell);
 
     for (const metric of ["ipovall", "ipovch", "imedrinc"]) {
       const cell = document.createElement("td");
       const eaVal = row[`ea_delta_${metric}`];
-      const fpVal = row[`fp_delta_${metric}`];
       cell.innerHTML = `
         <div class="bridge-metric">
-          <span class="bridge-values">ea ${fmtEst(eaVal)} | fp ${fmtEst(fpVal)}</span>
-          <span class="bridge-subtle">raw directional relation withheld pending polarity audit</span>
+          <span class="bridge-values">ea ${fmtEst(eaVal)} | ${bridgeEnvelopeText(row, metric)}</span>
+          <span class="bridge-subtle">${bridgeEnvelopeSignText(row, metric)}</span>
         </div>`;
       tr.appendChild(cell);
     }
@@ -231,6 +251,26 @@ function renderBridgeComparisonTable() {
 
   table.appendChild(tbody);
   host.appendChild(table);
+}
+
+function renderBridgePolarityAudit() {
+  const host = document.getElementById("bridge-polarity-audit");
+  if (!host || !DATA.bridge || !DATA.bridge.available || !DATA.bridge.polarity_audit) return;
+  host.innerHTML = "";
+  const audit = DATA.bridge.polarity_audit;
+  if (audit.summary) host.appendChild(el("p", "", audit.summary));
+  for (const [treatment, item] of Object.entries(audit.per_treatment || {})) {
+    const card = el("div", "q-card");
+    card.appendChild(el("div", "q-tag", "Polarity"));
+    card.appendChild(el("strong", "", treatment.replaceAll("_", " ")));
+    card.appendChild(el(
+      "p",
+      "",
+      `corr(shock, level) = ${fmtEst(item.corr_shock_level)}; corr(shock, quarter-to-quarter treatment change) = ${fmtEst(item.corr_shock_delta_level)}`
+    ));
+    card.appendChild(el("p", "", item.conclusion || ""));
+    host.appendChild(card);
+  }
 }
 
 function renderBridgeLimitations() {
@@ -980,6 +1020,7 @@ function renderAll() {
   renderBridgeSummary();
   renderBridgeRules();
   renderBridgeComparisonTable();
+  renderBridgePolarityAudit();
   renderBridgeLimitations();
   renderHeadlineSummary();
   renderConsumptionSummary();

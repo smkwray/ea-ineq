@@ -144,8 +144,9 @@ meta <- list(
   secondary_metrics = list("delta_iginihh", "delta_imedrinc"),
   unavailable_metrics = list("delta_trlowz", "delta_rydpc"),
   interpretation_status = "diagnostic_only",
-  polarity_audit_status = "pending",
-  notes = "Bridge rows are taken from DFLMX LP results. `delta_trlowz` and `delta_rydpc` are not currently available in ea-ineq and remain blank. Directional agreement with fp-ineq should not be interpreted until the bridge polarity audit is complete."
+  polarity_audit_status = "tracked_separately",
+  polarity_audit_artifact = "results/bridge/polarity_audit.json",
+  notes = "Bridge rows are taken from DFLMX LP results. `delta_trlowz` and `delta_rydpc` are not currently available in ea-ineq and remain blank. The public polarity audit is stored separately in `results/bridge/polarity_audit.json`; even with that audit, directional agreement with fp-ineq should not be over-read because the bridge remains estimand-mismatched."
 )
 
 write_json(meta, out_json, auto_unbox = TRUE, pretty = TRUE)
