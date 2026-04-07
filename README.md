@@ -76,9 +76,15 @@ Archived bridge artifacts:
 - `results/bridge/polarity_audit.json`
 - `results/bridge/fp_bridge_results.csv`
 - `results/bridge/fp_bridge_metadata.json`
+- `results/bridge/fp_bridge_results_fpr.csv`
+- `results/bridge/fp_bridge_metadata_fpr.json`
+- `results/bridge/fp_bridge_results_fpexe.csv`
+- `results/bridge/fp_bridge_metadata_fpexe.json`
 - `results/bridge/cross_repo_bridge_long.csv`
 - `results/bridge/cross_repo_bridge_compare.csv`
 - `results/bridge/cross_repo_bridge_metadata.json`
+- `results/bridge/cross_repo_bridge_compare_backends.csv`
+- `results/bridge/cross_repo_bridge_backends_metadata.json`
 
 Bridge-specific result trees:
 
@@ -95,6 +101,13 @@ Important limitation:
 - the current bridge remains public, but it should still be read as infrastructure-ready and interpretation-limited rather than a validated cross-repo effect comparison
 
 The interactive site now includes a Bridge section that surfaces the side-by-side comparison directly, but the table is currently a diagnostic scaffold rather than evidence of cross-repo agreement, disagreement, or effect-size comparability.
+
+For backend-sensitive work, the archive also packages both tracked `fp-ineq` bridge backends:
+
+- `fp-r`, copied from `fp-ineq/reports/phase1_distribution_block/`
+- `fpexe`, copied from `fp-ineq/reports/phase1_distribution_block_fpexe/`
+
+The backend-aware compare export is additive. It does not replace the existing public-default bridge files.
 
 ## Confirmatory Status
 

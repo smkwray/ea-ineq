@@ -1,0 +1,136 @@
+{
+  "comparison_version": "v1",
+  "comparison_basis": "fp_channel_envelope_by_backend",
+  "comparison_interpretation_status": "diagnostic_only",
+  "ea_bridge_csv": "results/bridge/bridge_results.csv",
+  "ea_bridge_metadata": "results/bridge/bridge_metadata.json",
+  "fp_backends": {
+    "fp-r": {
+      "csv_source": "fp-ineq/reports/phase1_distribution_block/bridge_results.csv",
+      "meta_source": "fp-ineq/reports/phase1_distribution_block/bridge_metadata.json",
+      "archived_csv": "results/bridge/fp_bridge_results_fpr.csv",
+      "archived_meta": "results/bridge/fp_bridge_metadata_fpr.json"
+    },
+    "fpexe": {
+      "csv_source": "fp-ineq/reports/phase1_distribution_block_fpexe/bridge_results.csv",
+      "meta_source": "fp-ineq/reports/phase1_distribution_block_fpexe/bridge_metadata.json",
+      "archived_csv": "results/bridge/fp_bridge_results_fpexe.csv",
+      "archived_meta": "results/bridge/fp_bridge_metadata_fpexe.json"
+    }
+  },
+  "backend_summary": {
+    "fp-r": {
+      "row_count": 27,
+      "channels": [
+        "broad_federal_transfers",
+        "transfer_composite",
+        "ui"
+      ],
+      "scenario_ids": [
+        "ineq-federal-transfer-relief",
+        "ineq-federal-transfer-shock",
+        "ineq-transfer-composite-large",
+        "ineq-transfer-composite-medium",
+        "ineq-transfer-composite-small",
+        "ineq-ui-large",
+        "ineq-ui-relief",
+        "ineq-ui-shock",
+        "ineq-ui-small"
+      ]
+    },
+    "fpexe": {
+      "row_count": 27,
+      "channels": [
+        "broad_federal_transfers",
+        "transfer_composite",
+        "ui"
+      ],
+      "scenario_ids": [
+        "ineq-federal-transfer-relief",
+        "ineq-federal-transfer-shock",
+        "ineq-transfer-composite-large",
+        "ineq-transfer-composite-medium",
+        "ineq-transfer-composite-small",
+        "ineq-ui-large",
+        "ineq-ui-relief",
+        "ineq-ui-shock",
+        "ineq-ui-small"
+      ]
+    }
+  },
+  "backend_parity": {
+    "fp-r_vs_fpexe": {
+      "status": "identical_on_current_bridge_surface",
+      "metrics": {
+        "delta_trlowz": {
+          "max_abs_diff": 0.0,
+          "max_abs_diff_at": {
+            "scenario_id": "ineq-transfer-composite-large",
+            "h": 8
+          }
+        },
+        "delta_ipovall": {
+          "max_abs_diff": 0.0,
+          "max_abs_diff_at": {
+            "scenario_id": "ineq-transfer-composite-large",
+            "h": 8
+          }
+        },
+        "delta_ipovch": {
+          "max_abs_diff": 0.0,
+          "max_abs_diff_at": {
+            "scenario_id": "ineq-transfer-composite-large",
+            "h": 8
+          }
+        },
+        "delta_rydpc": {
+          "max_abs_diff": 0.0,
+          "max_abs_diff_at": {
+            "scenario_id": "ineq-transfer-composite-large",
+            "h": 8
+          }
+        },
+        "delta_iginihh": {
+          "max_abs_diff": 0.0,
+          "max_abs_diff_at": {
+            "scenario_id": "ineq-transfer-composite-large",
+            "h": 8
+          }
+        },
+        "delta_imedrinc": {
+          "max_abs_diff": 0.0,
+          "max_abs_diff_at": {
+            "scenario_id": "ineq-transfer-composite-large",
+            "h": 8
+          }
+        }
+      }
+    }
+  },
+  "channels": [
+    "broad_federal_transfers",
+    "transfer_composite",
+    "ui"
+  ],
+  "horizons": [
+    2,
+    4,
+    8
+  ],
+  "metrics": [
+    "delta_trlowz",
+    "delta_ipovall",
+    "delta_ipovch",
+    "delta_rydpc",
+    "delta_iginihh",
+    "delta_imedrinc"
+  ],
+  "limitations": [
+    "ea-ineq bridge rows remain per native shock unit rather than delta_trlowz.",
+    "Both fp-ineq backends are summarized as channel envelopes rather than one-to-one scenario matches.",
+    "Backend-level comparison still does not resolve the deeper estimand mismatch between ea-ineq and fp-ineq."
+  ],
+  "outputs": {
+    "compare_csv": "results/bridge/cross_repo_bridge_compare_backends.csv"
+  }
+}
