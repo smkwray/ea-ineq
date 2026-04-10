@@ -13,5 +13,6 @@ prompts/
 *.plan.md
 plan.md
 plans/
+.cache/
 *.png
 *.zip

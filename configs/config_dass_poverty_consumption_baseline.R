@@ -20,7 +20,7 @@ START_DATE <- "1990-03-31"
 END_DATE <- "2025-12-31"
 CUTOFF_POLICY <- "quarter_start"
 
-DAILY_LAGS <- 30
+DAILY_LAGS <- 90
 WEEKLY_LAGS <- 8
 MONTHLY_LAGS <- 12
 QUARTERLY_LAGS <- 8
@@ -42,6 +42,70 @@ PREP_INCLUDE_QUARTER_END <- local({
   env$`.__CONFIG_PATH__` <- p
   sys.source(p, envir = env)
   env$PREP_INCLUDE_QUARTER_END
+})
+
+AUTO_SERIES_DIR <- local({
+  p <- file.path(DASS_ROOT, "config_dass_poverty_consumption.R")
+  env <- new.env(parent = baseenv())
+  env$`.__CONFIG_PATH__` <- p
+  sys.source(p, envir = env)
+  env$AUTO_SERIES_DIR
+})
+
+AUTO_SERIES_INCLUDE_REGEX <- local({
+  p <- file.path(DASS_ROOT, "config_dass_poverty_consumption.R")
+  env <- new.env(parent = baseenv())
+  env$`.__CONFIG_PATH__` <- p
+  sys.source(p, envir = env)
+  env$AUTO_SERIES_INCLUDE_REGEX
+})
+
+AUTO_SERIES_EXCLUDE_REGEX <- local({
+  p <- file.path(DASS_ROOT, "config_dass_poverty_consumption.R")
+  env <- new.env(parent = baseenv())
+  env$`.__CONFIG_PATH__` <- p
+  sys.source(p, envir = env)
+  env$AUTO_SERIES_EXCLUDE_REGEX
+})
+
+AUTO_SERIES_NAME_MODE <- local({
+  p <- file.path(DASS_ROOT, "config_dass_poverty_consumption.R")
+  env <- new.env(parent = baseenv())
+  env$`.__CONFIG_PATH__` <- p
+  sys.source(p, envir = env)
+  env$AUTO_SERIES_NAME_MODE
+})
+
+AUTO_SERIES_SKIP_EXISTING <- local({
+  p <- file.path(DASS_ROOT, "config_dass_poverty_consumption.R")
+  env <- new.env(parent = baseenv())
+  env$`.__CONFIG_PATH__` <- p
+  sys.source(p, envir = env)
+  env$AUTO_SERIES_SKIP_EXISTING
+})
+
+AUTO_SERIES_REQUIRE_DATE_VALUE <- local({
+  p <- file.path(DASS_ROOT, "config_dass_poverty_consumption.R")
+  env <- new.env(parent = baseenv())
+  env$`.__CONFIG_PATH__` <- p
+  sys.source(p, envir = env)
+  env$AUTO_SERIES_REQUIRE_DATE_VALUE
+})
+
+AUTO_SERIES_FREQ_ALLOW <- local({
+  p <- file.path(DASS_ROOT, "config_dass_poverty_consumption.R")
+  env <- new.env(parent = baseenv())
+  env$`.__CONFIG_PATH__` <- p
+  sys.source(p, envir = env)
+  env$AUTO_SERIES_FREQ_ALLOW
+})
+
+AUTO_SERIES_MIN_OBS <- local({
+  p <- file.path(DASS_ROOT, "config_dass_poverty_consumption.R")
+  env <- new.env(parent = baseenv())
+  env$`.__CONFIG_PATH__` <- p
+  sys.source(p, envir = env)
+  env$AUTO_SERIES_MIN_OBS
 })
 
 DESIGN_OUT_DIR <- file.path(OUT_DIR, "design")

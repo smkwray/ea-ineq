@@ -27,7 +27,12 @@ HTTP_TIMEOUT_SECONDS <- 30
 HTTP_USER_AGENT <- "fetchr-R/0.1"
 FAIL_FAST <- TRUE
 
-ANNUAL_SOURCE_PATH <- "examples/data/research_poverty_annual.csv"
+INPUTS_DIR_ENV <- Sys.getenv("EA_INEQ_INPUT_DIR", unset = "")
+INPUTS_DIR <- if (nzchar(INPUTS_DIR_ENV)) normalizePath(INPUTS_DIR_ENV, winslash = "/", mustWork = FALSE) else normalizePath(file.path(FETCHR_ROOT, "..", "inputs"), winslash = "/", mustWork = FALSE)
+MONTHLY_SOURCE_PATH <- file.path(INPUTS_DIR, "research_poverty_monthly.csv")
+ANNUAL_SOURCE_PATH <- file.path(INPUTS_DIR, "research_poverty_annual.csv")
+FRED_EXT_SOURCE_PATH <- file.path(INPUTS_DIR, "research_poverty_fred_ext.csv")
+RECREATION_GOODS_SOURCE_PATH <- file.path(INPUTS_DIR, "research_poverty_recreation_goods.csv")
 ANNUAL_DATE_COL <- "date"
 
 # Final discretionary calibration:
@@ -50,37 +55,37 @@ DISC_CEX_ENT_SVCS_SPLIT <- 0.60
 DISC_CEX_ENT_GOODS_SPLIT <- 0.40
 
 SERIES <- list(
-  list(name = "housing_utilities", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "housing_utilities"),
-  list(name = "food_total", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "food_total"),
-  list(name = "healthcare_pce", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "healthcare_pce"),
-  list(name = "transport_svcs", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "transport_svcs"),
-  list(name = "clothing_footwear", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "clothing_footwear"),
-  list(name = "recreation_svcs", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "recreation_svcs"),
-  list(name = "recreation_goods", source = "csv_file", path = "examples/data/research_poverty_recreation_goods.csv", date_col = "date", value_col = "recreation_goods"),
-  list(name = "pce_durables", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "PCEDG"),
-  list(name = "pce_financial_svcs", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "FINCP"),
+  list(name = "housing_utilities", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "housing_utilities"),
+  list(name = "food_total", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "food_total"),
+  list(name = "healthcare_pce", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "healthcare_pce"),
+  list(name = "transport_svcs", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "transport_svcs"),
+  list(name = "clothing_footwear", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "clothing_footwear"),
+  list(name = "recreation_svcs", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "recreation_svcs"),
+  list(name = "recreation_goods", source = "csv_file", path = RECREATION_GOODS_SOURCE_PATH, date_col = "date", value_col = "recreation_goods"),
+  list(name = "pce_durables", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "PCEDG"),
+  list(name = "pce_financial_svcs", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "FINCP"),
 
-  list(name = "fed_funds", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "Fed_Funds"),
-  list(name = "transfers_total", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "transfers_total"),
-  list(name = "social_security", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "social_security"),
-  list(name = "ui_benefits", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "ui_benefits"),
-  list(name = "snap_persons", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "snap_persons"),
-  list(name = "household_networth", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "household_networth"),
-  list(name = "sp500", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "sp500"),
-  list(name = "equity_wealth_proxy", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "dj_index"),
-  list(name = "home_equity", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "home_equity"),
-  list(name = "fhfa_hpi", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "fhfa_hpi"),
-  list(name = "total_credit", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "TOTALSL"),
-  list(name = "nonrevolving_credit", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "NONREVSL"),
-  list(name = "revolving_credit", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "revolving_credit"),
-  list(name = "cc_delinquency", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "cc_delinquency"),
-  list(name = "recession_nber", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "nber_recession"),
-  list(name = "recession_nber_daily", source = "csv_file", path = "examples/data/research_poverty_monthly.csv", date_col = "date", value_col = "nber_recession_daily"),
-  list(name = "top1_wealth_share", source = "csv_file", path = "examples/data/research_poverty_fred_ext.csv", date_col = "date", value_col = "top1_wealth_share"),
-  list(name = "top10_wealth_share", source = "csv_file", path = "examples/data/research_poverty_fred_ext.csv", date_col = "date", value_col = "top10_wealth_share"),
-  list(name = "bottom50_wealth_share", source = "csv_file", path = "examples/data/research_poverty_fred_ext.csv", date_col = "date", value_col = "bottom50_wealth_share"),
-  list(name = "gini_income_fred_annual", source = "csv_file", path = "examples/data/research_poverty_fred_ext.csv", date_col = "date", value_col = "gini_income_fred"),
-  list(name = "median_real_income_fred_annual", source = "csv_file", path = "examples/data/research_poverty_fred_ext.csv", date_col = "date", value_col = "median_real_income_fred"),
+  list(name = "fed_funds", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "Fed_Funds"),
+  list(name = "transfers_total", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "transfers_total"),
+  list(name = "social_security", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "social_security"),
+  list(name = "ui_benefits", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "ui_benefits"),
+  list(name = "snap_persons", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "snap_persons"),
+  list(name = "household_networth", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "household_networth"),
+  list(name = "sp500", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "sp500"),
+  list(name = "equity_wealth_proxy", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "dj_index"),
+  list(name = "home_equity", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "home_equity"),
+  list(name = "fhfa_hpi", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "fhfa_hpi"),
+  list(name = "total_credit", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "TOTALSL"),
+  list(name = "nonrevolving_credit", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "NONREVSL"),
+  list(name = "revolving_credit", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "revolving_credit"),
+  list(name = "cc_delinquency", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "cc_delinquency"),
+  list(name = "recession_nber", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "nber_recession"),
+  list(name = "recession_nber_daily", source = "csv_file", path = MONTHLY_SOURCE_PATH, date_col = "date", value_col = "nber_recession_daily"),
+  list(name = "top1_wealth_share", source = "csv_file", path = FRED_EXT_SOURCE_PATH, date_col = "date", value_col = "top1_wealth_share"),
+  list(name = "top10_wealth_share", source = "csv_file", path = FRED_EXT_SOURCE_PATH, date_col = "date", value_col = "top10_wealth_share"),
+  list(name = "bottom50_wealth_share", source = "csv_file", path = FRED_EXT_SOURCE_PATH, date_col = "date", value_col = "bottom50_wealth_share"),
+  list(name = "gini_income_fred_annual", source = "csv_file", path = FRED_EXT_SOURCE_PATH, date_col = "date", value_col = "gini_income_fred"),
+  list(name = "median_real_income_fred_annual", source = "csv_file", path = FRED_EXT_SOURCE_PATH, date_col = "date", value_col = "median_real_income_fred"),
 
   list(name = "w_housing_annual", source = "csv_file", path = ANNUAL_SOURCE_PATH, date_col = ANNUAL_DATE_COL, value_col = "w_housing"),
   list(name = "w_food_annual", source = "csv_file", path = ANNUAL_SOURCE_PATH, date_col = ANNUAL_DATE_COL, value_col = "w_food"),

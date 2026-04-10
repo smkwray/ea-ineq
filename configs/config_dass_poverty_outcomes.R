@@ -1,11 +1,16 @@
 CONFIG_THIS <- if (exists(".__CONFIG_PATH__", inherits = TRUE)) get(".__CONFIG_PATH__", inherits = TRUE) else file.path(getwd(), "config_dass_poverty_outcomes.R")
 DASS_ROOT <- normalizePath(dirname(CONFIG_THIS), winslash = "/", mustWork = FALSE)
+PROJECT_ROOT <- normalizePath(file.path(DASS_ROOT, ".."), winslash = "/", mustWork = FALSE)
 FETCHR_ROOT <- normalizePath(file.path(DASS_ROOT, "..", "fetchr-R"), winslash = "/", mustWork = FALSE)
 RESULTS_ROOT_ENV <- Sys.getenv("ECONARK_RESULTS_DIR", unset = "")
 RESULTS_ROOT <- if (nzchar(RESULTS_ROOT_ENV)) normalizePath(RESULTS_ROOT_ENV, winslash = "/", mustWork = FALSE) else file.path(tempdir(), "econark_results")
 FETCHR_OUT_DIR_ENV <- Sys.getenv("FETCHR_OUT_DIR", unset = "")
 FETCHR_OUT <- if (nzchar(FETCHR_OUT_DIR_ENV)) file.path(FETCHR_OUT_DIR_ENV, "fetchr-R", "poverty_consumption") else file.path(FETCHR_ROOT, "out", "poverty_consumption")
 FETCHR_OUT_BASE <- if (nzchar(FETCHR_OUT_DIR_ENV)) file.path(FETCHR_OUT_DIR_ENV, "fetchr-R", "poverty_consumption") else "../fetchr-R/out/poverty_consumption"
+INTERPOL_RAW_DIR_ENV <- Sys.getenv("INTERPOL_RAW_DIR", unset = "")
+INTERPOL_CACHE_DIR <- file.path(PROJECT_ROOT, ".cache", "interpol_raw")
+INTERPOL_READY_FILE <- file.path(INTERPOL_CACHE_DIR, ".ready")
+INTERPOL_RAW_DIR <- if (nzchar(INTERPOL_RAW_DIR_ENV)) normalizePath(INTERPOL_RAW_DIR_ENV, winslash = "/", mustWork = FALSE) else if (file.exists(INTERPOL_READY_FILE)) normalizePath(INTERPOL_CACHE_DIR, winslash = "/", mustWork = FALSE) else NULL
 
 OUT_DIR <- file.path(RESULTS_ROOT, "dass-R", "poverty_outcomes")
 OUT_CSV <- file.path(OUT_DIR, "stacked_quarterly.csv")
@@ -20,7 +25,7 @@ START_DATE <- "1990-03-31"
 END_DATE <- "2025-12-31"
 CUTOFF_POLICY <- "quarter_start"
 
-DAILY_LAGS <- 30
+DAILY_LAGS <- 90
 WEEKLY_LAGS <- 8
 MONTHLY_LAGS <- 12
 QUARTERLY_LAGS <- 8
@@ -79,6 +84,17 @@ PREP_INCLUDE_QUARTER_END <- c(
   "gini_households_q", "median_hh_income_q", "poverty_all_q", "poverty_child_q",
   "gini_income_fred_q", "median_real_income_fred_q"
 )
+
+# Broader automatic control universe from the legacy interpol/raw tree.
+# Manual SERIES_SPECS remain the paper-facing treatments/outcomes.
+AUTO_SERIES_DIR <- INTERPOL_RAW_DIR
+AUTO_SERIES_INCLUDE_REGEX <- "\\.csv$"
+AUTO_SERIES_EXCLUDE_REGEX <- NULL
+AUTO_SERIES_NAME_MODE <- "auto"
+AUTO_SERIES_SKIP_EXISTING <- TRUE
+AUTO_SERIES_REQUIRE_DATE_VALUE <- TRUE
+AUTO_SERIES_FREQ_ALLOW <- c("d", "w", "m", "q")
+AUTO_SERIES_MIN_OBS <- 4
 
 DESIGN_OUT_DIR <- file.path(OUT_DIR, "design")
 LP_OUT_DIR <- file.path(OUT_DIR, "lp")
