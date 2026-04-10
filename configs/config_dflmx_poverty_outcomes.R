@@ -6,7 +6,7 @@ RESULTS_ROOT_ENV <- Sys.getenv("ECONARK_RESULTS_DIR", unset = "")
 RESULTS_ROOT <- if (nzchar(RESULTS_ROOT_ENV)) normalizePath(RESULTS_ROOT_ENV, winslash = "/", mustWork = FALSE) else file.path(tempdir(), "econark_results")
 DASS_OUT_DIR <- file.path(RESULTS_ROOT, "dass-R", "poverty_outcomes")
 STACKED_CSV <- file.path(DASS_OUT_DIR, "stacked_quarterly.csv")
-DASS_CONFIG_R <- file.path(ROOT, "dass-R", "config_dass_poverty_outcomes.R")
+DASS_CONFIG_R <- file.path(ROOT, "configs", "config_dass_poverty_outcomes.R")
 OUT_DIR <- file.path(RESULTS_ROOT, "dflmx-R", "poverty_outcomes")
 
 FACTOR_PANEL_CSV <- file.path(OUT_DIR, "factor_panel.csv")
@@ -93,6 +93,10 @@ SHOCK_W_MAX <- 120
 SHOCK_W_SELECT <- "corr_t_then_variance"
 SHOCK_MIN_R2 <- -0.05
 SHOCK_MAX_CONVERGENCE_WARNINGS <- 3
+SHOCK_TARGET_TRANSFORM <- "diff"
+SHOCK_INCLUDE_OWN_DIFF_LAGS <- TRUE
+SHOCK_INCLUDE_OWN_LEVEL_LAGS <- TRUE
+SHOCK_OWN_LAGS <- 4
 SHOCK_RETRY_MAX_ATTEMPTS <- 6
 SHOCK_RETRY_L1_RATIO_GRID <- c(0.7, 0.9, 1.0)
 SHOCK_RETRY_MAX_ITER_GRID <- c(20000, 50000)
@@ -104,6 +108,14 @@ REGRESSION_MAX_REAL_SECONDS <- 240
 
 RUN_IV_NC_DISCOVERY <- TRUE
 IVNC_TOPK_IV_PER_TREATMENT <- 5
+IVNC_IV_FEATURES_PER_FACTOR <- 3
+IVNC_IV_PREFER_OBSERVED <- TRUE
+IVNC_IV_ALLOW_FACTOR_FALLBACK <- FALSE
+IVNC_IV_MIN_FACTOR_SHARE <- 0.35
+IVNC_IV_MAX_OUTCOME_ABS_CORR <- 0.35
+IVNC_IV_OUTCOME_CORR_MIN_OBS <- 20
+IVNC_IV_BLOCKLIST <- character()
+IVNC_IV_BLOCKLIST_REGEX <- character()
 IVNC_TOPK_NC_PER_OUTCOME <- 10
 IVNC_DIRECTIONALITY_P_MAX <- 0.10
 IVNC_NC_P_MIN <- 0.20
@@ -131,6 +143,7 @@ SPEC_RECOMMENDED_BASELINE_JSON <- file.path(OUT_DIR, "spec_recommended_baseline.
 W_SPEC_SHIFT_SUMMARY_CSV <- file.path(OUT_DIR, "w_spec_shift_summary.csv")
 LEAD_ANTICIPATION_CSV <- file.path(OUT_DIR, "lead_anticipation_checks.csv")
 LEAD_ANTICIPATION_MD <- file.path(OUT_DIR, "lead_anticipation_checks.md")
+LEAD_TEST_N_LEADS <- 2
 EPISODE_LEAVEOUT_CSV <- file.path(OUT_DIR, "episode_leaveout_checks.csv")
 EPISODE_LEAVEOUT_SUMMARY_CSV <- file.path(OUT_DIR, "episode_leaveout_summary.csv")
 EPISODE_LEAVEOUT_MD <- file.path(OUT_DIR, "episode_leaveout_checks.md")
@@ -140,3 +153,4 @@ DASS_W_SPEC_BASELINE <- 200
 DASS_W_SPEC_P_THRESHOLD <- 0.10
 
 SENS_K_GRID <- c(3, 4, 5, 6)
+SENS_LP_LAGS_GRID <- c(1, 2, 3)
